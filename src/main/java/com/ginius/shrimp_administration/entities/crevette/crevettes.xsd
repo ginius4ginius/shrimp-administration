@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--........................................ -->
+	<!--     TYPES PRIMITIFS         -->
+	<!--........................................ -->
+	<xs:simpleType name="simpleTypeCharacter1a20">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="simpleTypeNumeric1a2">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:pattern value="[0-9]{2}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="simpleTypeDecimal1a2">
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="[0-9]{2}(\.[0-9]{2})"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="simpleTypeId">
+		<xs:restriction base="xs:decimal">
+			<xs:pattern value="[1-9]{1}[0-9]{0,3}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<!--........................................ -->
+	<!--  TYPES COMPLEXES       -->
+	<!--........................................ -->
+	<xs:element name="crevettes">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:sequence>
+					<xs:element name="crevette">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="variete" type="simpleTypeCharacter1a20" minOccurs="1" maxOccurs="1"/>
+								<xs:element name="nom" type="simpleTypeCharacter1a20" minOccurs="1" maxOccurs="1"/>
+								<xs:element name="ghMin" type="simpleTypeNumeric1a2" minOccurs="1" maxOccurs="1"/>
+								<xs:element name="ghMax" type="simpleTypeNumeric1a2" minOccurs="1" maxOccurs="1"/>
+								<xs:element name="khMin" type="simpleTypeNumeric1a2" minOccurs="1" maxOccurs="1"/>
+								<xs:element name="khMax" type="simpleTypeNumeric1a2" minOccurs="1" maxOccurs="1"/>
+								<xs:element name="phMin" type="simpleTypeDecimal1a2" minOccurs="1" maxOccurs="1"/>
+								<xs:element name="phMax" type="simpleTypeDecimal1a2" minOccurs="1" maxOccurs="1"/>
+								<xs:element name="temperature" type="simpleTypeNumeric1a2" minOccurs="1" maxOccurs="1"/>
+							</xs:sequence>
+							  <xs:attribute name="CrevetteID" type="simpleTypeId" ></xs:attribute>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:complexType>
+		 <xs:unique name="oneCrevetteforEachCrevetteID">
+			  <xs:selector xpath="crevette"/>
+			  <xs:field xpath="@CrevetteId"/>
+		 </xs:unique>
+	</xs:element>
+</xs:schema>
