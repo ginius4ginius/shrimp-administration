@@ -64,6 +64,27 @@ public class Aquariums {
 		@XmlAttribute(name = "AquariumID")
 		protected double aquariumID;
 
+		public Aquarium() {
+			super();
+		}
+
+		public Aquarium(int longueur, int largeur, int hauteur, double litrageBrut, double litrageNet,
+				double substratID, double eauID, double filtrationID, double eclairageID, Crevettes crevettes,
+				double aquariumID) {
+			super();
+			this.longueur = longueur;
+			this.largeur = largeur;
+			this.hauteur = hauteur;
+			this.litrageBrut = litrageBrut;
+			this.litrageNet = litrageNet;
+			this.substratID = substratID;
+			this.eauID = eauID;
+			this.filtrationID = filtrationID;
+			this.eclairageID = eclairageID;
+			this.crevettes = crevettes;
+			this.aquariumID = aquariumID;
+		}
+
 		public int getLongueur() {
 			return longueur;
 		}
@@ -156,11 +177,11 @@ public class Aquariums {
 		@XmlType(name = "", propOrder = { "crevetteID" })
 		public static class Crevettes {
 
-			protected List<BigDecimal> crevetteID;
+			protected List<Double> crevetteID;
 
-			public List<BigDecimal> getCrevetteID() {
+			public List<Double> getCrevetteID() {
 				if (crevetteID == null) {
-					crevetteID = new ArrayList<BigDecimal>();
+					crevetteID = new ArrayList<Double>();
 				}
 				return this.crevetteID;
 			}

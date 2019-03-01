@@ -5,11 +5,8 @@
 // G�n�r� le : 2019.03.01 � 05:11:32 AM CET 
 //
 
-
 package com.ginius.shrimp_administration.entities.crevette;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -20,143 +17,150 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
-
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "crevette"
-})
+@XmlType(name = "", propOrder = { "crevette" })
 @XmlRootElement(name = "crevettes")
 public class Crevettes {
 
-    protected List<Crevettes.Crevette> crevette;
+	protected List<Crevettes.Crevette> crevette;
 
-    public List<Crevettes.Crevette> getCrevette() {
-        if (crevette == null) {
-            crevette = new ArrayList<Crevettes.Crevette>();
-        }
-        return this.crevette;
-    }
+	public List<Crevettes.Crevette> getCrevette() {
+		if (crevette == null) {
+			crevette = new ArrayList<Crevettes.Crevette>();
+		}
+		return this.crevette;
+	}
 
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "variete",
-        "nom",
-        "ghMin",
-        "ghMax",
-        "khMin",
-        "khMax",
-        "phMin",
-        "phMax",
-        "temperature"
-    })
-    public static class Crevette {
+	@XmlAccessorType(XmlAccessType.FIELD)
+	@XmlType(name = "", propOrder = { "variete", "nom", "ghMin", "ghMax", "khMin", "khMax", "phMin", "phMax",
+			"temperature" })
+	public static class Crevette {
 
-        @XmlElement(required = true)
-        protected String variete;
-        @XmlElement(required = true)
-        protected String nom;
-        @XmlElement(required = true)
-        @XmlSchemaType(name = "nonNegativeInteger")
-        protected int ghMin;
-        @XmlElement(required = true)
-        @XmlSchemaType(name = "nonNegativeInteger")
-        protected int ghMax;
-        @XmlElement(required = true)
-        @XmlSchemaType(name = "nonNegativeInteger")
-        protected int khMin;
-        @XmlElement(required = true)
-        @XmlSchemaType(name = "nonNegativeInteger")
-        protected int khMax;
-        @XmlElement(required = true)
-        protected double phMin;
-        @XmlElement(required = true)
-        protected double phMax;
-        @XmlElement(required = true)
-        @XmlSchemaType(name = "nonNegativeInteger")
-        protected int temperature;
-        @XmlAttribute(name = "CrevetteID")
-        protected int crevetteID;
+		@XmlElement(required = true)
+		protected String variete;
+		@XmlElement(required = true)
+		protected String nom;
+		@XmlElement(required = true)
+		@XmlSchemaType(name = "nonNegativeInteger")
+		protected int ghMin;
+		@XmlElement(required = true)
+		@XmlSchemaType(name = "nonNegativeInteger")
+		protected int ghMax;
+		@XmlElement(required = true)
+		@XmlSchemaType(name = "nonNegativeInteger")
+		protected int khMin;
+		@XmlElement(required = true)
+		@XmlSchemaType(name = "nonNegativeInteger")
+		protected int khMax;
+		@XmlElement(required = true)
+		protected double phMin;
+		@XmlElement(required = true)
+		protected double phMax;
+		@XmlElement(required = true)
+		@XmlSchemaType(name = "nonNegativeInteger")
+		protected int temperature;
+		@XmlAttribute(name = "CrevetteID")
+		protected int crevetteID;
 
-        public String getVariete() {
-            return variete;
-        }
+		public Crevette() {
+			super();
+		}
 
-        public void setVariete(String value) {
-            this.variete = value;
-        }
+		public Crevette(String variete, String nom, int ghMin, int ghMax, int khMin, int khMax, double phMin,
+				double phMax, int temperature, int crevetteID) {
+			super();
+			this.variete = variete;
+			this.nom = nom;
+			this.ghMin = ghMin;
+			this.ghMax = ghMax;
+			this.khMin = khMin;
+			this.khMax = khMax;
+			this.phMin = phMin;
+			this.phMax = phMax;
+			this.temperature = temperature;
+			this.crevetteID = crevetteID;
+		}
 
-        public String getNom() {
-            return nom;
-        }
+		public String getVariete() {
+			return variete;
+		}
 
-        public void setNom(String value) {
-            this.nom = value;
-        }
+		public void setVariete(String value) {
+			this.variete = value;
+		}
 
-        public int getGhMin() {
-            return ghMin;
-        }
+		public String getNom() {
+			return nom;
+		}
 
-        public void setGhMin(int value) {
-            this.ghMin = value;
-        }
+		public void setNom(String value) {
+			this.nom = value;
+		}
 
-        public int getGhMax() {
-            return ghMax;
-        }
+		public int getGhMin() {
+			return ghMin;
+		}
 
-        public void setGhMax(int value) {
-            this.ghMax = value;
-        }
+		public void setGhMin(int value) {
+			this.ghMin = value;
+		}
 
-        public int getKhMin() {
-            return khMin;
-        }
+		public int getGhMax() {
+			return ghMax;
+		}
 
-        public void setKhMin(int value) {
-            this.khMin = value;
-        }
+		public void setGhMax(int value) {
+			this.ghMax = value;
+		}
 
-        public int getKhMax() {
-            return khMax;
-        }
+		public int getKhMin() {
+			return khMin;
+		}
 
-        public void setKhMax(int value) {
-            this.khMax = value;
-        }
+		public void setKhMin(int value) {
+			this.khMin = value;
+		}
 
-        public double getPhMin() {
-            return phMin;
-        }
+		public int getKhMax() {
+			return khMax;
+		}
 
-        public void setPhMin(double value) {
-            this.phMin = value;
-        }
+		public void setKhMax(int value) {
+			this.khMax = value;
+		}
 
-        public double getPhMax() {
-            return phMax;
-        }
+		public double getPhMin() {
+			return phMin;
+		}
 
-        public void setPhMax(double value) {
-            this.phMax = value;
-        }
+		public void setPhMin(double value) {
+			this.phMin = value;
+		}
 
-        public int getTemperature() {
-            return temperature;
-        }
+		public double getPhMax() {
+			return phMax;
+		}
 
-        public void setTemperature(int value) {
-            this.temperature = value;
-        }
+		public void setPhMax(double value) {
+			this.phMax = value;
+		}
 
-        public int getCrevetteID() {
-            return crevetteID;
-        }
+		public int getTemperature() {
+			return temperature;
+		}
 
-        public void setCrevetteID(int i) {
-            this.crevetteID = i;
-        }
+		public void setTemperature(int value) {
+			this.temperature = value;
+		}
 
-    }
+		public int getCrevetteID() {
+			return crevetteID;
+		}
+
+		public void setCrevetteID(int i) {
+			this.crevetteID = i;
+		}
+
+	}
 
 }
