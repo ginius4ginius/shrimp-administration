@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="833.0" prefWidth="1164.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ginius.shrimp_administration.vue.MainAppController">
+   <children>
+      <Pane prefHeight="86.0" prefWidth="802.0">
+         <children>
+            <ImageView fitHeight="116.0" fitWidth="506.0" layoutX="375.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/entete.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <AnchorPane fx:id="an_menu" layoutY="121.0" prefHeight="712.0" prefWidth="221.0" style="-fx-background-color: #B8360A;">
+         <children>
+            <Pane prefHeight="65.0" prefWidth="221.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="65.0" prefWidth="221.0" style="-fx-background-color: #4F1400;" text="MENU" textFill="WHITE" />
+               </children>
+            </Pane>
+            <Separator layoutX="22.0" layoutY="332.0" opacity="0.33" prefHeight="4.0" prefWidth="173.0" style="-fx-background-color: #4F1400;" />
+            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="116.0" onAction="#handleAfficherCrevettes" prefHeight="54.0" prefWidth="173.0" text="Crevettes" textFill="WHITE" />
+            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="208.0" onAction="#handleAfficherAquariums" prefHeight="54.0" prefWidth="173.0" text="Aquariums" textFill="WHITE" />
+            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="406.0" onAction="#handleAfficherAquariums" prefHeight="54.0" prefWidth="181.0" text="Bilan" textFill="WHITE" />
+            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="495.0" onAction="#handleAfficherAquariums" prefHeight="54.0" prefWidth="181.0" text="Depenses" textFill="WHITE" />
+            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="583.0" onAction="#handleAfficherAquariums" prefHeight="54.0" prefWidth="181.0" text="Recette" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="an_list" layoutX="217.0" layoutY="121.0" prefHeight="712.0" prefWidth="304.0" style="-fx-background-color: F08827;">
+         <children>
+            <Pane prefHeight="65.0" prefWidth="304.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="65.0" prefWidth="304.0" style="-fx-background-color: #8B5701;" text="SELECTION" textFill="WHITE" />
+               </children>
+            </Pane>
+            <ListView fx:id="crevettesList" layoutX="7.0" layoutY="70.0" prefHeight="641.0" prefWidth="294.0" style="-fx-background-color: #F08827;" />
+            <ListView fx:id="aquariumList" layoutX="4.0" layoutY="70.0" prefHeight="641.0" prefWidth="294.0" style="-fx-background-color: #F08827;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="an_content" layoutX="520.0" layoutY="121.0" prefHeight="712.0" prefWidth="646.0" style="-fx-background-color: #FFEDCF;">
+         <children>
+            <Pane prefHeight="65.0" prefWidth="646.0" style="-fx-background-color: #FED38C;">
+               <children>
+                  <JFXButton fx:id="newCrevette" buttonType="RAISED" layoutX="14.0" layoutY="6.0" onAction="#newCrevette" prefHeight="54.0" prefWidth="157.0" text="nouvelle Crevette" textFill="WHITE" />
+                  <Icon fx:id="delete" content="DELETE" layoutX="528.0" layoutY="12.0" prefHeight="42.0" prefWidth="42.0" />
+                  <Icon fx:id="exit" content="CLOSE" layoutX="590.0" layoutY="12.0" onMouseClicked="#exit" prefHeight="42.0" prefWidth="42.0" />
+               </children></Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
