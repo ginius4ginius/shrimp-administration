@@ -1,6 +1,6 @@
 package com.ginius.shrimp_administration.entities.crevette;
 
-public enum CrevetteCatgory {
+public enum CrevetteCategory {
 	
 	CARIDINA,
 	NEOCARIDINA;

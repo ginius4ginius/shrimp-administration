@@ -161,6 +161,11 @@ public class Crevettes {
 			this.crevetteID = i;
 		}
 
+		@Override
+		public String toString() {
+			return variete + " - " + nom;
+		}
+
 	}
 
 }

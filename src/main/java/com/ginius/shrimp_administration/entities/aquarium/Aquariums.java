@@ -188,6 +188,14 @@ public class Aquariums {
 
 		}
 
+		@Override
+		public String toString() {
+			return "Aquarium [litrageNet=" + litrageNet + ", crevettes=" + crevettes + ", aquariumID=" + aquariumID
+					+ "]";
+		}
+		
+		
+
 	}
 
 }
