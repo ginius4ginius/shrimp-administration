@@ -10,6 +10,11 @@ import com.ginius.shrimp_administration.entities.aquarium.Aquariums;
 import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium;
 import com.ginius.shrimp_administration.entities.aquarium.ObjectFactory;
 
+/**
+ * 
+ * @author giniu
+ *
+ */
 public class AquariumController {
 
 	ObjectFactory factory = new ObjectFactory();

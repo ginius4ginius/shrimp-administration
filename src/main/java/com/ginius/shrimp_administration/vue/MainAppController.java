@@ -1,7 +1,6 @@
 package com.ginius.shrimp_administration.vue;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import com.ginius.shrimp_administration.App;
@@ -9,10 +8,7 @@ import com.ginius.shrimp_administration.controller.AquariumController;
 import com.ginius.shrimp_administration.controller.CrevetteController;
 import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
-import com.ginius.shrimp_administration.entities.crevette.CrevetteCategory;
-import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.gluonhq.charm.glisten.control.Icon;
-import com.gluonhq.impl.charm.a.b.b.t;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,16 +18,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * 
+ * @author giniu
+ *
+ */
 public class MainAppController {
 
 	@FXML
@@ -94,8 +90,8 @@ public class MainAppController {
 
 		for (Crevette c : liste) {
 
-			Crevette crevette = new Crevette(c.getVariete(), c.getNom(), c.getGhMin(), c.getGhMax(), c.getKhMin(),
-					c.getKhMax(), c.getPhMin(), c.getKhMax(), c.getTemperature(), c.getCrevetteID());
+			Crevette crevette = new Crevette(c.getcategorie(), c.getsouscategorie(), c.getNom(), c.getGhMin(), c.getGhMax(), c.getKhMin(),
+					c.getKhMax(), c.getPhMin(), c.getKhMax(), c.getTemperature(), c.getCrevetteID(), c.getDescription());
 
 			lesCrevettes.add(crevette);
 
@@ -142,6 +138,9 @@ public class MainAppController {
 
 	@FXML
 	public void newCrevette(ActionEvent event) {
+		
+		aquariumList.setVisible(false);
+		crevettesList.setVisible(false);
 
 		// creation chargeur pour le fichier FXML
 		FXMLLoader loader = new FXMLLoader();

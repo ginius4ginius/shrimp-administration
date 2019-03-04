@@ -17,6 +17,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ * 
+ * @author giniu
+ *
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "crevette" })
 @XmlRootElement(name = "crevettes")
@@ -32,12 +37,14 @@ public class Crevettes {
 	}
 
 	@XmlAccessorType(XmlAccessType.FIELD)
-	@XmlType(name = "", propOrder = { "variete", "nom", "ghMin", "ghMax", "khMin", "khMax", "phMin", "phMax",
-			"temperature" })
+	@XmlType(name = "", propOrder = { "categorie", "sousCategorie", "nom", "ghMin", "ghMax", "khMin", "khMax", "phMin", "phMax",
+			"temperature", "description" })
 	public static class Crevette {
 
 		@XmlElement(required = true)
-		protected String variete;
+		protected String categorie;
+		@XmlElement(required = true)
+		protected String sousCategorie;
 		@XmlElement(required = true)
 		protected String nom;
 		@XmlElement(required = true)
@@ -61,15 +68,18 @@ public class Crevettes {
 		protected int temperature;
 		@XmlAttribute(name = "CrevetteID")
 		protected int crevetteID;
+		@XmlElement(required = true)
+		protected String description;
 
 		public Crevette() {
 			super();
 		}
 
-		public Crevette(String variete, String nom, int ghMin, int ghMax, int khMin, int khMax, double phMin,
-				double phMax, int temperature, int crevetteID) {
+		public Crevette(String categorie, String sousCategorie, String nom, int ghMin, int ghMax, int khMin, int khMax, double phMin,
+				double phMax, int temperature, int crevetteID, String description) {
 			super();
-			this.variete = variete;
+			this.categorie = categorie;
+			this.sousCategorie = sousCategorie;
 			this.nom = nom;
 			this.ghMin = ghMin;
 			this.ghMax = ghMax;
@@ -79,14 +89,23 @@ public class Crevettes {
 			this.phMax = phMax;
 			this.temperature = temperature;
 			this.crevetteID = crevetteID;
+			this.description = description;
 		}
 
-		public String getVariete() {
-			return variete;
+		public String getcategorie() {
+			return categorie;
 		}
 
-		public void setVariete(String value) {
-			this.variete = value;
+		public void setcategorie(String value) {
+			this.categorie = value;
+		}
+		
+		public String getsouscategorie() {
+			return sousCategorie;
+		}
+
+		public void setsouscategorie(String value) {
+			this.sousCategorie = value;
 		}
 
 		public String getNom() {
@@ -160,10 +179,18 @@ public class Crevettes {
 		public void setCrevetteID(int i) {
 			this.crevetteID = i;
 		}
+		
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String value) {
+			this.description = value;
+		}
 
 		@Override
 		public String toString() {
-			return variete + " - " + nom;
+			return categorie + " "+ sousCategorie +" - " + nom;
 		}
 
 	}

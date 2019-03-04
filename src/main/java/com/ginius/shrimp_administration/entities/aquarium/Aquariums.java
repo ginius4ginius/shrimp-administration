@@ -7,8 +7,6 @@
 
 package com.ginius.shrimp_administration.entities.aquarium;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,6 +17,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ * 
+ * @author giniu
+ *
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "aquarium" })
 @XmlRootElement(name = "aquariums")

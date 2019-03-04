@@ -9,6 +9,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
 import com.ginius.shrimp_administration.entities.crevette.CrevetteCategory;
+import com.ginius.shrimp_administration.entities.crevette.CrevetteSousCategory;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 
@@ -16,6 +17,11 @@ import javafx.fxml.FXMLLoader;
 
 import com.ginius.shrimp_administration.entities.crevette.ObjectFactory;
 
+/**
+ * 
+ * @author giniu
+ *
+ */
 public class AppData {
 
 	public static int crevetteId;
@@ -29,8 +35,9 @@ public class AppData {
 
 	Crevette crevette1 = factory.createCrevettesCrevette();
 	crevette1.setCrevetteID(1);
-	crevette1.setVariete(CrevetteCategory.CARIDINA.toString());
-	crevette1.setNom("blue pearl");
+	crevette1.setcategorie(CrevetteCategory.CARIDINA.toString());
+	crevette1.setsouscategorie(CrevetteSousCategory.CANTONENSIS.toString());
+	crevette1.setNom("Tiger blue");
 	crevette1.setGhMax(15);
 	crevette1.setGhMin(5);
 	crevette1.setKhMax(10);
@@ -40,7 +47,16 @@ public class AppData {
 
 	Crevette crevette2 = factory.createCrevettesCrevette();
 
-	crevette2.setCrevetteID(2);crevette2.setVariete(CrevetteCategory.CARIDINA.toString());crevette2.setNom("sakura red");crevette2.setGhMax(15);crevette2.setGhMin(5);crevette2.setKhMax(10);crevette2.setKhMin(0);crevette2.setPhMax(6.5);crevette2.setPhMin(7.5);crevette2.setTemperature(20);
+	crevette2.setCrevetteID(2);crevette2.setcategorie(CrevetteCategory.NEOCARIDINA.toString());
+	crevette2.setsouscategorie(CrevetteSousCategory.DAVIDI.toString());
+	crevette2.setNom("Sakura red");
+	crevette2.setGhMax(15);
+	crevette2.setGhMin(5);
+	crevette2.setKhMax(10);
+	crevette2.setKhMin(0);
+	crevette2.setPhMax(6.5);
+	crevette2.setPhMin(7.5);
+	crevette2.setTemperature(20);
 
 	crevettesList.getCrevette().add(crevette2);
 
@@ -76,8 +92,9 @@ public class AppData {
 		Crevette crevette3 = factory.createCrevettesCrevette();
 
 		crevette3.setCrevetteID(crevetteId);
-		crevette3.setVariete(CrevetteCategory.NEOCARIDINA.toString());
-		crevette3.setNom("Tiger blue");
+		crevette3.setcategorie(CrevetteCategory.NEOCARIDINA.toString());
+		crevette3.setsouscategorie(CrevetteSousCategory.PALMATA.toString());
+		crevette3.setNom("Blue pearl");
 		crevette3.setGhMax(15);
 		crevette3.setGhMin(5);
 		crevette3.setKhMax(10);
