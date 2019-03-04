@@ -151,7 +151,6 @@ public class MainAppController {
 		this.lesAquariums = lesAquariums;
 	}
 
-	@SuppressWarnings("unchecked")
 	@FXML
 	private void handleAfficherCrevettes() {
 		// affichage du pane crevette
@@ -208,7 +207,6 @@ public class MainAppController {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@FXML
 	private void handleAfficherAquariums() {
 		// masque du pane crevette

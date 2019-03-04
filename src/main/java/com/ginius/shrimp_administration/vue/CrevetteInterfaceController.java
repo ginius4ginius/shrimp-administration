@@ -15,13 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
 import com.ginius.shrimp_administration.controller.CrevetteController;
 import com.ginius.shrimp_administration.entities.crevette.*;
@@ -36,7 +32,6 @@ public class CrevetteInterfaceController {
 
 	private int crevetteId;
 	private int lastPosition;
-	private Crevettes crevettes;
 	JAXBContext ctx = null;
 
 	@FXML
@@ -118,10 +113,10 @@ public class CrevetteInterfaceController {
 	@FXML
 	private void saveCrevette() {
 
-		if (pasErreur()) {
-			//récupération de la liste des crevettes.
+		if (pasDeChampsVides() && pasDeChampsIncorrectes()) {
+			// récupération de la liste des crevettes.
 			listeInitiale = CrevetteController.getCrevetteList();
-			
+
 			// génération d'un nouvel identifiant
 			lastPosition = listeInitiale.size() - 1;
 			crevetteId = listeInitiale.get(lastPosition).getCrevetteID() + 1;
@@ -185,12 +180,11 @@ public class CrevetteInterfaceController {
 	}
 
 	/**
-	 * méthode vérifiant les champs d'insersion avant la sauvegarde de l'entité
-	 * crevette.
+	 * Vérifie si un champs du formulaire est vide.
 	 * 
 	 * @return
 	 */
-	private boolean pasErreur() {
+	private boolean pasDeChampsVides() {
 
 		String nom = nomTf.getText();
 		String ghmax = ghMaxTf.getText();
@@ -226,6 +220,98 @@ public class CrevetteInterfaceController {
 			return false;
 		} else
 			return true;
+	}
+
+	/**
+	 * Vérifie si un champs du formulaire est de mauvais type.
+	 * 
+	 * @return
+	 */
+	private boolean pasDeChampsIncorrectes() {
+
+		String messageErreur = "";
+		String nom = nomTf.getText();
+		String ghmax = ghMaxTf.getText();
+		String ghmin = ghMinTf.getText();
+		String khmax = khMaxTf.getText();
+		String khmin = khMinTf.getText();
+		String phmax = phMaxTf.getText();
+		String phmin = phMinTf.getText();
+		String temperature = temperatureTf.getText();
+		if (nom.length() > 20 || errTypeInteger(ghmax) || errTypeInteger(ghmin)|| errTypeInteger(khmax) 
+				|| errTypeInteger(khmin)
+				|| errTypeDouble(phmin) || errTypeDouble(phmax) || errTypeInteger(temperature)) {
+			if (nom.length() > 20)
+				messageErreur = messageErreur + " Nom : moin de 20 caractères";
+			if (errTypeInteger(ghmax))
+				messageErreur = messageErreur + " gh Max : invalide";
+			if (errTypeInteger(ghmin))
+				messageErreur = messageErreur + " gh Min : invalide";
+			if (errTypeInteger(khmax))
+				messageErreur = messageErreur + " kh Max : invalide";
+			if (errTypeInteger(khmin))
+				messageErreur = messageErreur + " kh Min : invalide";
+			if (errTypeDouble(phmax))
+				messageErreur = messageErreur + " ph Max : invalide";
+			if (errTypeDouble(phmin))
+				messageErreur = messageErreur + " ph Max : invalide";
+			if (errTypeInteger(temperature))
+				messageErreur = messageErreur + " temperature : invalide";
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Informations incomplètes");
+			alert.setHeaderText(messageErreur);
+
+			alert.showAndWait();
+			return false;
+		} else
+			return true;
+	}
+
+	/**
+	 * méthode qui valide le type composé de numérique.
+	 * 
+	 * @param text
+	 * @return
+	 */
+	private boolean errTypeDouble(String text) {
+		try {
+			Double.parseDouble(text);
+			return errLengthInteger(text);
+
+		} catch (NumberFormatException e) {
+			return true;
+		}
+	}
+	
+	/**
+	 * méthode qui valide le type composé de numérique.
+	 * 
+	 * @param text
+	 * @return
+	 */
+	private boolean errTypeInteger(String text) {
+		try {
+			Double.parseDouble(text);
+			return errLengthInteger(text);
+
+		} catch (NumberFormatException e) {
+			return true;
+		}
+	}
+
+	/**
+	 * méthode qui valide le type composé de numérique.
+	 * 
+	 * @param text
+	 * @return
+	 */
+	private boolean errLengthInteger(String text) {
+		if (text.length() < 2 || text.length() > 2) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
