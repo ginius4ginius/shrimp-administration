@@ -24,7 +24,7 @@
             </ImageView>
          </children>
       </Pane>
-      <AnchorPane fx:id="an_content" layoutY="114.0" prefHeight="712.0" prefWidth="1166.0" style="-fx-background-color: #FFEDCF;">
+      <AnchorPane fx:id="an_content" layoutY="114.0" prefHeight="721.0" prefWidth="1166.0" style="-fx-background-color: #FFEDCF;">
          <children>
             <Pane prefHeight="65.0" prefWidth="1166.0" style="-fx-background-color: #FED38C;">
                <children>

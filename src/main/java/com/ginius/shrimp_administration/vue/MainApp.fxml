@@ -2,9 +2,11 @@
 
 <?import com.gluonhq.charm.glisten.control.Icon?>
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -43,8 +45,8 @@
                   <Label alignment="CENTER" prefHeight="65.0" prefWidth="304.0" style="-fx-background-color: #8B5701;" text="SELECTION" textFill="WHITE" />
                </children>
             </Pane>
-            <ListView fx:id="crevettesList" layoutX="7.0" layoutY="70.0" prefHeight="641.0" prefWidth="294.0" style="-fx-background-color: #F08827;" />
-            <ListView fx:id="aquariumList" layoutX="4.0" layoutY="70.0" prefHeight="641.0" prefWidth="294.0" style="-fx-background-color: #F08827;" />
+            <ListView fx:id="crevettesList" layoutX="7.0" layoutY="74.0" onMouseClicked="#handleCrevetteItem" prefHeight="628.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
+            <ListView fx:id="aquariumList" layoutX="7.0" layoutY="73.0" prefHeight="628.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="an_content" layoutX="520.0" layoutY="121.0" prefHeight="712.0" prefWidth="646.0" style="-fx-background-color: #FFEDCF;">
@@ -55,6 +57,30 @@
                   <Icon fx:id="delete" content="DELETE" layoutX="528.0" layoutY="12.0" prefHeight="42.0" prefWidth="42.0" />
                   <Icon fx:id="exit" content="CLOSE" layoutX="590.0" layoutY="12.0" onMouseClicked="#exit" prefHeight="42.0" prefWidth="42.0" />
                </children></Pane>
+            <JFXTextArea fx:id="descriptionTa" layoutX="11.0" layoutY="461.0" prefHeight="231.0" prefWidth="618.0" />
+            <Label fx:id="description" alignment="CENTER" layoutX="53.0" layoutY="435.0" prefHeight="26.0" prefWidth="561.0" text="Description :" />
+            <Pane fx:id="crevettepane" layoutX="18.0" layoutY="86.0" prefHeight="339.0" prefWidth="609.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <Label fx:id="ghmax" layoutX="285.0" layoutY="73.0" prefHeight="26.0" prefWidth="111.0" text="GH maximum : " />
+                  <Label fx:id="khmax" layoutX="285.0" layoutY="150.0" prefHeight="26.0" prefWidth="111.0" text="KH maximum :" />
+                  <Label fx:id="phmax" layoutX="285.0" layoutY="222.0" prefHeight="26.0" prefWidth="111.0" text="PH maximum :" />
+                  <Label fx:id="categorie" layoutX="23.0" layoutY="25.0" prefHeight="26.0" prefWidth="111.0" text="Catégorie" />
+                  <Label fx:id="souscatégorie" layoutX="154.0" layoutY="25.0" prefHeight="26.0" prefWidth="138.0" text="Sous catégorie" />
+                  <Label fx:id="nom" layoutX="341.0" layoutY="25.0" prefHeight="26.0" prefWidth="52.0" text="nom :" />
+                  <Label fx:id="ghmin" layoutX="46.0" layoutY="71.0" prefHeight="26.0" prefWidth="111.0" text="GH minimum : " />
+                  <Label fx:id="khmin" layoutX="46.0" layoutY="148.0" prefHeight="26.0" prefWidth="111.0" text="KH minimum : " />
+                  <Label fx:id="phmin" layoutX="46.0" layoutY="220.0" prefHeight="26.0" prefWidth="111.0" text="PH minimum :" />
+                  <Label fx:id="temperature" layoutX="46.0" layoutY="289.0" prefHeight="26.0" prefWidth="111.0" text=" température : " />
+                  <TextField fx:id="ghminTf" layoutX="154.0" layoutY="69.0" prefHeight="26.0" prefWidth="83.0" />
+                  <TextField fx:id="phminTf" layoutX="154.0" layoutY="220.0" prefHeight="26.0" prefWidth="83.0" />
+                  <TextField fx:id="temperatureTf" layoutX="157.0" layoutY="289.0" prefHeight="26.0" prefWidth="83.0" />
+                  <TextField fx:id="khminTf" layoutX="154.0" layoutY="150.0" prefHeight="26.0" prefWidth="83.0" />
+                  <TextField fx:id="ghmaxTf" layoutX="396.0" layoutY="71.0" prefHeight="26.0" prefWidth="83.0" />
+                  <TextField fx:id="phmaxTf" layoutX="396.0" layoutY="220.0" prefHeight="26.0" prefWidth="83.0" />
+                  <TextField fx:id="khmaxTf" layoutX="396.0" layoutY="148.0" prefHeight="26.0" prefWidth="83.0" />
+                  <TextField fx:id="nomTf" layoutX="396.0" layoutY="25.0" prefHeight="26.0" prefWidth="181.0" />
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
    </children>
