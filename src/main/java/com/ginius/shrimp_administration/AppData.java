@@ -8,8 +8,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import com.ginius.shrimp_administration.entities.crevette.CrevetteCategory;
-import com.ginius.shrimp_administration.entities.crevette.CrevetteSousCategory;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 
@@ -35,8 +33,8 @@ public class AppData {
 
 	Crevette crevette1 = factory.createCrevettesCrevette();
 	crevette1.setCrevetteID(1);
-	crevette1.setcategorie(CrevetteCategory.CARIDINA.toString());
-	crevette1.setsouscategorie(CrevetteSousCategory.CANTONENSIS.toString());
+	crevette1.setcategorie("CARIDINA");
+	crevette1.setsouscategorie("CANTONENSIS");
 	crevette1.setNom("Tiger blue");
 	crevette1.setGhMax(15);
 	crevette1.setGhMin(5);
@@ -47,8 +45,8 @@ public class AppData {
 
 	Crevette crevette2 = factory.createCrevettesCrevette();
 
-	crevette2.setCrevetteID(2);crevette2.setcategorie(CrevetteCategory.NEOCARIDINA.toString());
-	crevette2.setsouscategorie(CrevetteSousCategory.DAVIDI.toString());
+	crevette2.setCrevetteID(2);crevette2.setcategorie("NEOCARIDINA");
+	crevette2.setsouscategorie("DAVIDI");
 	crevette2.setNom("Sakura red");
 	crevette2.setGhMax(15);
 	crevette2.setGhMin(5);
@@ -92,8 +90,8 @@ public class AppData {
 		Crevette crevette3 = factory.createCrevettesCrevette();
 
 		crevette3.setCrevetteID(crevetteId);
-		crevette3.setcategorie(CrevetteCategory.NEOCARIDINA.toString());
-		crevette3.setsouscategorie(CrevetteSousCategory.PALMATA.toString());
+		crevette3.setcategorie("NEOCARIDINA");
+		crevette3.setsouscategorie("PALMATA");
 		crevette3.setNom("Blue pearl");
 		crevette3.setGhMax(15);
 		crevette3.setGhMin(5);
