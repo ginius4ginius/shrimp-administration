@@ -1,2 +1,2 @@
 # Ignorer le répertoire ''target'' :
-**/target/**
+/target
