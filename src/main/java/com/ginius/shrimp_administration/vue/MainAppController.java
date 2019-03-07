@@ -8,7 +8,6 @@ import com.ginius.shrimp_administration.controller.AquariumController;
 import com.ginius.shrimp_administration.controller.CrevetteController;
 import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
-import com.gluonhq.charm.glisten.control.Icon;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,10 +34,13 @@ import javafx.stage.StageStyle;
 public class MainAppController {
 
 	@FXML
-	private Icon delete;
+	private Button delete;
+	
+	@FXML
+	private Button saveCrevette;
 
 	@FXML
-	private Icon exit;
+	private Button exit;
 
 	@FXML
 	private Button newCrevette;
@@ -131,6 +133,7 @@ public class MainAppController {
 		aquariumList.setVisible(false);
 		delete.setVisible(false);
 		exit.setVisible(true);
+		saveCrevette.setVisible(false);
 		newCrevette.setVisible(false);
 
 	}
@@ -202,6 +205,8 @@ public class MainAppController {
 
 		aquariumList.setVisible(false);
 		crevettesList.setVisible(true);
+		
+		saveCrevette.setVisible(true);
 		newCrevette.setVisible(true);
 		delete.setVisible(true);
 
@@ -249,7 +254,8 @@ public class MainAppController {
 		crevettesList.setVisible(false);
 		aquariumList.setVisible(true);
 		newCrevette.setVisible(false);
-		delete.setVisible(true);
+		saveCrevette.setVisible(false);
+		delete.setVisible(false);
 
 	}
 	
@@ -272,8 +278,14 @@ public class MainAppController {
          
      }
 
+	/**
+	 * méthode permettant de fermer la fenêtre courante.
+	 * 
+	 * @param me
+	 * @throws Throwable
+	 */
 	@FXML
-	public void exit(MouseEvent me) throws Throwable {
+	public void exit(ActionEvent event) throws Throwable {
 		Stage stage = (Stage) exit.getScene().getWindow();
 		stage.close();
 
@@ -307,6 +319,10 @@ public class MainAppController {
 
 		aquariumList.setVisible(false);
 		crevettesList.setVisible(false);
+		
+		newCrevette.setVisible(false);
+		saveCrevette.setVisible(false);
+		delete.setVisible(false);
 
 		// creation chargeur pour le fichier FXML
 		FXMLLoader loader = new FXMLLoader();

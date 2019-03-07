@@ -1,10 +1,10 @@
 package com.ginius.shrimp_administration.vue;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
-import com.gluonhq.charm.glisten.control.Icon;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -12,16 +12,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBContext;
 
 import com.ginius.shrimp_administration.controller.CrevetteController;
 import com.ginius.shrimp_administration.entities.crevette.*;
-import com.ginius.shrimp_administration.entities.crevette.CrevetteCategory;
 
 /**
  * 
@@ -59,7 +59,7 @@ public class CrevetteInterfaceController {
 	private TextField temperatureTf;
 
 	@FXML
-	private Icon exit;
+	private Button exit;
 
 	@FXML
 	private Button saveCrevette;
@@ -84,18 +84,19 @@ public class CrevetteInterfaceController {
 
 		// gestion de la combobox
 
-		CrevetteCategory[] listCategory = CrevetteCategory.values();
-		CrevetteSousCategory[] listSousCategory = CrevetteSousCategory.values();
+		List<String> listCategory = CrevetteController.getCrevetteCategoryList();
+		List<String> listSousCategory = CrevetteController.getCrevetteSousCategoryList();
 
-		for (CrevetteCategory s : listCategory) {
-			obsListcrevetteCategory.add(s.name());
+		for (String s : listCategory) {
+			obsListcrevetteCategory.add(s);
 		}
 
 		crevetteCategoryList.getItems().setAll(obsListcrevetteCategory);
 		crevetteCategoryList.getSelectionModel().select(1);
 
-		for (CrevetteSousCategory s : listSousCategory) {
-			obsListcrevetteSousCategory.add(s.name());
+		
+		for (String s : listSousCategory) {
+			obsListcrevetteSousCategory.add(s);
 		}
 
 		crevetteSousCategoryList.getItems().setAll(obsListcrevetteSousCategory);
@@ -238,9 +239,9 @@ public class CrevetteInterfaceController {
 		String phmax = phMaxTf.getText();
 		String phmin = phMinTf.getText();
 		String temperature = temperatureTf.getText();
-		if (nom.length() > 20 || errTypeInteger(ghmax) || errTypeInteger(ghmin)|| errTypeInteger(khmax) 
-				|| errTypeInteger(khmin)
-				|| errTypeDouble(phmin) || errTypeDouble(phmax) || errTypeInteger(temperature)) {
+		if (nom.length() > 20 || errTypeInteger(ghmax) || errTypeInteger(ghmin) || errTypeInteger(khmax)
+				|| errTypeInteger(khmin) || errTypeDouble(phmin) || errTypeDouble(phmax)
+				|| errTypeInteger(temperature)) {
 			if (nom.length() > 20)
 				messageErreur = messageErreur + " Nom : moin de 20 caractères";
 			if (errTypeInteger(ghmax))
@@ -274,30 +275,15 @@ public class CrevetteInterfaceController {
 	 * @param text
 	 * @return
 	 */
-	private boolean errTypeDouble(String text) {
-		try {
-			Double.parseDouble(text);
-			return errLengthInteger(text);
-
-		} catch (NumberFormatException e) {
-			return true;
-		}
-	}
-	
-	/**
-	 * méthode qui valide le type composé de numérique.
-	 * 
-	 * @param text
-	 * @return
-	 */
 	private boolean errTypeInteger(String text) {
-		try {
-			Double.parseDouble(text);
-			return errLengthInteger(text);
-
-		} catch (NumberFormatException e) {
-			return true;
+		
+		String patterString = "[0-9]{2}";
+		Pattern pattern = Pattern.compile(patterString);
+		Matcher matcher = pattern.matcher(text);
+		if (matcher.matches()) {
+			return false;
 		}
+		return true;
 	}
 
 	/**
@@ -306,12 +292,16 @@ public class CrevetteInterfaceController {
 	 * @param text
 	 * @return
 	 */
-	private boolean errLengthInteger(String text) {
-		if (text.length() < 2 || text.length() > 2) {
-			return true;
-		}
+	private boolean errTypeDouble(String text) {
 
-		return false;
+		String patterString = "[0-9]{2}(\\.[0-9]{2})";
+		Pattern pattern = Pattern.compile(patterString);
+		Matcher matcher = pattern.matcher(text);
+		if (matcher.matches()) {
+			return false;
+		}
+		return true;
+
 	}
 
 	/**
@@ -321,7 +311,7 @@ public class CrevetteInterfaceController {
 	 * @throws Throwable
 	 */
 	@FXML
-	public void exit(MouseEvent me) throws Throwable {
+	public void exit(ActionEvent event) throws Throwable {
 		Stage stage = (Stage) exit.getScene().getWindow();
 		stage.close();
 
