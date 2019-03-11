@@ -13,6 +13,7 @@ import javafx.stage.StageStyle;
  *
  */
 public class App extends Application {
+	
 
 	public static int crevetteId;
 	public static int lastPosition;

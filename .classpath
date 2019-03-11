@@ -28,6 +28,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/giniu/Downloads/charm-glisten-5.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/giniu/Downloads/sqlite-jdbc-3.25.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

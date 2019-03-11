@@ -16,11 +16,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBContext;
 
+import com.ginius.shrimp_administration.Dao.CrevetteDao;
 import com.ginius.shrimp_administration.controller.CrevetteController;
 import com.ginius.shrimp_administration.entities.crevette.*;
 
@@ -31,11 +30,12 @@ import com.ginius.shrimp_administration.entities.crevette.*;
  */
 public class CrevetteInterfaceController {
 
-	private int crevetteId;
-	private int lastPosition;
+	//private int crevetteId;
+	//private int lastPosition;
 	
+	CrevetteDao crevetteDao;
+
 	JAXBContext ctx = null;
-	
 
 	@FXML
 	private TextField nomTf;
@@ -85,11 +85,11 @@ public class CrevetteInterfaceController {
 	@FXML
 	private void initialize() {
 
-		// gestion de la combobox
-		
-		
-		
+		// initialsiation des instances des controlleur d'accés aux fichiers xml.
 		CrevetteController.getInstance();
+		 crevetteDao= new CrevetteDao();
+
+		// gestion de la combobox
 		List<String> listCategory = CrevetteController.getCrevetteCategoryList();
 		List<String> listSousCategory = CrevetteController.getCrevetteSousCategoryList();
 
@@ -100,7 +100,6 @@ public class CrevetteInterfaceController {
 		crevetteCategoryList.getItems().setAll(obsListcrevetteCategory);
 		crevetteCategoryList.getSelectionModel().select(1);
 
-		
 		for (String s : listSousCategory) {
 			obsListcrevetteSousCategory.add(s);
 		}
@@ -122,43 +121,48 @@ public class CrevetteInterfaceController {
 
 		if (pasDeChampsVides() && pasDeChampsIncorrectes()) {
 			// récupération de la liste des crevettes.
-			listeInitiale = CrevetteController.getCrevetteList();
+			// listeInitiale = CrevetteController.getCrevetteList();
 
 			// génération d'un nouvel identifiant
-			lastPosition = listeInitiale.size() - 1;
-			crevetteId = listeInitiale.get(lastPosition).getCrevetteID() + 1;
+			// lastPosition = listeInitiale.size() - 1;
+			// crevetteId = listeInitiale.get(lastPosition).getCrevetteID() + 1;
 
 			// création d'une nouvel objetfactory
-			ObjectFactory factory = new ObjectFactory();
-			Crevettes crevettesList = factory.createCrevettes();
-			Crevette crevette = factory.createCrevettesCrevette();
+			// ObjectFactory factory = new ObjectFactory();
+			// Crevettes crevettesList = factory.createCrevettes();
+			// Crevette crevette = factory.createCrevettesCrevette();
 
-			crevette.setCrevetteID(crevetteId);
-			crevette.setcategorie(crevetteCategoryList.getSelectionModel().getSelectedItem().toString());
-			crevette.setsouscategorie(crevetteSousCategoryList.getSelectionModel().getSelectedItem().toString());
-			crevette.setNom(nomTf.getText());
-			crevette.setGhMax(Integer.parseInt(ghMaxTf.getText()));
-			crevette.setGhMin(Integer.parseInt(ghMinTf.getText()));
-			crevette.setKhMax(Integer.parseInt(khMaxTf.getText()));
-			crevette.setKhMin(Integer.parseInt(khMinTf.getText()));
-			crevette.setPhMax(Double.parseDouble(phMaxTf.getText()));
-			crevette.setPhMin(Double.parseDouble(phMinTf.getText()));
-			crevette.setTemperature(Integer.parseInt(temperatureTf.getText()));
+			Crevette c = new Crevette();
 
-			if (descriptionTa.lengthProperty().get() > 0) {
-				crevette.setDescription(descriptionTa.getText());
-			}
+			// c.setCrevetteID(crevetteId);
+			c.setcategorie(crevetteCategoryList.getSelectionModel().getSelectedItem().toString());
+			c.setsouscategorie(crevetteSousCategoryList.getSelectionModel().getSelectedItem().toString());
+			c.setNom(nomTf.getText());
+			c.setGhMax(Integer.parseInt(ghMaxTf.getText()));
+			c.setGhMin(Integer.parseInt(ghMinTf.getText()));
+			c.setKhMax(Integer.parseInt(khMaxTf.getText()));
+			c.setKhMin(Integer.parseInt(khMinTf.getText()));
+			c.setPhMax(Double.parseDouble(phMaxTf.getText()));
+			c.setPhMin(Double.parseDouble(phMinTf.getText()));
+			c.setTemperature(Integer.parseInt(temperatureTf.getText()));
 
-			listeInitiale.add(crevette);
+			// if (descriptionTa.lengthProperty().get() > 0) {
+			// crevette.setDescription(descriptionTa.getText());
+			// }
+
+			// listeInitiale.add(crevette);
 			// ajout de la crevette dans la liste initiale
-			crevettesList.getCrevette().addAll(listeInitiale);
+			// crevettesList.getCrevette().addAll(listeInitiale);
 
 			// génération du fichier XML avec la liste mise à jour
-			if (CrevetteController.saveCrevetteList(crevettesList)) {
+			// if (CrevetteController.saveCrevetteList(crevettesList)) {
+			if (crevetteDao.saveCrevette(c)) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
 				alert.setHeaderText("Crevette ajoutée avec succés");
 				alert.showAndWait();
+				
+				
 
 				// rafraichissement des textFields
 				nomTf.setPromptText("");
@@ -235,7 +239,6 @@ public class CrevetteInterfaceController {
 	 * @return
 	 */
 	private boolean pasDeChampsIncorrectes() {
-		
 
 		String messageErreur = "";
 		String nom = nomTf.getText();
@@ -246,8 +249,8 @@ public class CrevetteInterfaceController {
 		String phmax = phMaxTf.getText();
 		String phmin = phMinTf.getText();
 		String temperature = temperatureTf.getText();
-		if (nom.length() > 20 || Validation.errTypeInteger(ghmax) || Validation.errTypeInteger(ghmin) 
-				|| Validation.errTypeInteger(khmax)|| Validation.errTypeInteger(khmin) 
+		if (nom.length() > 20 || Validation.errTypeInteger(ghmax) || Validation.errTypeInteger(ghmin)
+				|| Validation.errTypeInteger(khmax) || Validation.errTypeInteger(khmin)
 				|| Validation.errTypeDouble(phmin) || Validation.errTypeDouble(phmax)
 				|| Validation.errTypeInteger(temperature)) {
 			if (nom.length() > 20)
@@ -276,7 +279,6 @@ public class CrevetteInterfaceController {
 		} else
 			return true;
 	}
-
 
 	/**
 	 * méthode permettant de fermer la fenêtre courante.

@@ -36,6 +36,7 @@ public class Crevettes {
 		return this.crevette;
 	}
 
+	
 	@XmlAccessorType(XmlAccessType.FIELD)
 	@XmlType(name = "", propOrder = { "categorie", "sousCategorie", "nom", "ghMin", "ghMax", "khMin", "khMax", "phMin", "phMax",
 			"temperature", "description" })

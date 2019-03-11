@@ -1,9 +1,11 @@
 package com.ginius.shrimp_administration.vue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ginius.shrimp_administration.App;
+import com.ginius.shrimp_administration.Dao.CrevetteDao;
 import com.ginius.shrimp_administration.controller.AquariumController;
 import com.ginius.shrimp_administration.controller.CrevetteController;
 import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium;
@@ -104,6 +106,13 @@ public class MainAppController {
 
 	@FXML
 	private void initialize() {
+		
+		CrevetteDao crevetteDao = new CrevetteDao();
+		List<Crevette> crevetteList = new ArrayList<Crevette>();
+		crevetteList = CrevetteController.getCrevetteList();
+		
+		crevetteDao.initialiseCrevette(crevetteList);
+		
 		// masque du pane crevette
 		crevettepane.setVisible(false);
 		description.setVisible(false);
