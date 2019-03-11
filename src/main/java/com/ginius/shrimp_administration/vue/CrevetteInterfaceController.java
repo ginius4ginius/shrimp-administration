@@ -1,6 +1,7 @@
 package com.ginius.shrimp_administration.vue;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
+import com.ginius.shrimp_administration.validation.Validation;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,7 +33,9 @@ public class CrevetteInterfaceController {
 
 	private int crevetteId;
 	private int lastPosition;
+	
 	JAXBContext ctx = null;
+	
 
 	@FXML
 	private TextField nomTf;
@@ -83,7 +86,10 @@ public class CrevetteInterfaceController {
 	private void initialize() {
 
 		// gestion de la combobox
-
+		
+		
+		
+		CrevetteController.getInstance();
 		List<String> listCategory = CrevetteController.getCrevetteCategoryList();
 		List<String> listSousCategory = CrevetteController.getCrevetteSousCategoryList();
 
@@ -229,6 +235,7 @@ public class CrevetteInterfaceController {
 	 * @return
 	 */
 	private boolean pasDeChampsIncorrectes() {
+		
 
 		String messageErreur = "";
 		String nom = nomTf.getText();
@@ -239,24 +246,25 @@ public class CrevetteInterfaceController {
 		String phmax = phMaxTf.getText();
 		String phmin = phMinTf.getText();
 		String temperature = temperatureTf.getText();
-		if (nom.length() > 20 || errTypeInteger(ghmax) || errTypeInteger(ghmin) || errTypeInteger(khmax)
-				|| errTypeInteger(khmin) || errTypeDouble(phmin) || errTypeDouble(phmax)
-				|| errTypeInteger(temperature)) {
+		if (nom.length() > 20 || Validation.errTypeInteger(ghmax) || Validation.errTypeInteger(ghmin) 
+				|| Validation.errTypeInteger(khmax)|| Validation.errTypeInteger(khmin) 
+				|| Validation.errTypeDouble(phmin) || Validation.errTypeDouble(phmax)
+				|| Validation.errTypeInteger(temperature)) {
 			if (nom.length() > 20)
 				messageErreur = messageErreur + " Nom : moin de 20 caractères";
-			if (errTypeInteger(ghmax))
+			if (Validation.errTypeInteger(ghmax))
 				messageErreur = messageErreur + " gh Max : invalide";
-			if (errTypeInteger(ghmin))
+			if (Validation.errTypeInteger(ghmin))
 				messageErreur = messageErreur + " gh Min : invalide";
-			if (errTypeInteger(khmax))
+			if (Validation.errTypeInteger(khmax))
 				messageErreur = messageErreur + " kh Max : invalide";
-			if (errTypeInteger(khmin))
+			if (Validation.errTypeInteger(khmin))
 				messageErreur = messageErreur + " kh Min : invalide";
-			if (errTypeDouble(phmax))
+			if (Validation.errTypeDouble(phmax))
 				messageErreur = messageErreur + " ph Max : invalide";
-			if (errTypeDouble(phmin))
-				messageErreur = messageErreur + " ph Max : invalide";
-			if (errTypeInteger(temperature))
+			if (Validation.errTypeDouble(phmin))
+				messageErreur = messageErreur + " ph Min : invalide";
+			if (Validation.errTypeInteger(temperature))
 				messageErreur = messageErreur + " temperature : invalide";
 
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -269,40 +277,6 @@ public class CrevetteInterfaceController {
 			return true;
 	}
 
-	/**
-	 * méthode qui valide le type composé de numérique.
-	 * 
-	 * @param text
-	 * @return
-	 */
-	private boolean errTypeInteger(String text) {
-		
-		String patterString = "[0-9]{2}";
-		Pattern pattern = Pattern.compile(patterString);
-		Matcher matcher = pattern.matcher(text);
-		if (matcher.matches()) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * méthode qui valide le type composé de numérique.
-	 * 
-	 * @param text
-	 * @return
-	 */
-	private boolean errTypeDouble(String text) {
-
-		String patterString = "[0-9]{2}(\\.[0-9]{2})";
-		Pattern pattern = Pattern.compile(patterString);
-		Matcher matcher = pattern.matcher(text);
-		if (matcher.matches()) {
-			return false;
-		}
-		return true;
-
-	}
 
 	/**
 	 * méthode permettant de fermer la fenêtre courante.

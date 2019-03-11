@@ -28,6 +28,21 @@ public class CrevetteController {
 	public static List<Crevette> crevetteList;
 	public static JAXBContext ctx = null;
 
+	/** Constructeur privé */
+	private CrevetteController() {
+	}
+
+	/** Instance unique non préinitialisée */
+	private static CrevetteController INSTANCE = null;
+
+	/** Point d'accès pour l'instance unique du singleton */
+	public static CrevetteController getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new CrevetteController();
+		}
+		return INSTANCE;
+	}
+
 	/**
 	 * retourne une liste de crevette depuis le fichier XML
 	 * 
@@ -55,14 +70,15 @@ public class CrevetteController {
 
 	/**
 	 * retourne la liste des categories depuis le fichier txt
+	 * 
 	 * @return
 	 */
 	public static List<String> getCrevetteCategoryList() {
-		
+
 		System.out.println("----Récupération de la catégorie des crevettes----");
-		//String path=new File(".").getAbsolutePath();
-		//System.out.println(path);
-		
+		// String path=new File(".").getAbsolutePath();
+		// System.out.println(path);
+
 		List<String> crevetteCategory = new ArrayList<String>();
 		Scanner scan = null;
 		try {
@@ -71,23 +87,23 @@ public class CrevetteController {
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
-		while (scan.hasNext())
-		{
+		while (scan.hasNext()) {
 			crevetteCategory.add(scan.next());
 		}
-		 
-		 return crevetteCategory;
+
+		return crevetteCategory;
 
 	}
-	
+
 	/**
 	 * retourne la liste des souscategories depuis le fichier txt
+	 * 
 	 * @return
 	 */
 	public static List<String> getCrevetteSousCategoryList() {
-		
+
 		System.out.println("----Récupération de la souscatégorie des crevettes----");
-		
+
 		List<String> crevetteSousCategory = new ArrayList<String>();
 		Scanner scan = null;
 		try {
@@ -97,12 +113,11 @@ public class CrevetteController {
 			System.out.println(e.getMessage());
 			System.out.println("-Récupération echouée-");
 		}
-		while (scan.hasNext())
-		{
+		while (scan.hasNext()) {
 			crevetteSousCategory.add(scan.next());
 		}
-		 
-		 return crevetteSousCategory;
+
+		return crevetteSousCategory;
 
 	}
 

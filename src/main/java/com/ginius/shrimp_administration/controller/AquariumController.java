@@ -23,6 +23,21 @@ public class AquariumController {
 	public static List<Aquarium> aquariumList;
 	public static JAXBContext ctx = null;
 
+	/** Constructeur privé */
+	private AquariumController() {
+	}
+
+	/** Instance unique non préinitialisée */
+	private static AquariumController INSTANCE = null;
+
+	/** Point d'accès pour l'instance unique du singleton */
+	public static AquariumController getInstance() {
+		if (INSTANCE == null) {
+			INSTANCE = new AquariumController();
+		}
+		return INSTANCE;
+	}
+
 	public static List<Aquarium> getAquariumList() {
 
 		System.out.println("----Récupération des aquariums----");
