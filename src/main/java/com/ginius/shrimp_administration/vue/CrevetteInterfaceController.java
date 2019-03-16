@@ -21,7 +21,6 @@ import javax.xml.bind.JAXBContext;
 
 import com.ginius.shrimp_administration.Dao.CrevetteDao;
 import com.ginius.shrimp_administration.controller.CrevetteController;
-import com.ginius.shrimp_administration.entities.crevette.*;
 
 /**
  * 
@@ -112,7 +111,8 @@ public class CrevetteInterfaceController {
 		saveCrevette.setVisible(true);
 
 	}
-
+	
+	
 	/**
 	 * méthode permettant de sauvegarder l'entité crevette créé dans le fichier XML.
 	 */
@@ -120,17 +120,6 @@ public class CrevetteInterfaceController {
 	private void saveCrevette() {
 
 		if (pasDeChampsVides() && pasDeChampsIncorrectes()) {
-			// récupération de la liste des crevettes.
-			// listeInitiale = CrevetteController.getCrevetteList();
-
-			// génération d'un nouvel identifiant
-			// lastPosition = listeInitiale.size() - 1;
-			// crevetteId = listeInitiale.get(lastPosition).getCrevetteID() + 1;
-
-			// création d'une nouvel objetfactory
-			// ObjectFactory factory = new ObjectFactory();
-			// Crevettes crevettesList = factory.createCrevettes();
-			// Crevette crevette = factory.createCrevettesCrevette();
 
 			Crevette c = new Crevette();
 
@@ -145,17 +134,8 @@ public class CrevetteInterfaceController {
 			c.setPhMax(Double.parseDouble(phMaxTf.getText()));
 			c.setPhMin(Double.parseDouble(phMinTf.getText()));
 			c.setTemperature(Integer.parseInt(temperatureTf.getText()));
-
-			// if (descriptionTa.lengthProperty().get() > 0) {
-			// crevette.setDescription(descriptionTa.getText());
-			// }
-
-			// listeInitiale.add(crevette);
-			// ajout de la crevette dans la liste initiale
-			// crevettesList.getCrevette().addAll(listeInitiale);
-
-			// génération du fichier XML avec la liste mise à jour
-			// if (CrevetteController.saveCrevetteList(crevettesList)) {
+			c.setDescription(descriptionTa.getText());
+			
 			if (crevetteDao.saveCrevette(c)) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");

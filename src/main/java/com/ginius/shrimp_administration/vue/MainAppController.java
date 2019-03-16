@@ -9,6 +9,7 @@ import com.ginius.shrimp_administration.Dao.CrevetteDao;
 import com.ginius.shrimp_administration.controller.AquariumController;
 import com.ginius.shrimp_administration.controller.CrevetteController;
 import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium;
+import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 
 import javafx.collections.FXCollections;
@@ -18,11 +19,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -37,7 +40,7 @@ public class MainAppController {
 
 	@FXML
 	private Button delete;
-	
+
 	@FXML
 	private Button saveCrevette;
 
@@ -58,6 +61,9 @@ public class MainAppController {
 	private ObservableList<Aquarium> lesAquariums = FXCollections.observableArrayList();
 
 	App app;
+
+	CrevetteDao crevetteDao;
+	List<Crevette> liste = new ArrayList<Crevette>();
 
 	// éléments pour pane crevette
 
@@ -106,13 +112,13 @@ public class MainAppController {
 
 	@FXML
 	private void initialize() {
-		
-		CrevetteDao crevetteDao = new CrevetteDao();
+
+		crevetteDao = new CrevetteDao();
 		List<Crevette> crevetteList = new ArrayList<Crevette>();
 		crevetteList = CrevetteController.getCrevetteList();
-		
+
 		crevetteDao.initialiseCrevette(crevetteList);
-		
+
 		// masque du pane crevette
 		crevettepane.setVisible(false);
 		description.setVisible(false);
@@ -163,6 +169,51 @@ public class MainAppController {
 		this.lesAquariums = lesAquariums;
 	}
 
+	/**
+	 * méthode qui supprime la crevette selectionnée dans la liste
+	 */
+	@FXML
+	private void deleteCrevette() {
+
+		int crevetteId = crevettesList.getSelectionModel().getSelectedItem().getCrevetteID();
+
+		if (crevetteDao.deleteCrevette(crevetteId)) {
+			crevettesList.setVisible(false);
+			// masque du pane crevette
+			crevettepane.setVisible(false);
+			description.setVisible(false);
+			descriptionTa.clear();
+			descriptionTa.setVisible(false);
+			temperature.setVisible(false);
+			temperatureTf.setVisible(false);
+			categorie.setVisible(false);
+			souscatégorie.setVisible(false);
+			nom.setVisible(false);
+			nomTf.setVisible(false);
+			ghmaxTf.setVisible(false);
+			ghmax.setVisible(false);
+			ghminTf.setVisible(false);
+			ghmin.setVisible(false);
+			khmaxTf.setVisible(false);
+			khmax.setVisible(false);
+			khminTf.setVisible(false);
+			khmin.setVisible(false);
+			khmaxTf.setVisible(false);
+			khmax.setVisible(false);
+			khminTf.setVisible(false);
+			khmin.setVisible(false);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information");
+			alert.setHeaderText("Crevette supprimée avec succés");
+			alert.showAndWait();
+		} else {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information");
+			alert.setHeaderText("problème rencontré, crevette non supprimée");
+		}
+
+	}
+
 	@FXML
 	private void handleAfficherCrevettes() {
 		// affichage du pane crevette
@@ -199,8 +250,7 @@ public class MainAppController {
 		khmin.setVisible(true);
 
 		lesCrevettes.clear();
-
-		List<Crevette> liste = CrevetteController.getCrevetteList();
+		liste = crevetteDao.getCrevetteList();
 
 		for (Crevette c : liste) {
 
@@ -214,7 +264,7 @@ public class MainAppController {
 
 		aquariumList.setVisible(false);
 		crevettesList.setVisible(true);
-		
+
 		saveCrevette.setVisible(true);
 		newCrevette.setVisible(true);
 		delete.setVisible(true);
@@ -224,27 +274,27 @@ public class MainAppController {
 	@FXML
 	private void handleAfficherAquariums() {
 		// masque du pane crevette
-				crevettepane.setVisible(false);
-				description.setVisible(false);
-				descriptionTa.setVisible(false);
-				temperature.setVisible(false);
-				temperatureTf.setVisible(false);
-				categorie.setVisible(false);
-				souscatégorie.setVisible(false);
-				nom.setVisible(false);
-				nomTf.setVisible(false);
-				ghmaxTf.setVisible(false);
-				ghmax.setVisible(false);
-				ghminTf.setVisible(false);
-				ghmin.setVisible(false);
-				khmaxTf.setVisible(false);
-				khmax.setVisible(false);
-				khminTf.setVisible(false);
-				khmin.setVisible(false);
-				khmaxTf.setVisible(false);
-				khmax.setVisible(false);
-				khminTf.setVisible(false);
-				khmin.setVisible(false);
+		crevettepane.setVisible(false);
+		description.setVisible(false);
+		descriptionTa.setVisible(false);
+		temperature.setVisible(false);
+		temperatureTf.setVisible(false);
+		categorie.setVisible(false);
+		souscatégorie.setVisible(false);
+		nom.setVisible(false);
+		nomTf.setVisible(false);
+		ghmaxTf.setVisible(false);
+		ghmax.setVisible(false);
+		ghminTf.setVisible(false);
+		ghmin.setVisible(false);
+		khmaxTf.setVisible(false);
+		khmax.setVisible(false);
+		khminTf.setVisible(false);
+		khmin.setVisible(false);
+		khmaxTf.setVisible(false);
+		khmax.setVisible(false);
+		khminTf.setVisible(false);
+		khmin.setVisible(false);
 
 		lesAquariums.clear();
 
@@ -267,11 +317,11 @@ public class MainAppController {
 		delete.setVisible(false);
 
 	}
-	
+
 	@FXML
-	 public void handleCrevetteItem(MouseEvent event) {
+	public void handleCrevetteItem(MouseEvent event) {
 		System.out.println("clicked on " + crevettesList.getSelectionModel().getSelectedItem());
-		
+
 		categorie.setText(crevettesList.getSelectionModel().getSelectedItem().getcategorie());
 		souscatégorie.setText(crevettesList.getSelectionModel().getSelectedItem().getsouscategorie());
 		nomTf.setText(crevettesList.getSelectionModel().getSelectedItem().getNom());
@@ -283,9 +333,8 @@ public class MainAppController {
 		phmaxTf.setText(Double.toString(crevettesList.getSelectionModel().getSelectedItem().getPhMax()));
 		temperatureTf.setText(Integer.toString(crevettesList.getSelectionModel().getSelectedItem().getTemperature()));
 		descriptionTa.setText(crevettesList.getSelectionModel().getSelectedItem().getDescription());
-		
-         
-     }
+
+	}
 
 	/**
 	 * méthode permettant de fermer la fenêtre courante.
@@ -295,6 +344,15 @@ public class MainAppController {
 	 */
 	@FXML
 	public void exit(ActionEvent event) throws Throwable {
+
+		Crevettes list = new Crevettes();
+		List<Crevette> liste = crevetteDao.getCrevetteList();
+
+		for (Crevette c : liste) {
+			list.getCrevette().add(c);
+		}
+
+		CrevetteController.saveCrevetteList(list);
 		Stage stage = (Stage) exit.getScene().getWindow();
 		stage.close();
 
@@ -302,7 +360,7 @@ public class MainAppController {
 
 	@FXML
 	public void newCrevette(ActionEvent event) {
-		
+
 		// masque du pane crevette
 		crevettepane.setVisible(false);
 		description.setVisible(false);
@@ -328,7 +386,7 @@ public class MainAppController {
 
 		aquariumList.setVisible(false);
 		crevettesList.setVisible(false);
-		
+
 		newCrevette.setVisible(false);
 		saveCrevette.setVisible(false);
 		delete.setVisible(false);
@@ -342,7 +400,6 @@ public class MainAppController {
 		try {
 			root = loader.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
