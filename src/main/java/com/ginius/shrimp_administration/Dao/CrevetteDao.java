@@ -88,13 +88,33 @@ public class CrevetteDao {
 		try {
 			connexion.getStatment().executeUpdate(query);
 			System.out.println("-- Insersion de : " + c.toString() + " dans la table crevette réussie");
-			connexion.close();
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
+		
+		connexion.close();
 
 	}
+	
+public void deleteCrevette(Crevette c) {
+		
+		connexion.connect();
+		
+		String query = "";
+		query += "DELETE FROM CREVETTE WHERE id IS "+c.getCrevetteID()+";";
+		try {
+			connexion.getStatment().executeUpdate(query);
+			System.out.println("-- Supression de : "+c.toString()+" dans la table de crevette résussie");
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		connexion.close();
+	}
+	
+	
 
 }
