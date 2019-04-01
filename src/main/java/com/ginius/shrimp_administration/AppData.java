@@ -100,6 +100,18 @@ public class AppData {
 		crevette3.setPhMax(6.5);
 		crevette3.setPhMin(7.5);
 		crevette3.setTemperature(20);
+		crevette3.setDescription("Description :\r\n" + 
+				"De même apparence que la red cherry, la couleur de la bleue pearl est bleue pastel. Elle est agrémenté de traces rouges ( points, trais) ce qui atteste de la stabilité de la souche.\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"Reproduction :\r\n" + 
+				"La femelle peut porter une 20ène d’œufs dans son abdomaine ( œufs retenus grâce aux pléopodes) Les œufs y resterons entre 20-25 jours. La femelle a pour habitude de \"brasser\" les œufs grâce à ses pléopodes pour aérer les œufs , réguler leur températures. Il est aussi possible de voire la crevette trier et retirer les œufs non fécondés.\r\n" + 
+				"Beau spectacle de voir une femelle libérer les petites juvéniles au moment de l’éclosion.\r\n" + 
+				"\r\n" + 
+				"Particularité :\r\n" + 
+				"Cette sélection est stable lorsque les points rouges sont visibles. \r\n" + 
+				"Tout comme la red cherry, elle est très simple de maintenance, particulièrement recommandé pour les débutants.\r\n" + 
+				"Attention à ne pas confondre blue pearl et Neocaridina sp blue ou jelly. ");
 
 		crevettesList.getCrevette().add(crevette3);
 

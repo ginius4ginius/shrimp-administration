@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -29,9 +30,9 @@ import com.ginius.shrimp_administration.controller.CrevetteController;
  */
 public class CrevetteInterfaceController {
 
-	//private int crevetteId;
-	//private int lastPosition;
-	
+	// private int crevetteId;
+	// private int lastPosition;
+
 	CrevetteDao crevetteDao;
 
 	JAXBContext ctx = null;
@@ -86,7 +87,7 @@ public class CrevetteInterfaceController {
 
 		// initialsiation des instances des controlleur d'accés aux fichiers xml.
 		CrevetteController.getInstance();
-		 crevetteDao= new CrevetteDao();
+		crevetteDao = new CrevetteDao();
 
 		// gestion de la combobox
 		List<String> listCategory = CrevetteController.getCrevetteCategoryList();
@@ -110,11 +111,21 @@ public class CrevetteInterfaceController {
 		exit.setVisible(true);
 		saveCrevette.setVisible(true);
 
+		// gestion des bulles d'aide
+		nomTf.setTooltip(new Tooltip("Texte entre 1 et 20 caractères."));
+		ghMinTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		ghMaxTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		khMinTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		khMaxTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		phMinTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères avec virgule."));
+		phMaxTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères avec virgule."));
+		temperatureTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		descriptionTa.setTooltip(new Tooltip("Texte entre 1 et 200 caractères."));
+
 	}
-	
-	
+
 	/**
-	 * méthode permettant de sauvegarder l'entité crevette créé dans le fichier XML.
+	 * Méthode permettant de sauvegarder l'entité crevette créé dans le fichier XML.
 	 */
 	@FXML
 	private void saveCrevette() {
@@ -135,14 +146,12 @@ public class CrevetteInterfaceController {
 			c.setPhMin(Double.parseDouble(phMinTf.getText()));
 			c.setTemperature(Integer.parseInt(temperatureTf.getText()));
 			c.setDescription(descriptionTa.getText());
-			
+
 			if (crevetteDao.saveCrevette(c)) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
 				alert.setHeaderText("Crevette ajoutée avec succés");
 				alert.showAndWait();
-				
-				
 
 				// rafraichissement des textFields
 				nomTf.setPromptText("");
@@ -229,10 +238,11 @@ public class CrevetteInterfaceController {
 		String phmax = phMaxTf.getText();
 		String phmin = phMinTf.getText();
 		String temperature = temperatureTf.getText();
+		String description = descriptionTa.getText();
 		if (nom.length() > 20 || Validation.errTypeInteger(ghmax) || Validation.errTypeInteger(ghmin)
 				|| Validation.errTypeInteger(khmax) || Validation.errTypeInteger(khmin)
-				|| Validation.errTypeDouble(phmin) || Validation.errTypeDouble(phmax)
-				|| Validation.errTypeInteger(temperature)) {
+				|| Validation.errTypeIntegerOrDouble(phmin) || Validation.errTypeIntegerOrDouble(phmax)
+				|| Validation.errTypeInteger(temperature) || description.length() > 2000)  {
 			if (nom.length() > 20)
 				messageErreur = messageErreur + " Nom : moin de 20 caractères";
 			if (Validation.errTypeInteger(ghmax))
@@ -243,12 +253,14 @@ public class CrevetteInterfaceController {
 				messageErreur = messageErreur + " kh Max : invalide";
 			if (Validation.errTypeInteger(khmin))
 				messageErreur = messageErreur + " kh Min : invalide";
-			if (Validation.errTypeDouble(phmax))
+			if (Validation.errTypeIntegerOrDouble(phmax))
 				messageErreur = messageErreur + " ph Max : invalide";
-			if (Validation.errTypeDouble(phmin))
+			if (Validation.errTypeIntegerOrDouble(phmin))
 				messageErreur = messageErreur + " ph Min : invalide";
 			if (Validation.errTypeInteger(temperature))
 				messageErreur = messageErreur + " temperature : invalide";
+			if (description.length() > 2000)
+				messageErreur = messageErreur + " Description : moin de 2000 caractères";
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Informations incomplètes");
@@ -261,7 +273,7 @@ public class CrevetteInterfaceController {
 	}
 
 	/**
-	 * méthode permettant de fermer la fenêtre courante.
+	 * Méthode permettant de fermer la fenêtre courante.
 	 * 
 	 * @param me
 	 * @throws Throwable

@@ -8,17 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * CLasse d'accés et méthodes CRUD de la base de donnée CREVETTE.
+ * Classe d'accés et méthodes CRUD de la base de donnée CREVETTE.
+ * 
  * @author giniu
  *
  */
 public class CrevetteDao {
 
 	Connexion connexion = Connexion.getInstance("src\\main\\resources\\documents\\database.db");
-	List <Crevette> crevetteList = new ArrayList<Crevette>();
+	List<Crevette> crevetteList = new ArrayList<Crevette>();
 
 	/**
-	 * méthode qui initialise la base de donnée crevette.
+	 * Méthode qui initialise la base de donnée crevette.
+	 * 
 	 * @param crevettes
 	 */
 	public void initialiseCrevette(List<Crevette> crevettes) {
@@ -76,16 +78,20 @@ public class CrevetteDao {
 		connexion.close();
 
 	}
-	
-	public List <Crevette> getCrevetteList() {
-		
+
+	/**
+	 * Méthode permettant de récupérer la liste des crevettes.
+	 * @return
+	 */
+	public List<Crevette> getCrevetteList() {
+
 		connexion.connect();
 		crevetteList.clear();
 		String query = "SELECT * FROM CREVETTE";
-		try{
-			ResultSet rs =  connexion.getStatment().executeQuery(query);
-			
-			while(rs.next()) {
+		try {
+			ResultSet rs = connexion.getStatment().executeQuery(query);
+
+			while (rs.next()) {
 				Crevette crevette = new Crevette();
 				crevette.setCrevetteID(rs.getInt("id"));
 				crevette.setcategorie(rs.getString("categorie"));
@@ -99,21 +105,22 @@ public class CrevetteDao {
 				crevette.setPhMax(rs.getDouble("phMax"));
 				crevette.setTemperature(rs.getInt("temperature"));
 				crevette.setDescription(rs.getString("description"));
-				
+
 				crevetteList.add(crevette);
 			}
 			connexion.close();
 			return crevetteList;
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			connexion.close();
 			return crevetteList;
 		}
-		
+
 	}
 
 	/**
-	 * méthode qui sauvegarde la crevette dans la base de donnée.
+	 * Méthode qui sauvegarde la crevette dans la base de donnée.
+	 * 
 	 * @param c
 	 * @return
 	 */
@@ -149,7 +156,8 @@ public class CrevetteDao {
 	}
 
 	/**
-	 * méthode qui supprime la crevette dans la base de donnée.
+	 * Méthode qui supprime la crevette dans la base de donnée.
+	 * 
 	 * @param id
 	 * @return
 	 */

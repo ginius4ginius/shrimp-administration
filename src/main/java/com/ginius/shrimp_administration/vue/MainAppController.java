@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -66,7 +67,6 @@ public class MainAppController {
 	List<Crevette> liste = new ArrayList<Crevette>();
 
 	// éléments pour pane crevette
-
 	@FXML
 	private Label categorie;
 	@FXML
@@ -151,6 +151,17 @@ public class MainAppController {
 		saveCrevette.setVisible(false);
 		newCrevette.setVisible(false);
 
+		// gestion des bulles d'aide
+		nomTf.setTooltip(new Tooltip("Texte entre 1 et 20 caractères."));
+		ghminTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		ghmaxTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		khminTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		khmaxTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		phminTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères avec virgule."));
+		phmaxTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères avec virgule."));
+		temperatureTf.setTooltip(new Tooltip("Chiffre de 1 à 2 caractères."));
+		descriptionTa.setTooltip(new Tooltip("Texte entre 1 et 200 caractères."));
+
 	}
 
 	public ObservableList<Crevette> getLesCrevettes() {
@@ -170,7 +181,7 @@ public class MainAppController {
 	}
 
 	/**
-	 * méthode qui supprime la crevette selectionnée dans la liste
+	 * Méthode qui supprime la crevette selectionnée dans la liste
 	 */
 	@FXML
 	private void deleteCrevette() {
@@ -214,6 +225,9 @@ public class MainAppController {
 
 	}
 
+	/**
+	 * Méthode qui affiche le bloc d'information des crevettes
+	 */
 	@FXML
 	private void handleAfficherCrevettes() {
 		// affichage du pane crevette
@@ -271,6 +285,9 @@ public class MainAppController {
 
 	}
 
+	/**
+	 * Méthode qui affiche le bloc d'information des aquariums
+	 */
 	@FXML
 	private void handleAfficherAquariums() {
 		// masque du pane crevette
@@ -318,6 +335,10 @@ public class MainAppController {
 
 	}
 
+	/**
+	 * Méthode qui affiche les informations de la crevette de la liste dans les champs prévus a cet effet.
+	 * @param event
+	 */
 	@FXML
 	public void handleCrevetteItem(MouseEvent event) {
 		System.out.println("clicked on " + crevettesList.getSelectionModel().getSelectedItem());
@@ -337,7 +358,7 @@ public class MainAppController {
 	}
 
 	/**
-	 * méthode permettant de fermer la fenêtre courante.
+	 * Méthode permettant de fermer la fenêtre courante.
 	 * 
 	 * @param me
 	 * @throws Throwable

@@ -6,6 +6,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
+/**
+ * Classe permettant la liaison à la base de donnée SQLITE. 
+ * @author giniu
+ *
+ */
 public class Connexion {
     private String DBPath = "src\\main\\resources\\documents\\database.db";
     private Connection connection = null;

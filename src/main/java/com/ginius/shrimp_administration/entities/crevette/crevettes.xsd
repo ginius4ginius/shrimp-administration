@@ -10,22 +10,22 @@
 		</xs:restriction>
 	</xs:simpleType>
 	
-	<xs:simpleType name="simpleTypeCharacter1a200">
+	<xs:simpleType name="simpleTypeCharacter1a2000">
 		<xs:restriction base="xs:string">
 			<xs:minLength value="1"/>
-			<xs:maxLength value="200"/>
+			<xs:maxLength value="2000"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
 	<xs:simpleType name="simpleTypeNumeric1a2">
 		<xs:restriction base="xs:nonNegativeInteger">
-			<xs:pattern value="[0-9]{2}"/>
+			<xs:pattern value="[0-9]{1,2}"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
 	<xs:simpleType name="simpleTypeDecimal1a2">
 		<xs:restriction base="xs:decimal">
-			<xs:pattern value="[0-9]{2}(\.[0-9]{2})"/>
+			<xs:pattern value="[0-9]{1,2}(\.[0-9]{1,2})"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
@@ -55,7 +55,7 @@
 								<xs:element name="phMin" type="simpleTypeDecimal1a2" minOccurs="1" maxOccurs="1"/>
 								<xs:element name="phMax" type="simpleTypeDecimal1a2" minOccurs="1" maxOccurs="1"/>
 								<xs:element name="temperature" type="simpleTypeNumeric1a2" minOccurs="1" maxOccurs="1"/>
-								<xs:element name="description" type="simpleTypeCharacter1a200" minOccurs="0" maxOccurs="1"/>
+								<xs:element name="description" type="simpleTypeCharacter1a2000" minOccurs="0" maxOccurs="1"/>
 							</xs:sequence>
 							  <xs:attribute name="CrevetteID" type="simpleTypeId" ></xs:attribute>
 						</xs:complexType>
