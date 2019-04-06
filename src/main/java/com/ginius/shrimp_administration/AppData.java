@@ -33,20 +33,20 @@ public class AppData {
 
 	Crevette crevette1 = factory.createCrevettesCrevette();
 	crevette1.setCrevetteID(1);
-	crevette1.setcategorie("CARIDINA");
-	crevette1.setsouscategorie("CANTONENSIS");
+	crevette1.setCategorie("CARIDINA");
+	crevette1.setSousCategorie("CANTONENSIS");
 	crevette1.setNom("Tiger blue");
 	crevette1.setGhMax(15);
 	crevette1.setGhMin(5);
 	crevette1.setKhMax(10);
 	crevette1.setKhMin(0);crevette1.setPhMax(6.5);crevette1.setPhMin(7.5);crevette1.setTemperature(20);
-
+	crevette1.setPossede(1);
 	crevettesList.getCrevette().add(crevette1);
 
 	Crevette crevette2 = factory.createCrevettesCrevette();
 
-	crevette2.setCrevetteID(2);crevette2.setcategorie("NEOCARIDINA");
-	crevette2.setsouscategorie("DAVIDI");
+	crevette2.setCrevetteID(2);crevette2.setCategorie("NEOCARIDINA");
+	crevette2.setSousCategorie("DAVIDI");
 	crevette2.setNom("Sakura red");
 	crevette2.setGhMax(15);
 	crevette2.setGhMin(5);
@@ -90,8 +90,8 @@ public class AppData {
 		Crevette crevette3 = factory.createCrevettesCrevette();
 
 		crevette3.setCrevetteID(crevetteId);
-		crevette3.setcategorie("NEOCARIDINA");
-		crevette3.setsouscategorie("PALMATA");
+		crevette3.setCategorie("NEOCARIDINA");
+		crevette3.setSousCategorie("PALMATA");
 		crevette3.setNom("Blue pearl");
 		crevette3.setGhMax(15);
 		crevette3.setGhMin(5);
