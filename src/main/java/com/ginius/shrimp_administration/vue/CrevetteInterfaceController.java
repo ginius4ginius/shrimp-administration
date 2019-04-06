@@ -135,8 +135,8 @@ public class CrevetteInterfaceController {
 			Crevette c = new Crevette();
 
 			// c.setCrevetteID(crevetteId);
-			c.setcategorie(crevetteCategoryList.getSelectionModel().getSelectedItem().toString());
-			c.setsouscategorie(crevetteSousCategoryList.getSelectionModel().getSelectedItem().toString());
+			c.setCategorie(crevetteCategoryList.getSelectionModel().getSelectedItem().toString());
+			c.setSousCategorie(crevetteSousCategoryList.getSelectionModel().getSelectedItem().toString());
 			c.setNom(nomTf.getText());
 			c.setGhMax(Integer.parseInt(ghMaxTf.getText()));
 			c.setGhMin(Integer.parseInt(ghMinTf.getText()));

@@ -1,8 +1,8 @@
 //
-// Ce fichier a ï¿½tï¿½ gï¿½nï¿½rï¿½ par l'implï¿½mentation de rï¿½fï¿½rence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
+// Ce fichier a été généré par l'implémentation de référence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Toute modification apportï¿½e ï¿½ ce fichier sera perdue lors de la recompilation du schï¿½ma source. 
-// Gï¿½nï¿½rï¿½ le : 2019.03.01 ï¿½ 05:11:32 AM CET 
+// Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
+// Généré le : 2019.04.06 à 05:08:04 AM CEST 
 //
 
 
@@ -24,8 +24,6 @@ import javax.xml.bind.annotation.XmlRegistry;
  * groups.  Factory methods for each of these are 
  * provided in this class.
  * 
- * @author giniu
- *
  */
 @XmlRegistry
 public class ObjectFactory {

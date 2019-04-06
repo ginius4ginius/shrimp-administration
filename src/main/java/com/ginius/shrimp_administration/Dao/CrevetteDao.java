@@ -33,7 +33,8 @@ public class CrevetteDao {
 				+ "	'categorie' TEXT NOT NULL,\n" + "	'souscategorie' TEXT NOT NULL,\n" + "	'nom' TEXT NOT NULL,\n"
 				+ "	'ghMin' INTEGER NOT NULL,\n" + "	'ghMax' INTEGER NOT NULL,\n" + "	'khMin' INTEGER NOT NULL,\n"
 				+ "	'khMax' INTEGER NOT NULL,\n" + "	'phMin' DECIMAL NOT NULL,\n" + "	'phMax' DECIMAL NOT NULL,\n"
-				+ "	'description' TEXT NULL,\n" + "	'temperature' INTEGER NOT NULL);";
+				+ "	'description' TEXT NULL,\n"
+				+ "	'temperature' INTEGER NOT NULL,'possede' boolean NOT NULL default 0);";
 
 		try {
 			connexion.getStatment().executeUpdate(sqlDropTable);
@@ -54,8 +55,8 @@ public class CrevetteDao {
 			String query = "";
 			query += "INSERT INTO CREVETTE VALUES (";
 			query += "'" + c.getCrevetteID() + "', ";
-			query += "'" + c.getcategorie() + "', ";
-			query += "'" + c.getsouscategorie() + "', ";
+			query += "'" + c.getCategorie() + "', ";
+			query += "'" + c.getSousCategorie() + "', ";
 			query += "'" + c.getNom() + "', ";
 			query += "'" + c.getGhMin() + "', ";
 			query += "'" + c.getGhMax() + "', ";
@@ -64,7 +65,8 @@ public class CrevetteDao {
 			query += "'" + c.getPhMin() + "', ";
 			query += "'" + c.getPhMax() + "', ";
 			query += "'" + c.getDescription() + "', ";
-			query += "'" + c.getTemperature() + "' )";
+			query += "'" + c.getTemperature() + "', ";
+			query += "'" + c.getPossede() + "' )";
 			try {
 				connexion.getStatment().executeUpdate(query);
 
@@ -81,6 +83,7 @@ public class CrevetteDao {
 
 	/**
 	 * Méthode permettant de récupérer la liste des crevettes.
+	 * 
 	 * @return
 	 */
 	public List<Crevette> getCrevetteList() {
@@ -94,8 +97,8 @@ public class CrevetteDao {
 			while (rs.next()) {
 				Crevette crevette = new Crevette();
 				crevette.setCrevetteID(rs.getInt("id"));
-				crevette.setcategorie(rs.getString("categorie"));
-				crevette.setsouscategorie(rs.getString("souscategorie"));
+				crevette.setCategorie(rs.getString("categorie"));
+				crevette.setSousCategorie(rs.getString("souscategorie"));
 				crevette.setNom(rs.getString("nom"));
 				crevette.setGhMin(rs.getInt("ghMin"));
 				crevette.setGhMax(rs.getInt("ghMax"));
@@ -105,6 +108,7 @@ public class CrevetteDao {
 				crevette.setPhMax(rs.getDouble("phMax"));
 				crevette.setTemperature(rs.getInt("temperature"));
 				crevette.setDescription(rs.getString("description"));
+				crevette.setPossede(rs.getInt("possede"));
 
 				crevetteList.add(crevette);
 			}
@@ -130,9 +134,9 @@ public class CrevetteDao {
 
 		String query = "";
 		query += "INSERT INTO CREVETTE (categorie, souscategorie, nom, ghMin,"
-				+ "ghMax, khMin, khMax, phMin, phMax, temperature, description )" + " VALUES (";
-		query += "'" + c.getcategorie() + "', ";
-		query += "'" + c.getsouscategorie() + "', ";
+				+ "ghMax, khMin, khMax, phMin, phMax, temperature, description,possede )" + " VALUES (";
+		query += "'" + c.getCategorie() + "', ";
+		query += "'" + c.getSousCategorie() + "', ";
 		query += "'" + c.getNom() + "', ";
 		query += "'" + c.getGhMin() + "', ";
 		query += "'" + c.getGhMax() + "', ";
@@ -141,7 +145,8 @@ public class CrevetteDao {
 		query += "'" + c.getPhMin() + "', ";
 		query += "'" + c.getPhMax() + "', ";
 		query += "'" + c.getTemperature() + "', ";
-		query += "'" + c.getDescription() + "' )";
+		query += "'" + c.getDescription() + "', ";
+		query += "'" + c.getPossede() + "' )";
 		try {
 			connexion.getStatment().executeUpdate(query);
 			System.out.println("-- Insersion de : " + c.toString() + " dans la table crevette réussie");
@@ -170,6 +175,35 @@ public class CrevetteDao {
 		try {
 			connexion.getStatment().executeUpdate(query);
 			System.out.println("-- Supression dans la table de la crevette résussie");
+			connexion.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			connexion.close();
+			return false;
+		}
+
+	}
+
+	/**
+	 * Méthode qui sauvegarde la crevette dans la base de donnée.
+	 * 
+	 * @param cmodifie
+	 * @return
+	 */
+	public boolean updateCrevette(Crevette c) {
+
+		connexion.connect();
+
+		String query = "";
+		query += "UPDATE CREVETTE SET categorie = '" + c.getCategorie() + "', souscategorie = '" + c.getSousCategorie()
+				+ "', nom = '" + c.getNom() + "', ghMin = " + c.getGhMin() + ",ghMax = " + c.getGhMax() + ","
+				+ " khMin = " + c.getKhMin() + ", khMax = " + c.getKhMax() + ", phMin = " + c.getPhMin() + ","
+				+ " phMax = " + c.getPhMax() + ", temperature = " + c.getTemperature() + "," + " description = '"
+				+ c.getDescription() + "', possede = " + c.getPossede() + " WHERE id = " + c.getCrevetteID() + ";";
+		try {
+			connexion.getStatment().executeUpdate(query);
+			System.out.println("-- update de : " + c.toString() + " dans la table crevette réussie");
 			connexion.close();
 			return true;
 		} catch (SQLException e) {

@@ -11,6 +11,7 @@ import com.ginius.shrimp_administration.controller.CrevetteController;
 import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
+import com.ginius.shrimp_administration.validation.Validation;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -38,6 +40,9 @@ import javafx.stage.StageStyle;
  *
  */
 public class MainAppController {
+
+	int crevetteId;
+	int crevettePossede;
 
 	@FXML
 	private Button delete;
@@ -109,6 +114,8 @@ public class MainAppController {
 	private TextArea descriptionTa;
 	@FXML
 	private Pane crevettepane;
+	@FXML
+	private CheckBox crevettePossedeCb;
 
 	@FXML
 	private void initialize() {
@@ -141,6 +148,8 @@ public class MainAppController {
 		khmax.setVisible(false);
 		khminTf.setVisible(false);
 		khmin.setVisible(false);
+		crevettePossedeCb.setVisible(false);
+		crevettePossedeCb.setSelected(false);
 
 		crevettesList.setItems(lesCrevettes);
 		crevettesList.setVisible(false);
@@ -186,7 +195,7 @@ public class MainAppController {
 	@FXML
 	private void deleteCrevette() {
 
-		int crevetteId = crevettesList.getSelectionModel().getSelectedItem().getCrevetteID();
+		crevetteId = crevettesList.getSelectionModel().getSelectedItem().getCrevetteID();
 
 		if (crevetteDao.deleteCrevette(crevetteId)) {
 			crevettesList.setVisible(false);
@@ -215,12 +224,12 @@ public class MainAppController {
 			khmin.setVisible(false);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
-			alert.setHeaderText("Crevette supprimée avec succés");
+			alert.setHeaderText("Crevette supprimée avec succés.");
 			alert.showAndWait();
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
-			alert.setHeaderText("problème rencontré, crevette non supprimée");
+			alert.setHeaderText("problème rencontré, crevette non supprimée.");
 		}
 
 	}
@@ -262,19 +271,9 @@ public class MainAppController {
 		khmax.setVisible(true);
 		khminTf.setVisible(true);
 		khmin.setVisible(true);
+		crevettePossedeCb.setVisible(true);
 
-		lesCrevettes.clear();
-		liste = crevetteDao.getCrevetteList();
-
-		for (Crevette c : liste) {
-
-			Crevette crevette = new Crevette(c.getcategorie(), c.getsouscategorie(), c.getNom(), c.getGhMin(),
-					c.getGhMax(), c.getKhMin(), c.getKhMax(), c.getPhMin(), c.getKhMax(), c.getTemperature(),
-					c.getCrevetteID(), c.getDescription());
-
-			lesCrevettes.add(crevette);
-
-		}
+		refreshCrevetteList();
 
 		aquariumList.setVisible(false);
 		crevettesList.setVisible(true);
@@ -336,15 +335,17 @@ public class MainAppController {
 	}
 
 	/**
-	 * Méthode qui affiche les informations de la crevette de la liste dans les champs prévus a cet effet.
+	 * Méthode qui affiche les informations de la crevette de la liste dans les
+	 * champs prévus a cet effet.
+	 * 
 	 * @param event
 	 */
 	@FXML
 	public void handleCrevetteItem(MouseEvent event) {
 		System.out.println("clicked on " + crevettesList.getSelectionModel().getSelectedItem());
 
-		categorie.setText(crevettesList.getSelectionModel().getSelectedItem().getcategorie());
-		souscatégorie.setText(crevettesList.getSelectionModel().getSelectedItem().getsouscategorie());
+		categorie.setText(crevettesList.getSelectionModel().getSelectedItem().getCategorie());
+		souscatégorie.setText(crevettesList.getSelectionModel().getSelectedItem().getSousCategorie());
 		nomTf.setText(crevettesList.getSelectionModel().getSelectedItem().getNom());
 		ghminTf.setText(Integer.toString(crevettesList.getSelectionModel().getSelectedItem().getGhMin()));
 		ghmaxTf.setText(Integer.toString(crevettesList.getSelectionModel().getSelectedItem().getGhMax()));
@@ -354,6 +355,9 @@ public class MainAppController {
 		phmaxTf.setText(Double.toString(crevettesList.getSelectionModel().getSelectedItem().getPhMax()));
 		temperatureTf.setText(Integer.toString(crevettesList.getSelectionModel().getSelectedItem().getTemperature()));
 		descriptionTa.setText(crevettesList.getSelectionModel().getSelectedItem().getDescription());
+		if(crevettesList.getSelectionModel().getSelectedItem().getPossede() == 1) {
+			crevettePossedeCb.setSelected(true);
+		}else crevettePossedeCb.setSelected(false);
 
 	}
 
@@ -404,6 +408,8 @@ public class MainAppController {
 		khmax.setVisible(false);
 		khminTf.setVisible(false);
 		khmin.setVisible(false);
+		crevettePossedeCb.setVisible(false);
+		crevettePossedeCb.setSelected(false);
 
 		aquariumList.setVisible(false);
 		crevettesList.setVisible(false);
@@ -433,6 +439,150 @@ public class MainAppController {
 		newWindow.setScene(scene);
 		newWindow.show();
 
+	}
+
+	/**
+	 * Méthode qui supprime la crevette selectionnée dans la liste
+	 */
+	@FXML
+	private void updateCrevette() {
+		if (pasDeChampsVides() && pasDeChampsIncorrectes()) {
+
+			crevetteId = crevettesList.getSelectionModel().getSelectedItem().getCrevetteID();
+			if(crevettePossedeCb.isSelected()) {
+				crevettePossede = 1;
+			}else crevettePossede=0;
+
+			Crevette crevette = new Crevette(categorie.getText(), souscatégorie.getText(), nomTf.getText(),
+					Integer.parseInt(ghminTf.getText()), Integer.parseInt(ghmaxTf.getText()),
+					Integer.parseInt(khminTf.getText()), Integer.parseInt(khmaxTf.getText()),
+					Double.parseDouble(phminTf.getText()), Double.parseDouble(phmaxTf.getText()),
+					Integer.parseInt(temperatureTf.getText()), crevetteId, descriptionTa.getText(),crevettePossede);
+
+			if (crevetteDao.updateCrevette(crevette)) {
+				refreshCrevetteList();
+
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText("Crevette modifiée avec succés");
+				alert.showAndWait();
+			} else {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Information");
+				alert.setHeaderText("problème rencontré, crevette non modifiée.");
+			}
+
+		}
+
+	}
+
+	public void refreshCrevetteList() {
+
+		lesCrevettes.clear();
+		liste = crevetteDao.getCrevetteList();
+
+		for (Crevette c : liste) {
+
+			Crevette crevette = new Crevette(c.getCategorie(), c.getSousCategorie(), c.getNom(), c.getGhMin(),
+					c.getGhMax(), c.getKhMin(), c.getKhMax(), c.getPhMin(), c.getKhMax(), c.getTemperature(),
+					c.getCrevetteID(), c.getDescription(),c.getPossede());
+
+			lesCrevettes.add(crevette);
+
+		}
+	}
+
+	/**
+	 * Vérifie si un champs du formulaire est vide.
+	 * 
+	 * @return
+	 */
+	private boolean pasDeChampsVides() {
+
+		String nom = nomTf.getText();
+		String ghmax = ghmaxTf.getText();
+		String ghmin = ghminTf.getText();
+		String khmax = khmaxTf.getText();
+		String khmin = khminTf.getText();
+		String phmax = phmaxTf.getText();
+		String phmin = phminTf.getText();
+		String temperature = temperatureTf.getText();
+		if (nom.isEmpty() || ghmax.isEmpty() || ghmin.isEmpty() || khmax.isEmpty() || khmin.isEmpty() || phmax.isEmpty()
+				|| phmin.isEmpty() || temperature.isEmpty()) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Informations incomplètes");
+			alert.setHeaderText("Compléter les champs indiqués");
+			if (nom.isEmpty())
+				nomTf.setPromptText("à compléter");
+			if (ghmax.isEmpty())
+				ghmaxTf.setPromptText("à compléter");
+			if (ghmin.isEmpty())
+				ghminTf.setPromptText("à compléter");
+			if (khmax.isEmpty())
+				khmaxTf.setPromptText("à compléter");
+			if (khmin.isEmpty())
+				khminTf.setPromptText("à compléter");
+			if (phmax.isEmpty())
+				phmaxTf.setPromptText("à compléter");
+			if (phmin.isEmpty())
+				phminTf.setPromptText("à compléter");
+			if (temperature.isEmpty())
+				temperatureTf.setPromptText("à compléter");
+
+			alert.showAndWait();
+			return false;
+		} else
+			return true;
+	}
+
+	/**
+	 * Vérifie si un champs du formulaire est de mauvais type.
+	 * 
+	 * @return
+	 */
+	private boolean pasDeChampsIncorrectes() {
+
+		String messageErreur = "";
+		String nom = nomTf.getText();
+		String ghmax = ghmaxTf.getText();
+		String ghmin = ghminTf.getText();
+		String khmax = khmaxTf.getText();
+		String khmin = khminTf.getText();
+		String phmax = phmaxTf.getText();
+		String phmin = phminTf.getText();
+		String temperature = temperatureTf.getText();
+		String description = descriptionTa.getText();
+		if (nom.length() > 20 || Validation.errTypeInteger(ghmax) || Validation.errTypeInteger(ghmin)
+				|| Validation.errTypeInteger(khmax) || Validation.errTypeInteger(khmin)
+				|| Validation.errTypeIntegerOrDouble(phmin) || Validation.errTypeIntegerOrDouble(phmax)
+				|| Validation.errTypeInteger(temperature) || description.length() > 2000) {
+			if (nom.length() > 20)
+				messageErreur = messageErreur + " Nom : moin de 20 caractères";
+			if (Validation.errTypeInteger(ghmax))
+				messageErreur = messageErreur + " gh Max : invalide";
+			if (Validation.errTypeInteger(ghmin))
+				messageErreur = messageErreur + " gh Min : invalide";
+			if (Validation.errTypeInteger(khmax))
+				messageErreur = messageErreur + " kh Max : invalide";
+			if (Validation.errTypeInteger(khmin))
+				messageErreur = messageErreur + " kh Min : invalide";
+			if (Validation.errTypeIntegerOrDouble(phmax))
+				messageErreur = messageErreur + " ph Max : invalide";
+			if (Validation.errTypeIntegerOrDouble(phmin))
+				messageErreur = messageErreur + " ph Min : invalide";
+			if (Validation.errTypeInteger(temperature))
+				messageErreur = messageErreur + " temperature : invalide";
+			if (description.length() > 2000)
+				messageErreur = messageErreur + " Description : moin de 2000 caractères";
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Informations incomplètes");
+			alert.setHeaderText(messageErreur);
+
+			alert.showAndWait();
+			return false;
+		} else
+			return true;
 	}
 
 }
