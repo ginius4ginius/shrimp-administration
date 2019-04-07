@@ -23,7 +23,7 @@
 				</ImageView>
 			</children>
 		</Pane>
-		<AnchorPane fx:id="an_menu" layoutY="121.0" prefHeight="712.0" prefWidth="221.0" style="-fx-background-color: #B8360A;">
+		<AnchorPane fx:id="an_menu" layoutY="121.0" prefHeight="808.0" prefWidth="221.0" style="-fx-background-color: #B8360A;">
 			<children>
 				<Pane prefHeight="65.0" prefWidth="221.0">
 					<children>
@@ -38,52 +38,54 @@
 				<JFXButton buttonType="RAISED" layoutX="20.0" layoutY="583.0" onAction="#handleAfficherAquariums" prefHeight="54.0" prefWidth="181.0" text="Recette" textFill="WHITE" />
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="an_list" layoutX="217.0" layoutY="121.0" prefHeight="712.0" prefWidth="304.0" style="-fx-background-color: F08827;">
+		<AnchorPane fx:id="an_list" layoutX="217.0" layoutY="121.0" prefHeight="808.0" prefWidth="304.0" style="-fx-background-color: F08827;">
 			<children>
 				<Pane prefHeight="65.0" prefWidth="304.0">
 					<children>
 						<Label alignment="CENTER" prefHeight="65.0" prefWidth="304.0" style="-fx-background-color: #8B5701;" text="SELECTION" textFill="WHITE" />
 					</children>
 				</Pane>
-				<ListView fx:id="crevettesList" layoutX="7.0" layoutY="74.0" onMouseClicked="#handleCrevetteItem" prefHeight="628.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
-				<ListView fx:id="aquariumList" layoutX="7.0" layoutY="73.0" prefHeight="628.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
+				<ListView fx:id="crevettesList" layoutX="7.0" layoutY="74.0" onMouseClicked="#handleCrevetteItem" prefHeight="725.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
+				<ListView fx:id="aquariumList" layoutX="7.0" layoutY="73.0" prefHeight="725.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="an_content" layoutX="520.0" layoutY="121.0" prefHeight="712.0" prefWidth="646.0" style="-fx-background-color: #FFEDCF;">
+		<AnchorPane fx:id="an_content" layoutX="520.0" layoutY="121.0" prefHeight="808.0" prefWidth="845.0" style="-fx-background-color: #FFEDCF;">
 			<children>
-				<Pane prefHeight="65.0" prefWidth="646.0" style="-fx-background-color: #FED38C;">
+				<Pane prefHeight="65.0" prefWidth="845.0" style="-fx-background-color: #FED38C;">
 					<children>
 						<JFXButton fx:id="newCrevette" buttonType="RAISED" layoutX="14.0" layoutY="6.0" onAction="#newCrevette" prefHeight="54.0" prefWidth="157.0" text="nouvelle Crevette" textFill="WHITE" />
-						<JFXButton fx:id="exit" buttonType="RAISED" layoutX="573.0" layoutY="6.0" minWidth="45.0" onAction="#exit" prefHeight="54.0" prefWidth="45.0" text="Exit" textFill="WHITE" />
+						<JFXButton fx:id="exit" buttonType="RAISED" layoutX="763.0" layoutY="6.0" minWidth="45.0" onAction="#exit" prefHeight="54.0" prefWidth="45.0" text="Exit" textFill="WHITE" />
 						<JFXButton fx:id="saveCrevette" buttonType="RAISED" layoutX="205.0" layoutY="6.0" onAction="#updateCrevette" prefHeight="54.0" prefWidth="157.0" text="Sauvegarder" textFill="WHITE" />
 						<JFXButton fx:id="delete" buttonType="RAISED" layoutX="387.0" layoutY="6.0" onAction="#deleteCrevette" prefHeight="54.0" prefWidth="157.0" text="Supprimer" textFill="WHITE" />
 					</children>
 				</Pane>
-				<JFXTextArea fx:id="descriptionTa" layoutX="11.0" layoutY="461.0" prefHeight="231.0" prefWidth="618.0" />
-				<Label fx:id="description" alignment="CENTER" layoutX="53.0" layoutY="435.0" prefHeight="26.0" prefWidth="561.0" text="Description :" />
-				<Pane fx:id="crevettepane" layoutX="18.0" layoutY="86.0" prefHeight="339.0" prefWidth="609.0" style="-fx-background-color: #FFFFFF;">
+				<Label fx:id="description" alignment="CENTER" layoutX="523.0" layoutY="422.0" prefHeight="26.0" prefWidth="280.0" text="Description :" />
+				<Pane fx:id="crevettepane" layoutX="14.0" layoutY="455.0" prefHeight="345.0" prefWidth="821.0" style="-fx-background-color: #FFFFFF;">
 					<children>
-						<Label fx:id="ghmax" layoutX="285.0" layoutY="73.0" prefHeight="26.0" prefWidth="111.0" text="GH maximum : " />
-						<Label fx:id="khmax" layoutX="285.0" layoutY="150.0" prefHeight="26.0" prefWidth="111.0" text="KH maximum :" />
-						<Label fx:id="phmax" layoutX="285.0" layoutY="222.0" prefHeight="26.0" prefWidth="111.0" text="PH maximum :" />
-						<Label fx:id="categorie" layoutX="23.0" layoutY="25.0" prefHeight="26.0" prefWidth="111.0" text="Catégorie" />
-						<Label fx:id="souscatégorie" layoutX="154.0" layoutY="25.0" prefHeight="26.0" prefWidth="138.0" text="Sous catégorie" />
-						<Label fx:id="nom" layoutX="285.0" layoutY="25.0" prefHeight="26.0" prefWidth="52.0" text="nom :" />
-						<Label fx:id="ghmin" layoutX="46.0" layoutY="71.0" prefHeight="26.0" prefWidth="111.0" text="GH minimum : " />
-						<Label fx:id="khmin" layoutX="46.0" layoutY="148.0" prefHeight="26.0" prefWidth="111.0" text="KH minimum : " />
-						<Label fx:id="phmin" layoutX="46.0" layoutY="220.0" prefHeight="26.0" prefWidth="111.0" text="PH minimum :" />
-						<Label fx:id="temperature" layoutX="46.0" layoutY="289.0" prefHeight="26.0" prefWidth="111.0" text=" température : " />
-						<TextField fx:id="ghminTf" layoutX="154.0" layoutY="69.0" prefHeight="31.0" prefWidth="121.0" />
-						<TextField fx:id="phminTf" layoutX="154.0" layoutY="220.0" prefHeight="31.0" prefWidth="121.0" />
-						<TextField fx:id="temperatureTf" layoutX="157.0" layoutY="289.0" prefHeight="31.0" prefWidth="121.0" />
-						<TextField fx:id="khminTf" layoutX="154.0" layoutY="150.0" prefHeight="31.0" prefWidth="121.0" />
-						<TextField fx:id="ghmaxTf" layoutX="396.0" layoutY="71.0" prefHeight="31.0" prefWidth="121.0" />
-						<TextField fx:id="phmaxTf" layoutX="396.0" layoutY="220.0" prefHeight="31.0" prefWidth="121.0" />
-						<TextField fx:id="khmaxTf" layoutX="396.0" layoutY="148.0" prefHeight="31.0" prefWidth="121.0" />
-						<TextField fx:id="nomTf" layoutX="337.0" layoutY="23.0" prefHeight="31.0" prefWidth="138.0" />
-                  <CheckBox fx:id="crevettePossedeCb" layoutX="488.0" layoutY="28.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="157.0" text="Possédée" />
+                  <Separator fx:id="separator" layoutX="436.0" layoutY="12.0" orientation="VERTICAL" prefHeight="326.0" prefWidth="8.0" />
+						<Label fx:id="ghmax" layoutX="241.0" layoutY="29.0" prefHeight="26.0" prefWidth="111.0" text="GH max : " />
+						<Label fx:id="khmax" layoutX="241.0" layoutY="84.0" prefHeight="26.0" prefWidth="111.0" text="KH max :" />
+						<Label fx:id="phmax" layoutX="241.0" layoutY="135.0" prefHeight="26.0" prefWidth="111.0" text="PH max :" />
+						<Label fx:id="ghmin" layoutX="32.0" layoutY="28.0" prefHeight="26.0" prefWidth="111.0" text="GH min : " />
+						<Label fx:id="khmin" layoutX="32.0" layoutY="83.0" prefHeight="26.0" prefWidth="111.0" text="KH min : " />
+						<Label fx:id="phmin" layoutX="32.0" layoutY="135.0" prefHeight="26.0" prefWidth="111.0" text="PH min :" />
+						<Label fx:id="temperature" layoutX="172.0" layoutY="189.0" prefHeight="26.0" prefWidth="111.0" text=" température : " />
+						<TextField fx:id="ghminTf" layoutX="116.0" layoutY="26.0" prefHeight="31.0" prefWidth="111.0" />
+						<TextField fx:id="phminTf" layoutX="116.0" layoutY="133.0" prefHeight="31.0" prefWidth="111.0" />
+						<TextField fx:id="temperatureTf" layoutX="313.0" layoutY="189.0" prefHeight="31.0" prefWidth="111.0" />
+						<TextField fx:id="khminTf" layoutX="116.0" layoutY="81.0" prefHeight="31.0" prefWidth="111.0" />
+						<TextField fx:id="ghmaxTf" layoutX="313.0" layoutY="27.0" prefHeight="31.0" prefWidth="111.0" />
+						<TextField fx:id="phmaxTf" layoutX="313.0" layoutY="133.0" prefHeight="31.0" prefWidth="111.0" />
+						<TextField fx:id="khmaxTf" layoutX="313.0" layoutY="81.0" prefHeight="31.0" prefWidth="111.0" />
+      				<JFXTextArea fx:id="descriptionTa" layoutX="458.0" layoutY="16.0" prefHeight="308.0" prefWidth="349.0" />
 					</children>
 				</Pane>
+            <Label fx:id="paraMaintenance" alignment="CENTER" layoutX="61.0" layoutY="422.0" prefHeight="26.0" prefWidth="339.0" text="Paramètres de maintenance : " />
+            <CheckBox fx:id="crevettePossedeCb" layoutX="663.0" layoutY="96.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="157.0" text="Possédée" />
+						<TextField fx:id="nomTf" layoutX="472.0" layoutY="91.0" prefHeight="31.0" prefWidth="138.0" />
+						<Label fx:id="nom" layoutX="374.0" layoutY="94.0" prefHeight="26.0" prefWidth="52.0" text="nom :" />
+						<Label fx:id="souscatégorie" layoutX="190.0" layoutY="94.0" prefHeight="26.0" prefWidth="138.0" text="Sous catégorie" />
+						<Label fx:id="categorie" layoutX="40.0" layoutY="94.0" prefHeight="26.0" prefWidth="111.0" text="Catégorie" />
 			</children>
 		</AnchorPane>
 	</children>

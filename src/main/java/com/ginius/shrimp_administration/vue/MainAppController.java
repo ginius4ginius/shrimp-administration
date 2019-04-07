@@ -25,6 +25,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -111,11 +112,15 @@ public class MainAppController {
 	@FXML
 	private Label description;
 	@FXML
+	private Label paraMaintenance;
+	@FXML
 	private TextArea descriptionTa;
 	@FXML
 	private Pane crevettepane;
 	@FXML
 	private CheckBox crevettePossedeCb;
+	@FXML
+	private Separator separator;
 
 	@FXML
 	private void initialize() {
@@ -129,6 +134,8 @@ public class MainAppController {
 		// masque du pane crevette
 		crevettepane.setVisible(false);
 		description.setVisible(false);
+		paraMaintenance.setVisible(false);
+		separator.setVisible(false);
 		descriptionTa.setVisible(false);
 		temperature.setVisible(false);
 		temperatureTf.setVisible(false);
@@ -202,6 +209,8 @@ public class MainAppController {
 			// masque du pane crevette
 			crevettepane.setVisible(false);
 			description.setVisible(false);
+			paraMaintenance.setVisible(false);
+			separator.setVisible(false);
 			descriptionTa.clear();
 			descriptionTa.setVisible(false);
 			temperature.setVisible(false);
@@ -252,6 +261,8 @@ public class MainAppController {
 		temperatureTf.clear();
 		crevettepane.setVisible(true);
 		description.setVisible(true);
+		paraMaintenance.setVisible(true);
+		separator.setVisible(true);
 		descriptionTa.setVisible(true);
 		temperature.setVisible(true);
 		temperatureTf.setVisible(true);
@@ -292,6 +303,8 @@ public class MainAppController {
 		// masque du pane crevette
 		crevettepane.setVisible(false);
 		description.setVisible(false);
+		paraMaintenance.setVisible(false);
+		separator.setVisible(false);
 		descriptionTa.setVisible(false);
 		temperature.setVisible(false);
 		temperatureTf.setVisible(false);
@@ -389,6 +402,8 @@ public class MainAppController {
 		// masque du pane crevette
 		crevettepane.setVisible(false);
 		description.setVisible(false);
+		paraMaintenance.setVisible(false);
+		separator.setVisible(false);
 		descriptionTa.setVisible(false);
 		temperature.setVisible(false);
 		temperatureTf.setVisible(false);
