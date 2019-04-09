@@ -1,8 +1,15 @@
 package com.ginius.shrimp_administration.vue;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.ginius.shrimp_administration.App;
 import com.ginius.shrimp_administration.Dao.CrevetteDao;
@@ -29,6 +36,8 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -121,6 +130,11 @@ public class MainAppController {
 	private CheckBox crevettePossedeCb;
 	@FXML
 	private Separator separator;
+	@FXML
+	private ImageView imageCrevette;
+
+	private File fileImageCrevette;
+	private FileInputStream fis = null;
 
 	@FXML
 	private void initialize() {
@@ -131,9 +145,15 @@ public class MainAppController {
 
 		crevetteDao.initialiseCrevette(crevetteList);
 
+		String path = App.class.getResource("nouvelle_crevette.jpg").getPath();
+		fileImageCrevette = new File(path);
+		Image image = new Image(fileImageCrevette.toURI().toString());
+		imageCrevette.setImage(image);
+
 		// masque du pane crevette
 		crevettepane.setVisible(false);
 		description.setVisible(false);
+		imageCrevette.setVisible(false);
 		paraMaintenance.setVisible(false);
 		separator.setVisible(false);
 		descriptionTa.setVisible(false);
@@ -210,6 +230,7 @@ public class MainAppController {
 			crevettepane.setVisible(false);
 			description.setVisible(false);
 			paraMaintenance.setVisible(false);
+			imageCrevette.setVisible(false);
 			separator.setVisible(false);
 			descriptionTa.clear();
 			descriptionTa.setVisible(false);
@@ -262,6 +283,7 @@ public class MainAppController {
 		crevettepane.setVisible(true);
 		description.setVisible(true);
 		paraMaintenance.setVisible(true);
+		imageCrevette.setVisible(true);
 		separator.setVisible(true);
 		descriptionTa.setVisible(true);
 		temperature.setVisible(true);
@@ -283,6 +305,13 @@ public class MainAppController {
 		khminTf.setVisible(true);
 		khmin.setVisible(true);
 		crevettePossedeCb.setVisible(true);
+		crevettePossedeCb.setSelected(false);
+
+		String path = App.class.getResource("nouvelle_crevette.jpg").getPath();
+		System.out.println(path);
+		fileImageCrevette = new File(path);
+		Image image = new Image(fileImageCrevette.toURI().toString());
+		imageCrevette.setImage(image);
 
 		refreshCrevetteList();
 
@@ -304,6 +333,7 @@ public class MainAppController {
 		crevettepane.setVisible(false);
 		description.setVisible(false);
 		paraMaintenance.setVisible(false);
+		imageCrevette.setVisible(false);
 		separator.setVisible(false);
 		descriptionTa.setVisible(false);
 		temperature.setVisible(false);
@@ -368,9 +398,26 @@ public class MainAppController {
 		phmaxTf.setText(Double.toString(crevettesList.getSelectionModel().getSelectedItem().getPhMax()));
 		temperatureTf.setText(Integer.toString(crevettesList.getSelectionModel().getSelectedItem().getTemperature()));
 		descriptionTa.setText(crevettesList.getSelectionModel().getSelectedItem().getDescription());
-		if(crevettesList.getSelectionModel().getSelectedItem().getPossede() == 1) {
+
+		String path = crevettesList.getSelectionModel().getSelectedItem().getImage();
+
+		if (path.length() == 4 ) {
+			System.out.println(path);
+			System.out.println(path.length());
+			String defaultPath = App.class.getResource("nouvelle_crevette.jpg").getPath();
+			fileImageCrevette = new File(defaultPath);
+			Image image = new Image(fileImageCrevette.toURI().toString());
+			imageCrevette.setImage(image);
+		} else {
+			fileImageCrevette = new File(path);
+			Image image = new Image(fileImageCrevette.toURI().toString());
+			imageCrevette.setImage(image);
+		}
+
+		if (crevettesList.getSelectionModel().getSelectedItem().getPossede() == 1) {
 			crevettePossedeCb.setSelected(true);
-		}else crevettePossedeCb.setSelected(false);
+		} else
+			crevettePossedeCb.setSelected(false);
 
 	}
 
@@ -403,6 +450,7 @@ public class MainAppController {
 		crevettepane.setVisible(false);
 		description.setVisible(false);
 		paraMaintenance.setVisible(false);
+		imageCrevette.setVisible(false);
 		separator.setVisible(false);
 		descriptionTa.setVisible(false);
 		temperature.setVisible(false);
@@ -461,18 +509,23 @@ public class MainAppController {
 	 */
 	@FXML
 	private void updateCrevette() {
+
 		if (pasDeChampsVides() && pasDeChampsIncorrectes()) {
 
 			crevetteId = crevettesList.getSelectionModel().getSelectedItem().getCrevetteID();
-			if(crevettePossedeCb.isSelected()) {
+			if (crevettePossedeCb.isSelected()) {
 				crevettePossede = 1;
-			}else crevettePossede=0;
+			} else
+				crevettePossede = 0;
 
 			Crevette crevette = new Crevette(categorie.getText(), souscatégorie.getText(), nomTf.getText(),
 					Integer.parseInt(ghminTf.getText()), Integer.parseInt(ghmaxTf.getText()),
 					Integer.parseInt(khminTf.getText()), Integer.parseInt(khmaxTf.getText()),
 					Double.parseDouble(phminTf.getText()), Double.parseDouble(phmaxTf.getText()),
-					Integer.parseInt(temperatureTf.getText()), crevetteId, descriptionTa.getText(),crevettePossede);
+					Integer.parseInt(temperatureTf.getText()), crevetteId, descriptionTa.getText(), crevettePossede,
+					fileImageCrevette.getAbsolutePath().toString());
+
+			System.out.println("chemin de l'image= " + fileImageCrevette.getAbsolutePath().toString());
 
 			if (crevetteDao.updateCrevette(crevette)) {
 				refreshCrevetteList();
@@ -500,7 +553,7 @@ public class MainAppController {
 
 			Crevette crevette = new Crevette(c.getCategorie(), c.getSousCategorie(), c.getNom(), c.getGhMin(),
 					c.getGhMax(), c.getKhMin(), c.getKhMax(), c.getPhMin(), c.getKhMax(), c.getTemperature(),
-					c.getCrevetteID(), c.getDescription(),c.getPossede());
+					c.getCrevetteID(), c.getDescription(), c.getPossede(), c.getImage());
 
 			lesCrevettes.add(crevette);
 
@@ -598,6 +651,31 @@ public class MainAppController {
 			return false;
 		} else
 			return true;
+	}
+
+	@FXML
+	public void updateCrevetteImage(MouseEvent event) {
+
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("jpg", "png", "gif");
+		fileChooser.addChoosableFileFilter(filter);
+		int result = fileChooser.showSaveDialog(null);
+		if (result == JFileChooser.APPROVE_OPTION) {
+
+			File selectedFile = fileChooser.getSelectedFile();
+			String path = selectedFile.getAbsolutePath();
+			System.out.println(path);
+			fileImageCrevette = new File(path);
+			Image image = new Image(fileImageCrevette.toURI().toString());
+			imageCrevette.setImage(image);
+
+		} else if (result == JFileChooser.CANCEL_OPTION) {
+
+			System.out.println("Aucun fichier sélectionné, image par defaut");
+
+		}
+
 	}
 
 }

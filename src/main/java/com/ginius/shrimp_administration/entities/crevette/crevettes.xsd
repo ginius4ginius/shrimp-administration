@@ -62,6 +62,7 @@
 								<xs:element name="phMax" type="simpleTypeDecimal1a2" minOccurs="1" maxOccurs="1"/>
 								<xs:element name="temperature" type="simpleTypeNumeric1a2" minOccurs="1" maxOccurs="1"/>
 								<xs:element name="description" type="simpleTypeCharacter1a2000" minOccurs="0" maxOccurs="1"/>
+								<xs:element name="image" type="simpleTypeCharacter1a2000" minOccurs="0" maxOccurs="1"/>
 								<xs:element name="possede" type="simpleTypeNumeric1" minOccurs="1" maxOccurs="1"/>
 							</xs:sequence>
 							  <xs:attribute name="CrevetteID" type="simpleTypeId" ></xs:attribute>

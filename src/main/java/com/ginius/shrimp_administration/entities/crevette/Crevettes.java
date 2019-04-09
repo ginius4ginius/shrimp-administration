@@ -7,6 +7,7 @@
 
 package com.ginius.shrimp_administration.entities.crevette;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -47,6 +48,7 @@ import javax.xml.bind.annotation.XmlType;
  *                     &lt;element name="phMax" type="{}simpleTypeDecimal1a2"/>
  *                     &lt;element name="temperature" type="{}simpleTypeNumeric1a2"/>
  *                     &lt;element name="description" type="{}simpleTypeCharacter1a2000" minOccurs="0"/>
+ *                     &lt;element name="image" type="{}simpleTypeCharacter1a2000" minOccurs="0"/>
  *                     &lt;element name="possede" type="{}simpleTypeNumeric1"/>
  *                   &lt;/sequence>
  *                   &lt;attribute name="CrevetteID" type="{}simpleTypeId" />
@@ -124,6 +126,7 @@ public class Crevettes {
 	 *         &lt;element name="phMax" type="{}simpleTypeDecimal1a2"/>
 	 *         &lt;element name="temperature" type="{}simpleTypeNumeric1a2"/>
 	 *         &lt;element name="description" type="{}simpleTypeCharacter1a2000" minOccurs="0"/>
+	 *         &lt;element name="image" type="{}simpleTypeCharacter1a2000" minOccurs="0"/>
 	 *         &lt;element name="possede" type="{}simpleTypeNumeric1"/>
 	 *       &lt;/sequence>
 	 *       &lt;attribute name="CrevetteID" type="{}simpleTypeId" />
@@ -136,7 +139,7 @@ public class Crevettes {
 	 */
 	@XmlAccessorType(XmlAccessType.FIELD)
 	@XmlType(name = "", propOrder = { "categorie", "sousCategorie", "nom", "ghMin", "ghMax", "khMin", "khMax", "phMin",
-			"phMax", "temperature", "description", "possede" })
+			"phMax", "temperature", "description","image", "possede" })
 	public static class Crevette {
 
 		@XmlElement(required = true)
@@ -170,9 +173,10 @@ public class Crevettes {
 		protected int possede;
 		@XmlAttribute(name = "CrevetteID")
 		protected int crevetteID;
+		protected String image;
 
 		public Crevette(String categorie, String sousCategorie, String nom, int ghMin, int ghMax, int khMin, int khMax,
-				double phMin, double phMax, int temperature, int crevetteID, String description, int possede) {
+				double phMin, double phMax, int temperature, int crevetteID, String description, int possede, String image) {
 			super();
 			this.categorie = categorie;
 			this.sousCategorie = sousCategorie;
@@ -187,6 +191,7 @@ public class Crevettes {
 			this.crevetteID = crevetteID;
 			this.description = description;
 			this.possede = possede;
+			this.image = image;
 		}
 
 		public Crevette() {
@@ -451,11 +456,33 @@ public class Crevettes {
 		public void setCrevetteID(int value) {
 			this.crevetteID = value;
 		}
+		
+		/**
+		 * Obtient la valeur de la propri�t� image.
+		 * 
+		 * @return possible object is {@link int }
+		 * 
+		 */
+		public String getImage() {
+			return image;
+		}
+
+		/**
+		 * D�finit la valeur de la propri�t� image.
+		 * 
+		 * @param value allowed object is {@link int }
+		 * 
+		 */
+		public void setImage(String value) {
+			this.image = value;
+		}
 
 		@Override
 		public String toString() {
 			return categorie + " " + sousCategorie + " - " + nom;
 		}
+		
+		
 	}
 
 }
