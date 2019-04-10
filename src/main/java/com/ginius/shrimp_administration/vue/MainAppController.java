@@ -35,6 +35,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -127,7 +128,7 @@ public class MainAppController {
 	@FXML
 	private Pane crevettepane;
 	@FXML
-	private CheckBox crevettePossedeCb;
+	private ToggleButton crevettePossedeCb;
 	@FXML
 	private Separator separator;
 	@FXML
