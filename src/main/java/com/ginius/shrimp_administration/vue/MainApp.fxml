@@ -2,7 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
-<?import javafx.scene.control.CheckBox?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane prefHeight="833.0" prefWidth="1164.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ginius.shrimp_administration.vue.MainAppController">
+<AnchorPane prefHeight="1024.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ginius.shrimp_administration.vue.MainAppController">
 	<children>
 		<Pane prefHeight="122.0" prefWidth="1365.0">
 			<children>
@@ -23,7 +23,7 @@
 				</ImageView>
 			</children>
 		</Pane>
-		<AnchorPane fx:id="an_menu" layoutY="121.0" prefHeight="808.0" prefWidth="221.0" style="-fx-background-color: #B8360A;">
+		<AnchorPane fx:id="an_menu" layoutY="121.0" prefHeight="814.0" prefWidth="221.0" style="-fx-background-color: #B8360A;">
 			<children>
 				<Pane prefHeight="65.0" prefWidth="221.0">
 					<children>
@@ -38,23 +38,23 @@
 				<JFXButton buttonType="RAISED" layoutX="20.0" layoutY="583.0" onAction="#handleAfficherAquariums" prefHeight="54.0" prefWidth="181.0" text="Recette" textFill="WHITE" />
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="an_list" layoutX="217.0" layoutY="121.0" prefHeight="808.0" prefWidth="304.0" style="-fx-background-color: F08827;">
+		<AnchorPane fx:id="an_list" layoutX="217.0" layoutY="121.0" prefHeight="814.0" prefWidth="304.0" style="-fx-background-color: F08827;">
 			<children>
 				<Pane prefHeight="65.0" prefWidth="304.0">
 					<children>
 						<Label alignment="CENTER" prefHeight="65.0" prefWidth="304.0" style="-fx-background-color: #8B5701;" text="SELECTION" textFill="WHITE" />
 					</children>
 				</Pane>
-				<ListView fx:id="crevettesList" layoutX="7.0" layoutY="74.0" onMouseClicked="#handleCrevetteItem" prefHeight="725.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
-				<ListView fx:id="aquariumList" layoutX="7.0" layoutY="73.0" prefHeight="725.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
+				<ListView fx:id="crevettesList" layoutX="7.0" layoutY="74.0" onMouseClicked="#handleCrevetteItem" prefHeight="735.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
+				<ListView fx:id="aquariumList" layoutX="7.0" layoutY="73.0" prefHeight="735.0" prefWidth="287.0" style="-fx-background-color: #FFFFFF;" />
 			</children>
 		</AnchorPane>
-		<AnchorPane fx:id="an_content" layoutX="520.0" layoutY="121.0" prefHeight="808.0" prefWidth="845.0" style="-fx-background-color: #FFEDCF;">
+		<AnchorPane fx:id="an_content" layoutX="520.0" layoutY="121.0" prefHeight="814.0" prefWidth="845.0" style="-fx-background-color: #FFEDCF;">
 			<children>
 				<Pane prefHeight="65.0" prefWidth="845.0" style="-fx-background-color: #FED38C;">
 					<children>
 						<JFXButton fx:id="newCrevette" buttonType="RAISED" layoutX="14.0" layoutY="6.0" onAction="#newCrevette" prefHeight="54.0" prefWidth="157.0" text="nouvelle Crevette" textFill="WHITE" />
-						<JFXButton fx:id="exit" buttonType="RAISED" layoutX="763.0" layoutY="6.0" minWidth="45.0" onAction="#exit" prefHeight="54.0" prefWidth="45.0" text="Exit" textFill="WHITE" />
+						<JFXButton fx:id="exit" buttonType="RAISED" layoutX="775.0" layoutY="6.0" minWidth="45.0" onAction="#exit" prefHeight="54.0" prefWidth="45.0" text="Exit" textFill="WHITE" />
 						<JFXButton fx:id="saveCrevette" buttonType="RAISED" layoutX="205.0" layoutY="6.0" onAction="#updateCrevette" prefHeight="54.0" prefWidth="157.0" text="Sauvegarder" textFill="WHITE" />
 						<JFXButton fx:id="delete" buttonType="RAISED" layoutX="387.0" layoutY="6.0" onAction="#deleteCrevette" prefHeight="54.0" prefWidth="157.0" text="Supprimer" textFill="WHITE" />
 					</children>
@@ -81,9 +81,8 @@
 					</children>
 				</Pane>
 				<Label fx:id="paraMaintenance" alignment="CENTER" layoutX="61.0" layoutY="422.0" prefHeight="26.0" prefWidth="339.0" text="Paramètres de maintenance : " />
-				<CheckBox fx:id="crevettePossedeCb" layoutX="663.0" layoutY="96.0" mnemonicParsing="false" prefHeight="21.0" prefWidth="157.0" text="Possédée" />
 				<TextField fx:id="nomTf" layoutX="472.0" layoutY="91.0" prefHeight="31.0" prefWidth="138.0" />
-				<Label fx:id="nom" layoutX="374.0" layoutY="94.0" prefHeight="26.0" prefWidth="52.0" text="nom :" />
+				<Label fx:id="nom" layoutX="374.0" layoutY="94.0" prefHeight="26.0" prefWidth="52.0" text="Nom :" />
 				<Label fx:id="souscatégorie" layoutX="190.0" layoutY="94.0" prefHeight="26.0" prefWidth="138.0" text="Sous catégorie" />
 				<Label fx:id="categorie" layoutX="40.0" layoutY="94.0" prefHeight="26.0" prefWidth="111.0" text="Catégorie" />
 				<ImageView fx:id="imageCrevette" fitHeight="261.0" fitWidth="544.0" layoutX="231.0" layoutY="143.0" onMouseClicked="#updateCrevetteImage" pickOnBounds="true" preserveRatio="true">
@@ -91,6 +90,7 @@
 						<Image url="@images/nouvelleCrevette.jpg" />
 					</image>
 				</ImageView>
+            <JFXToggleButton fx:id="crevettePossedeCb" layoutX="638.0" layoutY="77.0" prefHeight="60.0" prefWidth="196.0" text="Possédé" />
 			</children>
 		</AnchorPane>
 	</children>

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -12,20 +13,20 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="833.0" prefWidth="1164.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ginius.shrimp_administration.vue.CrevetteInterfaceController">
+<AnchorPane prefHeight="1024.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ginius.shrimp_administration.vue.CrevetteInterfaceController">
 	<children>
 		<Pane prefHeight="86.0" prefWidth="802.0">
 			<children>
-				<ImageView fitHeight="116.0" fitWidth="506.0" layoutX="375.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="116.0" fitWidth="506.0" layoutX="517.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/entete.jpg" />
 					</image>
 				</ImageView>
 			</children>
 		</Pane>
-		<AnchorPane fx:id="an_content" layoutY="122.0" prefHeight="711.0" prefWidth="1166.0" style="-fx-background-color: #FFEDCF;">
+		<AnchorPane fx:id="an_content" layoutY="121.0" prefHeight="776.0" prefWidth="1365.0" style="-fx-background-color: #FFEDCF;">
 			<children>
-				<Pane layoutY="1.0" prefHeight="65.0" prefWidth="1166.0" style="-fx-background-color: #FED38C;">
+				<Pane layoutY="1.0" prefHeight="65.0" prefWidth="1365.0" style="-fx-background-color: #FED38C;">
 					<children>
 						<JFXButton fx:id="saveCrevette" buttonType="RAISED" layoutX="798.0" layoutY="6.0" onAction="#saveCrevette" prefHeight="54.0" prefWidth="195.0" text="Sauvegarder" textFill="WHITE" />
 						<Label alignment="CENTER" layoutX="342.0" layoutY="12.0" prefHeight="42.0" prefWidth="482.0" text="Nouvelle crevette">
@@ -33,10 +34,10 @@
 								<Font size="30.0" />
 							</font>
 						</Label>
-						<JFXButton fx:id="exit" buttonType="RAISED" layoutX="1090.0" layoutY="6.0" minWidth="45.0" onAction="#exit" prefHeight="54.0" prefWidth="45.0" text="Exit" textFill="WHITE" />
+						<JFXButton fx:id="exit" buttonType="RAISED" layoutX="1295.0" layoutY="6.0" minWidth="45.0" onAction="#exit" prefHeight="54.0" prefWidth="45.0" text="Exit" textFill="WHITE" />
 					</children>
 				</Pane>
-				<Pane layoutX="19.0" layoutY="91.0" prefHeight="78.0" prefWidth="1114.0" style="-fx-background-color: #FDFEFE; -fx-border-radius: 15em;">
+				<Pane layoutY="66.0" prefHeight="78.0" prefWidth="1365.0" style="-fx-background-color: #FDFEFE; -fx-border-radius: 15em;">
 					<children>
 						<Label layoutX="27.0" layoutY="23.0" prefHeight="42.0" prefWidth="121.0" text="Catégorie :" />
 						<ComboBox fx:id="crevetteCategoryList" layoutX="116.0" layoutY="29.0" prefHeight="28.0" prefWidth="203.0" />
@@ -44,35 +45,43 @@
 						<ComboBox fx:id="crevetteSousCategoryList" layoutX="500.0" layoutY="30.0" prefHeight="28.0" prefWidth="203.0" />
 						<Label layoutX="819.0" layoutY="23.0" prefHeight="42.0" prefWidth="121.0" text="Nom :" />
 						<TextField fx:id="nomTf" layoutX="894.0" layoutY="30.0" />
+                  <JFXToggleButton layoutX="1122.0" layoutY="9.0" prefHeight="60.0" prefWidth="222.0" text="Possédé" />
 					</children>
 				</Pane>
-				<Separator layoutX="19.0" layoutY="198.0" prefHeight="3.0" prefWidth="1114.0" />
-				<Pane layoutX="19.0" layoutY="317.0" prefHeight="318.0" prefWidth="704.0" style="-fx-background-color: #FDFEFE; -fx-border-radius: 15em;" />
-				<Label alignment="CENTER" layoutX="342.0" layoutY="229.0" prefHeight="42.0" prefWidth="482.0" text="Paramètres de maintenance requis" textFill="#ff7802">
+				<Pane layoutY="186.0" prefHeight="318.0" prefWidth="704.0" style="-fx-background-color: #FDFEFE; -fx-border-radius: 15em;" />
+				<Label alignment="CENTER" layoutX="124.0" layoutY="144.0" prefHeight="42.0" prefWidth="482.0" text="Paramètres de maintenance requis" textFill="#ff7802">
 					<font>
 						<Font size="27.0" />
 					</font>
 				</Label>
-				<Label layoutX="33.0" layoutY="338.0" prefHeight="42.0" prefWidth="121.0" text="GH minimum :" />
-				<Label layoutX="33.0" layoutY="417.0" prefHeight="42.0" prefWidth="121.0" text="KH minimum :" />
-				<Label layoutX="33.0" layoutY="490.0" prefHeight="42.0" prefWidth="121.0" text="PH minimum :" />
-				<Label layoutX="365.0" layoutY="338.0" prefHeight="42.0" prefWidth="121.0" text="GH maximum :" />
-				<Label layoutX="365.0" layoutY="417.0" prefHeight="42.0" prefWidth="121.0" text="KH maximum :" />
-				<Label layoutX="365.0" layoutY="490.0" prefHeight="42.0" prefWidth="121.0" text="PH maximum :" />
-				<Label layoutX="33.0" layoutY="567.0" prefHeight="42.0" prefWidth="121.0" text="Temperature :" />
-				<TextField fx:id="ghMinTf" layoutX="136.0" layoutY="346.0" />
-				<TextField fx:id="khMinTf" layoutX="136.0" layoutY="425.0" />
-				<TextField fx:id="phMinTf" layoutX="136.0" layoutY="498.0" />
-				<TextField fx:id="temperatureTf" layoutX="136.0" layoutY="575.0" />
-				<TextField fx:id="ghMaxTf" layoutX="468.0" layoutY="346.0" />
-				<TextField fx:id="khMaxTf" layoutX="468.0" layoutY="425.0" />
-				<TextField fx:id="phMaxTf" layoutX="468.0" layoutY="498.0" />
-				<Pane layoutX="738.0" layoutY="317.0" prefHeight="318.0" prefWidth="414.0" style="-fx-background-color: #FDFEFE; -fx-border-radius: 15em;">
+				<Label layoutX="14.0" layoutY="207.0" prefHeight="42.0" prefWidth="121.0" text="GH minimum :" />
+				<Label layoutX="14.0" layoutY="286.0" prefHeight="42.0" prefWidth="121.0" text="KH minimum :" />
+				<Label layoutX="14.0" layoutY="359.0" prefHeight="42.0" prefWidth="121.0" text="PH minimum :" />
+				<Label layoutX="346.0" layoutY="207.0" prefHeight="42.0" prefWidth="121.0" text="GH maximum :" />
+				<Label layoutX="346.0" layoutY="286.0" prefHeight="42.0" prefWidth="121.0" text="KH maximum :" />
+				<Label layoutX="346.0" layoutY="359.0" prefHeight="42.0" prefWidth="121.0" text="PH maximum :" />
+				<Label layoutX="14.0" layoutY="436.0" prefHeight="42.0" prefWidth="121.0" text="Temperature :" />
+				<TextField fx:id="ghMinTf" layoutX="117.0" layoutY="215.0" />
+				<TextField fx:id="khMinTf" layoutX="117.0" layoutY="294.0" />
+				<TextField fx:id="phMinTf" layoutX="117.0" layoutY="367.0" />
+				<TextField fx:id="temperatureTf" layoutX="117.0" layoutY="444.0" />
+				<TextField fx:id="ghMaxTf" layoutX="449.0" layoutY="215.0" />
+				<TextField fx:id="khMaxTf" layoutX="449.0" layoutY="294.0" />
+				<TextField fx:id="phMaxTf" layoutX="449.0" layoutY="367.0" />
+				<Pane layoutY="549.0" prefHeight="263.0" prefWidth="704.0" style="-fx-background-color: #FDFEFE; -fx-border-radius: 15em;">
 					<children>
-						<Label layoutX="161.0" prefHeight="42.0" prefWidth="121.0" text="Description :" />
-						<JFXTextArea fx:id="descriptionTa" layoutX="15.0" layoutY="45.0" prefHeight="262.0" prefWidth="384.0" />
+						<JFXTextArea fx:id="descriptionTa" layoutY="6.0" prefHeight="248.0" prefWidth="704.0" />
 					</children>
 				</Pane>
+            <Label alignment="CENTER" layoutX="105.0" layoutY="503.0" prefHeight="42.0" prefWidth="482.0" text="Description" textFill="#ff7802">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Separator layoutX="715.0" layoutY="159.0" orientation="VERTICAL" prefHeight="649.0" prefWidth="0.0" />
+            <ImageView fitHeight="372.0" fitWidth="582.0" layoutX="747.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true" />
+            <JFXButton layoutX="744.0" layoutY="224.0" prefHeight="45.0" prefWidth="164.0" style="-fx-background-color: #E5744D;" text="Naviguer" textFill="WHITE" />
+            <Label layoutX="919.0" layoutY="231.0" prefHeight="31.0" prefWidth="410.0" style="-fx-background-color: #FFFFFF;" />
 			</children>
 		</AnchorPane>
 	</children>
