@@ -30,9 +30,6 @@ import com.ginius.shrimp_administration.controller.CrevetteController;
  */
 public class CrevetteInterfaceController {
 
-	// private int crevetteId;
-	// private int lastPosition;
-
 	CrevetteDao crevetteDao;
 
 	JAXBContext ctx = null;
@@ -85,7 +82,7 @@ public class CrevetteInterfaceController {
 	@FXML
 	private void initialize() {
 
-		// initialsiation des instances des controlleur d'accés aux fichiers xml.
+		// initialisation des instances des controlleurs d'accés aux fichiers xml.
 		CrevetteController.getInstance();
 		crevetteDao = new CrevetteDao();
 

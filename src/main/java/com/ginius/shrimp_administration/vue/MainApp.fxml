@@ -87,7 +87,7 @@
 				<Label fx:id="categorie" layoutX="40.0" layoutY="94.0" prefHeight="26.0" prefWidth="111.0" text="Catégorie" />
 				<ImageView fx:id="imageCrevette" fitHeight="261.0" fitWidth="544.0" layoutX="231.0" layoutY="143.0" onMouseClicked="#updateCrevetteImage" pickOnBounds="true" preserveRatio="true">
 					<image>
-						<Image url="@images/nouvelleCrevette.jpg" />
+						<Image url="@images/crevetteParDefaut.jpg" />
 					</image>
 				</ImageView>
             <JFXToggleButton fx:id="crevettePossedeCb" layoutX="638.0" layoutY="77.0" prefHeight="60.0" prefWidth="196.0" text="Possédé" />

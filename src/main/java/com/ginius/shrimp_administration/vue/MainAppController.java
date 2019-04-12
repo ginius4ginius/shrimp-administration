@@ -1,10 +1,7 @@
 package com.ginius.shrimp_administration.vue;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +16,7 @@ import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 import com.ginius.shrimp_administration.validation.Validation;
+import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -29,7 +27,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
@@ -135,7 +132,6 @@ public class MainAppController {
 	private ImageView imageCrevette;
 
 	private File fileImageCrevette;
-	private FileInputStream fis = null;
 
 	@FXML
 	private void initialize() {
@@ -146,7 +142,8 @@ public class MainAppController {
 
 		crevetteDao.initialiseCrevette(crevetteList);
 
-		String path = App.class.getResource("nouvelle_crevette.jpg").getPath();
+		String path = GestionnaireFichier.defaultPath;
+
 		fileImageCrevette = new File(path);
 		Image image = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(image);
@@ -308,8 +305,7 @@ public class MainAppController {
 		crevettePossedeCb.setVisible(true);
 		crevettePossedeCb.setSelected(false);
 
-		String path = App.class.getResource("nouvelle_crevette.jpg").getPath();
-		System.out.println(path);
+		String path = GestionnaireFichier.defaultPath;
 		fileImageCrevette = new File(path);
 		Image image = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(image);
@@ -386,7 +382,6 @@ public class MainAppController {
 	 */
 	@FXML
 	public void handleCrevetteItem(MouseEvent event) {
-		System.out.println("clicked on " + crevettesList.getSelectionModel().getSelectedItem());
 
 		categorie.setText(crevettesList.getSelectionModel().getSelectedItem().getCategorie());
 		souscatégorie.setText(crevettesList.getSelectionModel().getSelectedItem().getSousCategorie());
@@ -402,10 +397,8 @@ public class MainAppController {
 
 		String path = crevettesList.getSelectionModel().getSelectedItem().getImage();
 
-		if (path.length() == 4 ) {
-			System.out.println(path);
-			System.out.println(path.length());
-			String defaultPath = App.class.getResource("nouvelle_crevette.jpg").getPath();
+		if (path.length() == 4) {
+			String defaultPath = GestionnaireFichier.defaultPath;
 			fileImageCrevette = new File(defaultPath);
 			Image image = new Image(fileImageCrevette.toURI().toString());
 			imageCrevette.setImage(image);
@@ -511,6 +504,8 @@ public class MainAppController {
 	@FXML
 	private void updateCrevette() {
 
+		int index = crevettesList.getSelectionModel().getSelectedIndex();
+
 		if (pasDeChampsVides() && pasDeChampsIncorrectes()) {
 
 			crevetteId = crevettesList.getSelectionModel().getSelectedItem().getCrevetteID();
@@ -524,12 +519,11 @@ public class MainAppController {
 					Integer.parseInt(khminTf.getText()), Integer.parseInt(khmaxTf.getText()),
 					Double.parseDouble(phminTf.getText()), Double.parseDouble(phmaxTf.getText()),
 					Integer.parseInt(temperatureTf.getText()), crevetteId, descriptionTa.getText(), crevettePossede,
-					fileImageCrevette.getAbsolutePath().toString());
-
-			System.out.println("chemin de l'image= " + fileImageCrevette.getAbsolutePath().toString());
+					GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 
 			if (crevetteDao.updateCrevette(crevette)) {
 				refreshCrevetteList();
+				crevettesList.getSelectionModel().select(index);
 
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");
@@ -666,7 +660,6 @@ public class MainAppController {
 
 			File selectedFile = fileChooser.getSelectedFile();
 			String path = selectedFile.getAbsolutePath();
-			System.out.println(path);
 			fileImageCrevette = new File(path);
 			Image image = new Image(fileImageCrevette.toURI().toString());
 			imageCrevette.setImage(image);
