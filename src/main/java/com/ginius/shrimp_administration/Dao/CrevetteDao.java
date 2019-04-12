@@ -2,7 +2,6 @@ package com.ginius.shrimp_administration.Dao;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class CrevetteDao {
 				+ "	'categorie' TEXT NOT NULL,\n" + "	'souscategorie' TEXT NOT NULL,\n" + "	'nom' TEXT NOT NULL,\n"
 				+ "	'ghMin' INTEGER NOT NULL,\n" + "	'ghMax' INTEGER NOT NULL,\n" + "	'khMin' INTEGER NOT NULL,\n"
 				+ "	'khMax' INTEGER NOT NULL,\n" + "	'phMin' DECIMAL NOT NULL,\n" + "	'phMax' DECIMAL NOT NULL,\n"
-				+ "	'description' TEXT NULL,\n" + "	'image' TEXT NULL,\n"
+				+ "	'description' TEXT NULL default ' ',\n" + "	'image' TEXT NULL,\n"
 				+ "	'temperature' INTEGER NOT NULL,'possede' boolean NOT NULL default 0);";
 
 		try {

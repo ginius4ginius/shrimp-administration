@@ -1,13 +1,12 @@
 //
-// Ce fichier a �t� g�n�r� par l'impl�mentation de r�f�rence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
+// Ce fichier a été généré par l'implémentation de réfrence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
 // Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Toute modification apport�e � ce fichier sera perdue lors de la recompilation du sch�ma source. 
-// G�n�r� le : 2019.04.06 � 05:08:04 AM CEST 
+// Toute modification apportée é ce fichier sera perdue lors de la recompilation du schéma source. 
+// Généré le : 2019.04.06 é 05:08:04 AM CEST 
 //
 
 package com.ginius.shrimp_administration.entities.crevette;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -23,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  * Classe Java pour anonymous complex type.
  * 
  * <p>
- * Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette
+ * Le fragment de schéma suivant indique le contenu attendu figurant dans cette
  * classe.
  * 
  * <pre>
@@ -107,7 +106,7 @@ public class Crevettes {
 	 * Classe Java pour anonymous complex type.
 	 * 
 	 * <p>
-	 * Le fragment de sch�ma suivant indique le contenu attendu figurant dans cette
+	 * Le fragment de schéma suivant indique le contenu attendu figurant dans cette
 	 * classe.
 	 * 
 	 * <pre>
@@ -198,7 +197,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� categorie.
+		 * Obtient la valeur de la propriété categorie.
 		 * 
 		 * @return possible object is {@link String }
 		 * 
@@ -208,7 +207,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� categorie.
+		 * Définit la valeur de la propriété categorie.
 		 * 
 		 * @param value allowed object is {@link String }
 		 * 
@@ -218,7 +217,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� sousCategorie.
+		 * Obtient la valeur de la propriété sousCategorie.
 		 * 
 		 * @return possible object is {@link String }
 		 * 
@@ -228,7 +227,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� sousCategorie.
+		 * Définit la valeur de la propriété sousCategorie.
 		 * 
 		 * @param value allowed object is {@link String }
 		 * 
@@ -238,7 +237,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� nom.
+		 * Obtient la valeur de la propriété nom.
 		 * 
 		 * @return possible object is {@link String }
 		 * 
@@ -248,7 +247,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� nom.
+		 * Définit la valeur de la propriété nom.
 		 * 
 		 * @param value allowed object is {@link String }
 		 * 
@@ -258,7 +257,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� ghMin.
+		 * Obtient la valeur de la propriété ghMin.
 		 * 
 		 * @return possible object is {@link int }
 		 * 
@@ -268,7 +267,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� ghMin.
+		 * Définit la valeur de la propriété ghMin.
 		 * 
 		 * @param value allowed object is {@link int }
 		 * 
@@ -278,7 +277,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� ghMax.
+		 * Obtient la valeur de la propriété ghMax.
 		 * 
 		 * @return possible object is {@link int }
 		 * 
@@ -288,7 +287,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� ghMax.
+		 * Définit la valeur de la propriété ghMax.
 		 * 
 		 * @param value allowed object is {@link int }
 		 * 
@@ -298,7 +297,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� khMin.
+		 * Obtient la valeur de la propriété khMin.
 		 * 
 		 * @return possible object is {@link int }
 		 * 
@@ -308,7 +307,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� khMin.
+		 * Définit la valeur de la propriété khMin.
 		 * 
 		 * @param value allowed object is {@link int }
 		 * 
@@ -318,7 +317,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� khMax.
+		 * Obtient la valeur de la propriété khMax.
 		 * 
 		 * @return possible object is {@link int }
 		 * 
@@ -328,7 +327,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� khMax.
+		 * Définit la valeur de la propriété khMax.
 		 * 
 		 * @param value allowed object is {@link int }
 		 * 
@@ -338,7 +337,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� phMin.
+		 * Obtient la valeur de la propriété phMin.
 		 * 
 		 * @return possible object is {@link double }
 		 * 
@@ -348,7 +347,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� phMin.
+		 * Définit la valeur de la propriété phMin.
 		 * 
 		 * @param value allowed object is {@link double }
 		 * 
@@ -358,7 +357,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� phMax.
+		 * Obtient la valeur de la propriété phMax.
 		 * 
 		 * @return possible object is {@link double }
 		 * 
@@ -368,7 +367,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� phMax.
+		 * Définit la valeur de la propriété phMax.
 		 * 
 		 * @param value allowed object is {@link double }
 		 * 
@@ -378,7 +377,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� temperature.
+		 * Obtient la valeur de la propriété temperature.
 		 * 
 		 * @return possible object is {@link int }
 		 * 
@@ -388,7 +387,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� temperature.
+		 * Définit la valeur de la propriété temperature.
 		 * 
 		 * @param value allowed object is {@link int }
 		 * 
@@ -398,7 +397,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� description.
+		 * Obtient la valeur de la propriété description.
 		 * 
 		 * @return possible object is {@link String }
 		 * 
@@ -408,7 +407,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� description.
+		 * Définit la valeur de la propriété description.
 		 * 
 		 * @param value allowed object is {@link String }
 		 * 
@@ -418,7 +417,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� possede.
+		 * Obtient la valeur de la propriété possede.
 		 * 
 		 * @return possible object is {@link int }
 		 * 
@@ -428,7 +427,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� possede.
+		 * Définit la valeur de la propriété possede.
 		 * 
 		 * @param value allowed object is {@link int }
 		 * 
@@ -438,7 +437,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * Obtient la valeur de la propri�t� crevetteID.
+		 * Obtient la valeur de la propriété crevetteID.
 		 * 
 		 * @return possible object is {@link double }
 		 * 
@@ -448,7 +447,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� crevetteID.
+		 * Définit la valeur de la propriété crevetteID.
 		 * 
 		 * @param value allowed object is {@link double }
 		 * 
@@ -458,7 +457,7 @@ public class Crevettes {
 		}
 		
 		/**
-		 * Obtient la valeur de la propri�t� image.
+		 * Obtient la valeur de la propriété image.
 		 * 
 		 * @return possible object is {@link int }
 		 * 
@@ -468,7 +467,7 @@ public class Crevettes {
 		}
 
 		/**
-		 * D�finit la valeur de la propri�t� image.
+		 * Définit la valeur de la propriété image.
 		 * 
 		 * @param value allowed object is {@link int }
 		 * 
