@@ -1,6 +1,5 @@
 package com.ginius.shrimp_administration.gestionnaireFichier;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
