@@ -1,5 +1,6 @@
 package com.ginius.shrimp_administration.gestionnaireFichier;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,6 +10,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import org.apache.commons.io.IOUtils;
+
+import javafx.stage.FileChooser;
 
 public class GestionnaireFichier {
 
@@ -59,5 +62,19 @@ public class GestionnaireFichier {
 		}
 
 	}
+	
+	
+	
+	public static void configureFileChooser(final FileChooser fileChooser) {      
+	            fileChooser.setTitle("View Pictures");
+	            fileChooser.setInitialDirectory(
+	                new File(System.getProperty("user.home"))
+	            );                 
+	            fileChooser.getExtensionFilters().addAll(
+	                new FileChooser.ExtensionFilter("All Images", "*.*"),
+	                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+	                new FileChooser.ExtensionFilter("PNG", "*.png")
+	            );
+	    }
 
 }

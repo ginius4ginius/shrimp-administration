@@ -18,6 +18,7 @@ public class App extends Application {
 	public static int crevetteId;
 	public static int lastPosition;
 	public static FXMLLoader loader = new FXMLLoader();
+	public static final String TITLE =  "shrimp-administration";
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
@@ -30,7 +31,7 @@ public class App extends Application {
 
 		Scene scene = new Scene(rootLayout);
 
-		primaryStage.setTitle("shrimp-administration");
+		primaryStage.setTitle(TITLE);
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();

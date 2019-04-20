@@ -1,6 +1,7 @@
 package com.ginius.shrimp_administration.vue;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
+import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
 import com.ginius.shrimp_administration.validation.Validation;
 
 import javafx.collections.FXCollections;
@@ -9,13 +10,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Tooltip;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -29,10 +36,14 @@ import com.ginius.shrimp_administration.controller.CrevetteController;
  *
  */
 public class CrevetteInterfaceController {
+	
+	private Stage newCrevetteWindow;
 
 	CrevetteDao crevetteDao;
 
 	JAXBContext ctx = null;
+
+	int crevettePossede;
 
 	@FXML
 	private TextField nomTf;
@@ -80,7 +91,30 @@ public class CrevetteInterfaceController {
 	private TextArea descriptionTa;
 
 	@FXML
+	private ImageView imageCrevette;
+
+	private File fileImageCrevette;
+
+	@FXML
+	private ToggleButton crevettePossedeCb;
+	@FXML
+	private Button imageButton;
+	@FXML
+	private Label imageUrlLAbel;
+	
+	FileChooser fileChooser;
+
+	@FXML
 	private void initialize() {
+		
+		
+
+		String path = GestionnaireFichier.defaultPath;
+		imageUrlLAbel.setText(path);
+
+		fileImageCrevette = new File(path);
+		Image image = new Image(fileImageCrevette.toURI().toString());
+		imageCrevette.setImage(image);
 
 		// initialisation des instances des controlleurs d'accés aux fichiers xml.
 		CrevetteController.getInstance();
@@ -121,6 +155,21 @@ public class CrevetteInterfaceController {
 
 	}
 
+	@FXML
+	public void chooseCrevetteImage() {
+
+		fileChooser = new FileChooser();
+	     GestionnaireFichier.configureFileChooser(fileChooser);
+	     File file = fileChooser.showOpenDialog(newCrevetteWindow);
+	     if (file != null) {
+	    	 String path = file.getAbsolutePath().toString();
+	    	 fileImageCrevette = new File(path);
+				Image image = new Image(fileImageCrevette.toURI().toString());
+				imageCrevette.setImage(image);
+        }
+
+	}
+
 	/**
 	 * Méthode permettant de sauvegarder l'entité crevette créé dans le fichier XML.
 	 */
@@ -129,9 +178,13 @@ public class CrevetteInterfaceController {
 
 		if (pasDeChampsVides() && pasDeChampsIncorrectes()) {
 
+			if (crevettePossedeCb.isSelected()) {
+				crevettePossede = 1;
+			} else
+				crevettePossede = 0;
+
 			Crevette c = new Crevette();
 
-			// c.setCrevetteID(crevetteId);
 			c.setCategorie(crevetteCategoryList.getSelectionModel().getSelectedItem().toString());
 			c.setSousCategorie(crevetteSousCategoryList.getSelectionModel().getSelectedItem().toString());
 			c.setNom(nomTf.getText());
@@ -143,6 +196,8 @@ public class CrevetteInterfaceController {
 			c.setPhMin(Double.parseDouble(phMinTf.getText()));
 			c.setTemperature(Integer.parseInt(temperatureTf.getText()));
 			c.setDescription(descriptionTa.getText());
+			c.setPossede(crevettePossede);
+			c.setImage(fileImageCrevette.getAbsolutePath().toString());
 
 			if (crevetteDao.saveCrevette(c)) {
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -239,7 +294,7 @@ public class CrevetteInterfaceController {
 		if (nom.length() > 20 || Validation.errTypeInteger(ghmax) || Validation.errTypeInteger(ghmin)
 				|| Validation.errTypeInteger(khmax) || Validation.errTypeInteger(khmin)
 				|| Validation.errTypeIntegerOrDouble(phmin) || Validation.errTypeIntegerOrDouble(phmax)
-				|| Validation.errTypeInteger(temperature) || description.length() > 2000)  {
+				|| Validation.errTypeInteger(temperature) || description.length() > 2000) {
 			if (nom.length() > 20)
 				messageErreur = messageErreur + " Nom : moin de 20 caractères";
 			if (Validation.errTypeInteger(ghmax))
@@ -277,6 +332,8 @@ public class CrevetteInterfaceController {
 	 */
 	@FXML
 	public void exit(ActionEvent event) throws Throwable {
+
+		
 		Stage stage = (Stage) exit.getScene().getWindow();
 		stage.close();
 

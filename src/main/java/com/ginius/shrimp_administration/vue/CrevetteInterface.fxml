@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -45,7 +46,7 @@
 						<ComboBox fx:id="crevetteSousCategoryList" layoutX="500.0" layoutY="30.0" prefHeight="28.0" prefWidth="203.0" />
 						<Label layoutX="819.0" layoutY="23.0" prefHeight="42.0" prefWidth="121.0" text="Nom :" />
 						<TextField fx:id="nomTf" layoutX="894.0" layoutY="30.0" />
-                  <JFXToggleButton layoutX="1122.0" layoutY="9.0" prefHeight="60.0" prefWidth="222.0" text="Possédé" />
+                  <JFXToggleButton fx:id="crevettePossedeCb" layoutX="1122.0" layoutY="9.0" prefHeight="60.0" prefWidth="222.0" text="Possédé" />
 					</children>
 				</Pane>
 				<Pane layoutY="186.0" prefHeight="318.0" prefWidth="704.0" style="-fx-background-color: #FDFEFE; -fx-border-radius: 15em;" />
@@ -79,9 +80,14 @@
                </font>
             </Label>
             <Separator layoutX="715.0" layoutY="159.0" orientation="VERTICAL" prefHeight="649.0" prefWidth="0.0" />
-            <ImageView fitHeight="372.0" fitWidth="582.0" layoutX="747.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true" />
-            <JFXButton layoutX="744.0" layoutY="224.0" prefHeight="45.0" prefWidth="164.0" style="-fx-background-color: #E5744D;" text="Naviguer" textFill="WHITE" />
-            <Label layoutX="919.0" layoutY="231.0" prefHeight="31.0" prefWidth="410.0" style="-fx-background-color: #FFFFFF;" />
+            <ImageView fx:id="imageCrevette" fitHeight="372.0" fitWidth="582.0" layoutX="747.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="imageUrlLAbel" layoutX="919.0" layoutY="231.0" prefHeight="31.0" prefWidth="410.0" style="-fx-background-color: #FFFFFF;" />
+            <Button fx:id="imageButton" layoutX="762.0" layoutY="231.0" mnemonicParsing="false" onAction="#chooseCrevetteImage" prefHeight="31.0" prefWidth="138.0" text="Naviguer" />
+            <Label alignment="CENTER" layoutX="796.0" layoutY="141.0" prefHeight="42.0" prefWidth="482.0" text="Photo" textFill="#ff7802">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
 			</children>
 		</AnchorPane>
 	</children>
