@@ -1,6 +1,5 @@
 package com.ginius.shrimp_administration.vue;
 
-import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,11 +47,10 @@ import javafx.stage.StageStyle;
  *
  */
 public class MainAppController {
-	
+
 	private Stage newCrevetteWindow;
 	private Stage mainWindow;
-	private Desktop desktop;
-	
+
 	int crevetteId;
 	int crevettePossede;
 
@@ -63,7 +61,7 @@ public class MainAppController {
 	private Button saveCrevette;
 
 	@FXML
-	private  Button exit;
+	private Button exit;
 
 	@FXML
 	private Button newCrevette;
@@ -136,17 +134,12 @@ public class MainAppController {
 	private ImageView imageCrevette;
 
 	private File fileImageCrevette;
-	
+
 	FileChooser fileChooser;
-	
 
 	@FXML
 	private void initialize() {
-		
-		desktop = Desktop.getDesktop();
-	
-				
-				
+
 		crevetteDao = new CrevetteDao();
 		List<Crevette> crevetteList = new ArrayList<Crevette>();
 		crevetteList = CrevetteController.getCrevetteList();
@@ -261,6 +254,8 @@ public class MainAppController {
 			khmax.setVisible(false);
 			khminTf.setVisible(false);
 			khmin.setVisible(false);
+			crevettePossedeCb.setVisible(false);
+
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
 			alert.setHeaderText("Crevette supprimée avec succés.");
@@ -362,6 +357,7 @@ public class MainAppController {
 		khmax.setVisible(false);
 		khminTf.setVisible(false);
 		khmin.setVisible(false);
+		crevettePossedeCb.setVisible(false);
 
 		lesAquariums.clear();
 
@@ -490,12 +486,11 @@ public class MainAppController {
 		FXMLLoader NewCrevetteloader = new FXMLLoader();
 		// retourne l'URL à charger ainsi que son emplacement
 		NewCrevetteloader.setLocation(MainAppController.class.getResource("CrevetteInterface.fxml"));
-				
+
 		Parent root = null;
 		try {
 			root = NewCrevetteloader.load();
-			
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -506,12 +501,9 @@ public class MainAppController {
 		newCrevetteWindow.setTitle("Nouvelle crevette");
 		newCrevetteWindow.initStyle(StageStyle.UNDECORATED);
 		newCrevetteWindow.setScene(scene);
-		
-		
-		
+
 		newCrevetteWindow.show();
-		
-		
+
 	}
 
 	/**
@@ -667,16 +659,15 @@ public class MainAppController {
 	@FXML
 	public void updateCrevetteImage(MouseEvent event) {
 
-		 fileChooser = new FileChooser();
-	     GestionnaireFichier.configureFileChooser(fileChooser);
-	     File file = fileChooser.showOpenDialog(mainWindow);
-	     if (file != null) {
-	    	 String path = file.getAbsolutePath().toString();
-	    	 fileImageCrevette = new File(path);
-				Image image = new Image(fileImageCrevette.toURI().toString());
-				imageCrevette.setImage(image);
-         }
-
+		fileChooser = new FileChooser();
+		GestionnaireFichier.configureFileChooser(fileChooser);
+		File file = fileChooser.showOpenDialog(mainWindow);
+		if (file != null) {
+			String path = file.getAbsolutePath().toString();
+			fileImageCrevette = new File(path);
+			Image image = new Image(fileImageCrevette.toURI().toString());
+			imageCrevette.setImage(image);
+		}
 
 	}
 

@@ -14,7 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
@@ -44,6 +43,8 @@ public class CrevetteInterfaceController {
 	JAXBContext ctx = null;
 
 	int crevettePossede;
+	
+	Image defaultImage;
 
 	@FXML
 	private TextField nomTf;
@@ -97,10 +98,9 @@ public class CrevetteInterfaceController {
 
 	@FXML
 	private ToggleButton crevettePossedeCb;
+	
 	@FXML
 	private Button imageButton;
-	@FXML
-	private Label imageUrlLAbel;
 	
 	FileChooser fileChooser;
 
@@ -108,13 +108,11 @@ public class CrevetteInterfaceController {
 	private void initialize() {
 		
 		
-
 		String path = GestionnaireFichier.defaultPath;
-		imageUrlLAbel.setText(path);
 
 		fileImageCrevette = new File(path);
-		Image image = new Image(fileImageCrevette.toURI().toString());
-		imageCrevette.setImage(image);
+		 defaultImage = new Image(fileImageCrevette.toURI().toString());
+		imageCrevette.setImage(defaultImage);
 
 		// initialisation des instances des controlleurs d'accés aux fichiers xml.
 		CrevetteController.getInstance();
@@ -223,6 +221,7 @@ public class CrevetteInterfaceController {
 				phMaxTf.clear();
 				temperatureTf.clear();
 				descriptionTa.clear();
+				imageCrevette.setImage(defaultImage);
 			} else {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");

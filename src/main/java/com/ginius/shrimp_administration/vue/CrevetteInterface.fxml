@@ -81,8 +81,7 @@
             </Label>
             <Separator layoutX="715.0" layoutY="159.0" orientation="VERTICAL" prefHeight="649.0" prefWidth="0.0" />
             <ImageView fx:id="imageCrevette" fitHeight="372.0" fitWidth="582.0" layoutX="747.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="imageUrlLAbel" layoutX="919.0" layoutY="231.0" prefHeight="31.0" prefWidth="410.0" style="-fx-background-color: #FFFFFF;" />
-            <Button fx:id="imageButton" layoutX="762.0" layoutY="231.0" mnemonicParsing="false" onAction="#chooseCrevetteImage" prefHeight="31.0" prefWidth="138.0" text="Naviguer" />
+            <Button fx:id="imageButton" layoutX="915.0" layoutY="231.0" mnemonicParsing="false" onAction="#chooseCrevetteImage" prefHeight="31.0" prefWidth="245.0" text="Naviguer" />
             <Label alignment="CENTER" layoutX="796.0" layoutY="141.0" prefHeight="42.0" prefWidth="482.0" text="Photo" textFill="#ff7802">
                <font>
                   <Font size="27.0" />
