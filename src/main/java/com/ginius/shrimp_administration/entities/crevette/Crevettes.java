@@ -96,7 +96,7 @@ public class Crevettes {
 	 */
 	public List<Crevettes.Crevette> getCrevette() {
 		if (crevette == null) {
-			crevette = new ArrayList<Crevettes.Crevette>();
+			crevette = new ArrayList<>();
 		}
 		return this.crevette;
 	}
@@ -173,24 +173,126 @@ public class Crevettes {
 		@XmlAttribute(name = "CrevetteID")
 		protected int crevetteID;
 		protected String image;
+		
+		public static class CrevetteData{
+			String categorie;
+			String sousCategorie;
+			String nom;
+			int ghMin;
+			int ghMax;
+			int khMin;
+			int khMax;
+			double phMin;
+			double phMax;
+			int temperature;
+			int crevetteID;
+			String description;
+			int possede;
+			String image;
+			public String getCategorie() {
+				return categorie;
+			}
+			public void setCategorie(String categorie) {
+				this.categorie = categorie;
+			}
+			public String getSousCategorie() {
+				return sousCategorie;
+			}
+			public void setSousCategorie(String sousCategorie) {
+				this.sousCategorie = sousCategorie;
+			}
+			public String getNom() {
+				return nom;
+			}
+			public void setNom(String nom) {
+				this.nom = nom;
+			}
+			public int getGhMin() {
+				return ghMin;
+			}
+			public void setGhMin(int ghMin) {
+				this.ghMin = ghMin;
+			}
+			public int getGhMax() {
+				return ghMax;
+			}
+			public void setGhMax(int ghMax) {
+				this.ghMax = ghMax;
+			}
+			public int getKhMin() {
+				return khMin;
+			}
+			public void setKhMin(int khMin) {
+				this.khMin = khMin;
+			}
+			public int getKhMax() {
+				return khMax;
+			}
+			public void setKhMax(int khMax) {
+				this.khMax = khMax;
+			}
+			public double getPhMin() {
+				return phMin;
+			}
+			public void setPhMin(double phMin) {
+				this.phMin = phMin;
+			}
+			public double getPhMax() {
+				return phMax;
+			}
+			public void setPhMax(double phMax) {
+				this.phMax = phMax;
+			}
+			public int getTemperature() {
+				return temperature;
+			}
+			public void setTemperature(int temperature) {
+				this.temperature = temperature;
+			}
+			public int getCrevetteID() {
+				return crevetteID;
+			}
+			public void setCrevetteID(int crevetteID) {
+				this.crevetteID = crevetteID;
+			}
+			public String getDescription() {
+				return description;
+			}
+			public void setDescription(String description) {
+				this.description = description;
+			}
+			public int getPossede() {
+				return possede;
+			}
+			public void setPossede(int possede) {
+				this.possede = possede;
+			}
+			public String getImage() {
+				return image;
+			}
+			public void setImage(String image) {
+				this.image = image;
+			}
+			
+			
+		}
 
-		public Crevette(String categorie, String sousCategorie, String nom, int ghMin, int ghMax, int khMin, int khMax,
-				double phMin, double phMax, int temperature, int crevetteID, String description, int possede, String image) {
-			super();
-			this.categorie = categorie;
-			this.sousCategorie = sousCategorie;
-			this.nom = nom;
-			this.ghMin = ghMin;
-			this.ghMax = ghMax;
-			this.khMin = khMin;
-			this.khMax = khMax;
-			this.phMin = phMin;
-			this.phMax = phMax;
-			this.temperature = temperature;
-			this.crevetteID = crevetteID;
-			this.description = description;
-			this.possede = possede;
-			this.image = image;
+		public Crevette(CrevetteData crevetteData) {
+			
+			this.categorie = crevetteData.getCategorie();
+			this.sousCategorie = crevetteData.getSousCategorie();
+			this.nom = crevetteData.getNom();
+			this.ghMin = crevetteData.getGhMin();
+			this.ghMax = crevetteData.getGhMax();
+			this.khMin = crevetteData.getKhMin();
+			this.khMax = crevetteData.getKhMax();
+			this.phMin = crevetteData.getPhMin();
+			this.phMax = crevetteData.getPhMax();
+			this.temperature = crevetteData.getTemperature();
+			this.crevetteID = crevetteData.getCrevetteID();
+			this.description = crevetteData.getDescription();
+			this.possede = crevetteData.getPossede();
+			this.image = crevetteData.getImage();
 		}
 
 		public Crevette() {

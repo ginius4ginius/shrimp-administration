@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -17,9 +16,7 @@
 		<Pane prefHeight="122.0" prefWidth="1365.0">
 			<children>
 				<ImageView fitHeight="116.0" fitWidth="950.0" layoutX="517.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-					<image>
-						<Image url="@images/entete.jpg" />
-					</image>
+				
 				</ImageView>
 			</children>
 		</Pane>
@@ -83,9 +80,9 @@
 				<Label fx:id="paraMaintenance" alignment="CENTER" layoutX="61.0" layoutY="422.0" prefHeight="26.0" prefWidth="339.0" text="Paramètres de maintenance : " />
 				<TextField fx:id="nomTf" layoutX="472.0" layoutY="91.0" prefHeight="31.0" prefWidth="138.0" />
 				<Label fx:id="nom" layoutX="374.0" layoutY="94.0" prefHeight="26.0" prefWidth="52.0" text="Nom :" />
-				<Label fx:id="souscatégorie" layoutX="190.0" layoutY="94.0" prefHeight="26.0" prefWidth="138.0" text="Sous catégorie" />
+				<Label fx:id="souscategorie" layoutX="190.0" layoutY="94.0" prefHeight="26.0" prefWidth="138.0" text="Sous catégorie" />
 				<Label fx:id="categorie" layoutX="40.0" layoutY="94.0" prefHeight="26.0" prefWidth="111.0" text="Catégorie" />
-				<ImageView fx:id="imageCrevette" fitHeight="261.0" fitWidth="544.0" layoutX="231.0" layoutY="143.0" onMouseClicked="#updateCrevetteImage" pickOnBounds="true" preserveRatio="true" />
+				<ImageView fx:id="imageCrevette" fitHeight="261.0" fitWidth="544.0" layoutX="151.0" layoutY="146.0" onMouseClicked="#updateCrevetteImage" pickOnBounds="true" preserveRatio="true" />
             <JFXToggleButton fx:id="crevettePossedeCb" layoutX="638.0" layoutY="77.0" prefHeight="60.0" prefWidth="196.0" text="Possédé" />
 			</children>
 		</AnchorPane>

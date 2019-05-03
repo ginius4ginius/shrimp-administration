@@ -15,10 +15,8 @@ import javafx.stage.StageStyle;
 public class App extends Application {
 	
 
-	public static int crevetteId;
-	public static int lastPosition;
-	public static FXMLLoader loader = new FXMLLoader();
-	public static final String TITLE =  "shrimp-administration";
+	private static FXMLLoader loader = new FXMLLoader();
+	private static final String TITLE =  "shrimp-administration";
 
 	@Override
 	public void start(final Stage primaryStage) throws Exception {
@@ -27,7 +25,7 @@ public class App extends Application {
 		loader.setLocation(App.class.getResource("vue/MainApp.fxml"));
 
 		// charger l'objet correspondant au loader à l'object racine
-		AnchorPane rootLayout = (AnchorPane) loader.load();
+		AnchorPane rootLayout = loader.load();
 
 		Scene scene = new Scene(rootLayout);
 

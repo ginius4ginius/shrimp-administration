@@ -12,6 +12,14 @@ import java.util.regex.Pattern;
 public class Validation {
 
 	/**
+	 * Constructeur private pour empecher d'instancier la classe qui n'est qu'un
+	 * utilitaire de méthodes abstraites
+	 */
+	private Validation() {
+
+	}
+
+	/**
 	 * Méthode qui valide le type integer.
 	 * 
 	 * @param text
@@ -22,10 +30,9 @@ public class Validation {
 		String patterString = "[0-9]{1,2}";
 		Pattern pattern = Pattern.compile(patterString);
 		Matcher matcher = pattern.matcher(text);
-		if (matcher.matches()) {
-			return false;
-		}
-		return true;
+		if (matcher.matches()) {return false;} 
+		else {return true;}
+
 	}
 
 	/**
@@ -42,12 +49,7 @@ public class Validation {
 		Pattern patternDouble = Pattern.compile(patterStringDouble);
 		Matcher matcherInteger = patternInteger.matcher(text);
 		Matcher matcherDouble = patternDouble.matcher(text);
-		if (matcherInteger.matches()) {
-			return false;
-		} else if (matcherDouble.matches()) {
-			return false;
-		}
-
+		if (matcherInteger.matches() || matcherDouble.matches() ) {return false;}
 		return true;
 
 	}

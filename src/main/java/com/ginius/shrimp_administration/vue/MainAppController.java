@@ -8,14 +8,16 @@ import java.util.List;
 import javafx.stage.FileChooser;
 
 import com.ginius.shrimp_administration.App;
-import com.ginius.shrimp_administration.Dao.CrevetteDao;
 import com.ginius.shrimp_administration.controller.AquariumController;
 import com.ginius.shrimp_administration.controller.CrevetteController;
+import com.ginius.shrimp_administration.dao.CrevetteDao;
 import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium;
+import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium.DataAquarium;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
+import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette.CrevetteData;
+import com.ginius.shrimp_administration.gestionnairefichier.GestionnaireFichier;
 import com.ginius.shrimp_administration.validation.Validation;
-import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,7 +87,7 @@ public class MainAppController {
 	@FXML
 	private Label categorie;
 	@FXML
-	private Label souscatégorie;
+	private Label souscategorie;
 	@FXML
 	private Label nom;
 	@FXML
@@ -146,7 +148,7 @@ public class MainAppController {
 
 		crevetteDao.initialiseCrevette(crevetteList);
 
-		String path = GestionnaireFichier.defaultPath;
+		String path = GestionnaireFichier.DEFAULTPATH;
 
 		fileImageCrevette = new File(path);
 		Image image = new Image(fileImageCrevette.toURI().toString());
@@ -162,7 +164,7 @@ public class MainAppController {
 		temperature.setVisible(false);
 		temperatureTf.setVisible(false);
 		categorie.setVisible(false);
-		souscatégorie.setVisible(false);
+		souscategorie.setVisible(false);
 		nom.setVisible(false);
 		nomTf.setVisible(false);
 		ghmaxTf.setVisible(false);
@@ -239,7 +241,7 @@ public class MainAppController {
 			temperature.setVisible(false);
 			temperatureTf.setVisible(false);
 			categorie.setVisible(false);
-			souscatégorie.setVisible(false);
+			souscategorie.setVisible(false);
 			nom.setVisible(false);
 			nomTf.setVisible(false);
 			ghmaxTf.setVisible(false);
@@ -293,7 +295,7 @@ public class MainAppController {
 		temperature.setVisible(true);
 		temperatureTf.setVisible(true);
 		categorie.setVisible(true);
-		souscatégorie.setVisible(true);
+		souscategorie.setVisible(true);
 		nom.setVisible(true);
 		nomTf.setVisible(true);
 		ghmaxTf.setVisible(true);
@@ -311,7 +313,7 @@ public class MainAppController {
 		crevettePossedeCb.setVisible(true);
 		crevettePossedeCb.setSelected(false);
 
-		String path = GestionnaireFichier.defaultPath;
+		String path = GestionnaireFichier.DEFAULTPATH;
 		fileImageCrevette = new File(path);
 		Image image = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(image);
@@ -342,7 +344,7 @@ public class MainAppController {
 		temperature.setVisible(false);
 		temperatureTf.setVisible(false);
 		categorie.setVisible(false);
-		souscatégorie.setVisible(false);
+		souscategorie.setVisible(false);
 		nom.setVisible(false);
 		nomTf.setVisible(false);
 		ghmaxTf.setVisible(false);
@@ -364,10 +366,21 @@ public class MainAppController {
 		List<Aquarium> liste = AquariumController.getAquariumList();
 
 		for (Aquarium a : liste) {
+			DataAquarium dataAquarium = new DataAquarium();
+			dataAquarium.setLongueur(a.getLongueur());
+			dataAquarium.setLargeur(a.getLargeur());
+			dataAquarium.setHauteur(a.getHauteur());
+			dataAquarium.setLitrageBrut(a.getLitrageBrut());
+			dataAquarium.setLitrageNet(a.getLitrageNet());
+			dataAquarium.setSubstratID(a.getSubstratID());
+			dataAquarium.setEauID(a.getEauID());
+			dataAquarium.setFiltrationID(a.getFiltrationID());
+			dataAquarium.setEclairageID(a.getEclairageID());
+			dataAquarium.setCrevettes(a.getCrevettes());
+			dataAquarium.setAquariumID(a.getAquariumID());
+			
 
-			Aquarium aquarium = new Aquarium(a.getLongueur(), a.getLargeur(), a.getHauteur(), a.getLitrageBrut(),
-					a.getLitrageNet(), a.getSubstratID(), a.getEauID(), a.getFiltrationID(), a.getEclairageID(),
-					a.getCrevettes(), a.getAquariumID());
+			Aquarium aquarium = new Aquarium(dataAquarium);
 
 			lesAquariums.add(aquarium);
 
@@ -391,7 +404,7 @@ public class MainAppController {
 	public void handleCrevetteItem(MouseEvent event) {
 
 		categorie.setText(crevettesList.getSelectionModel().getSelectedItem().getCategorie());
-		souscatégorie.setText(crevettesList.getSelectionModel().getSelectedItem().getSousCategorie());
+		souscategorie.setText(crevettesList.getSelectionModel().getSelectedItem().getSousCategorie());
 		nomTf.setText(crevettesList.getSelectionModel().getSelectedItem().getNom());
 		ghminTf.setText(Integer.toString(crevettesList.getSelectionModel().getSelectedItem().getGhMin()));
 		ghmaxTf.setText(Integer.toString(crevettesList.getSelectionModel().getSelectedItem().getGhMax()));
@@ -405,8 +418,8 @@ public class MainAppController {
 		String path = crevettesList.getSelectionModel().getSelectedItem().getImage();
 
 		if (path.length() == 4) {
-			String defaultPath = GestionnaireFichier.defaultPath;
-			fileImageCrevette = new File(defaultPath);
+			String DEFAULTPATH = GestionnaireFichier.DEFAULTPATH;
+			fileImageCrevette = new File(DEFAULTPATH);
 			Image image = new Image(fileImageCrevette.toURI().toString());
 			imageCrevette.setImage(image);
 		} else {
@@ -457,7 +470,7 @@ public class MainAppController {
 		temperature.setVisible(false);
 		temperatureTf.setVisible(false);
 		categorie.setVisible(false);
-		souscatégorie.setVisible(false);
+		souscategorie.setVisible(false);
 		nom.setVisible(false);
 		nomTf.setVisible(false);
 		ghmaxTf.setVisible(false);
@@ -521,13 +534,26 @@ public class MainAppController {
 				crevettePossede = 1;
 			} else
 				crevettePossede = 0;
+			
+			CrevetteData crevetteData = new CrevetteData();
+			crevetteData.setCrevetteID(crevetteId);
+			crevetteData.setCategorie(categorie.getText());
+			crevetteData.setNom(nomTf.getText());
+			crevetteData.setSousCategorie(souscategorie.getText());
+			crevetteData.setGhMin(Integer.parseInt(ghmaxTf.getText()));
+			crevetteData.setGhMax(Integer.parseInt(ghminTf.getText()));
+			crevetteData.setKhMin(Integer.parseInt(khminTf.getText()));
+			crevetteData.setKhMax(Integer.parseInt(khmaxTf.getText()));
+			crevetteData.setPhMin(Double.parseDouble(phminTf.getText()));
+			crevetteData.setPhMax(Double.parseDouble(phmaxTf.getText()));
+			crevetteData.setTemperature(Integer.parseInt(temperatureTf.getText()));
+			crevetteData.setDescription(descriptionTa.getText());
+			crevetteData.setPossede(crevettePossede);
+			crevetteData.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
+			
+			
 
-			Crevette crevette = new Crevette(categorie.getText(), souscatégorie.getText(), nomTf.getText(),
-					Integer.parseInt(ghminTf.getText()), Integer.parseInt(ghmaxTf.getText()),
-					Integer.parseInt(khminTf.getText()), Integer.parseInt(khmaxTf.getText()),
-					Double.parseDouble(phminTf.getText()), Double.parseDouble(phmaxTf.getText()),
-					Integer.parseInt(temperatureTf.getText()), crevetteId, descriptionTa.getText(), crevettePossede,
-					GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
+			Crevette crevette = new Crevette(crevetteData);
 
 			if (crevetteDao.updateCrevette(crevette)) {
 				refreshCrevetteList();
@@ -553,10 +579,24 @@ public class MainAppController {
 		liste = crevetteDao.getCrevetteList();
 
 		for (Crevette c : liste) {
+			
+			CrevetteData crevetteData = new CrevetteData();
+			crevetteData.setCrevetteID(c.getCrevetteID());
+			crevetteData.setCategorie(c.getCategorie());
+			crevetteData.setNom(c.getNom());
+			crevetteData.setSousCategorie(c.getSousCategorie());
+			crevetteData.setGhMin(c.getGhMin());
+			crevetteData.setGhMax(c.getGhMax());
+			crevetteData.setKhMin(c.getKhMin());
+			crevetteData.setKhMax(c.getKhMax());
+			crevetteData.setPhMin(c.getPhMin());
+			crevetteData.setPhMax(c.getPhMax());
+			crevetteData.setTemperature(c.getTemperature());
+			crevetteData.setDescription(c.getDescription());
+			crevetteData.setPossede(c.getPossede());
+			crevetteData.setImage(c.getImage());
 
-			Crevette crevette = new Crevette(c.getCategorie(), c.getSousCategorie(), c.getNom(), c.getGhMin(),
-					c.getGhMax(), c.getKhMin(), c.getKhMax(), c.getPhMin(), c.getKhMax(), c.getTemperature(),
-					c.getCrevetteID(), c.getDescription(), c.getPossede(), c.getImage());
+			Crevette crevette = new Crevette(crevetteData);
 
 			lesCrevettes.add(crevette);
 

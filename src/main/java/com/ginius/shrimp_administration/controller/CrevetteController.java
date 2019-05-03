@@ -11,6 +11,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.log4j.Logger;
+
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 import com.ginius.shrimp_administration.entities.crevette.ObjectFactory;
@@ -22,25 +24,31 @@ import com.ginius.shrimp_administration.entities.crevette.ObjectFactory;
  */
 public class CrevetteController {
 
+	public static final Logger logger = Logger.getLogger(CrevetteController.class);
+
 	ObjectFactory factory = new ObjectFactory();
 	Crevettes crevettesListFactory = factory.createCrevettes();
 
-	public static List<Crevette> crevetteList;
-	public static JAXBContext ctx = null;
+	private static List<Crevette> crevetteList;
+	private static JAXBContext ctx = null;
+	private static String crevette = "C:\\Users\\giniu\\Documents\\shrimp-administration-data\\crevettes.xml";
+	private static String recupSuccess = "-Récupération réussie-";
+	private static String recupFail = "-Récupération echouée-";
+	private static String error = "ERREUR";
 
 	/** Constructeur privé */
 	private CrevetteController() {
 	}
 
 	/** Instance unique non préinitialisée */
-	private static CrevetteController INSTANCE = null;
+	private static CrevetteController instance = null;
 
 	/** Point d'accès pour l'instance unique du singleton */
 	public static CrevetteController getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new CrevetteController();
+		if (instance == null) {
+			instance = new CrevetteController();
 		}
-		return INSTANCE;
+		return instance;
 	}
 
 	/**
@@ -50,18 +58,27 @@ public class CrevetteController {
 	 */
 	public static List<Crevette> getCrevetteList() {
 
-		System.out.println("----Récupération des crevettes----");
+		if (logger.isInfoEnabled()) {
+			logger.info("Tentative de récupération des crevettes");
+		}
+
 		try {
+			if (logger.isInfoEnabled()) {
+				logger.info("Récupération en cours...");
+			}
 			ctx = JAXBContext.newInstance("com.ginius.shrimp_administration.entities.crevette");
 
-			Unmarshaller unmarchaller = (Unmarshaller) ctx.createUnmarshaller();
-			Crevettes crevettes = (Crevettes) (unmarchaller
-					.unmarshal(new File("C:\\Users\\giniu\\Documents\\shrimp-administration-data\\crevettes.xml")));
-			System.out.println("-Récupération réussie-");
+			Unmarshaller unmarchaller = ctx.createUnmarshaller();
+			Crevettes crevettes = (Crevettes) (unmarchaller.unmarshal(new File(crevette)));
+			
+			if (logger.isInfoEnabled()) {
+				logger.info(recupSuccess);
+			}
+
 			return crevettes.getCrevette();
 
 		} catch (JAXBException e) {
-			System.out.println(e.getMessage());
+			logger.warn(error+recupFail+" - " + e.getMessage());
 
 			return crevetteList;
 		}
@@ -74,21 +91,28 @@ public class CrevetteController {
 	 * @return
 	 */
 	public static List<String> getCrevetteCategoryList() {
-
-		System.out.println("----Récupération de la catégorie des crevettes----");
-		// String path=new File(".").getAbsolutePath();
-		// System.out.println(path);
-
-		List<String> crevetteCategory = new ArrayList<String>();
-		Scanner scan = null;
-		try {
-			scan = new Scanner(new File("src\\main\\resources\\documents\\crevetteCategory.txt"));
-			System.out.println("-Récupération réussie-");
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("Tentative de récupération des catégories de crevette");
 		}
-		while (scan.hasNext()) {
-			crevetteCategory.add(scan.next());
+
+		List<String> crevetteCategory = new ArrayList<>();
+		
+		try(Scanner scan = new Scanner(new File("src\\main\\resources\\documents\\crevetteCategory.txt"))) {
+			
+			if (logger.isInfoEnabled()) {
+				logger.info("Récupération en cours...");
+			}
+			
+			while (scan.hasNext()) {
+				crevetteCategory.add(scan.next());
+			}
+			
+			if (logger.isInfoEnabled()) {
+				logger.info(recupSuccess);
+			}
+		} catch (FileNotFoundException e) {
+			logger.warn(error+recupFail+" - " + e.getMessage());
 		}
 
 		return crevetteCategory;
@@ -102,19 +126,22 @@ public class CrevetteController {
 	 */
 	public static List<String> getCrevetteSousCategoryList() {
 
-		System.out.println("----Récupération de la souscatégorie des crevettes----");
-
-		List<String> crevetteSousCategory = new ArrayList<String>();
-		Scanner scan = null;
-		try {
-			scan = new Scanner(new File("src\\main\\resources\\documents\\crevetteSousCategory.txt"));
-			System.out.println("-Récupération réussie-");
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-			System.out.println("-Récupération echouée-");
+		if (logger.isInfoEnabled()) {
+			logger.info("Tentative de récupération des sous catégories de crevette");
 		}
-		while (scan.hasNext()) {
-			crevetteSousCategory.add(scan.next());
+
+		List<String> crevetteSousCategory = new ArrayList<>();
+		try(Scanner scan = new Scanner(new File("src\\main\\resources\\documents\\crevetteSousCategory.txt"))) {
+			
+			while (scan.hasNext()) {
+				crevetteSousCategory.add(scan.next());
+			}
+			if (logger.isInfoEnabled()) {
+				logger.info(recupSuccess);
+			}
+
+		} catch (FileNotFoundException e) {
+			logger.warn(error+recupFail+" - " + e.getMessage());
 		}
 
 		return crevetteSousCategory;
@@ -131,12 +158,11 @@ public class CrevetteController {
 
 		try {
 			Marshaller marshaller = ctx.createMarshaller();
-			marshaller.marshal(crevettesList, System.out);
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			marshaller.marshal(crevettesList,
-					new File("C:\\Users\\giniu\\Documents\\shrimp-administration-data\\crevettes.xml"));
+			marshaller.marshal(crevettesList, new File(crevette));
 			return true;
 		} catch (JAXBException e) {
+			logger.warn(error+ e.getMessage());
 			return false;
 		}
 

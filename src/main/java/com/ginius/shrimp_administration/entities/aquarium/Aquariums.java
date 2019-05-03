@@ -1,9 +1,3 @@
-//
-// Ce fichier a �t� g�n�r� par l'impl�mentation de r�f�rence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
-// Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Toute modification apport�e � ce fichier sera perdue lors de la recompilation du sch�ma source. 
-// G�n�r� le : 2019.03.01 � 06:41:14 AM CET 
-//
 
 package com.ginius.shrimp_administration.entities.aquarium;
 
@@ -31,7 +25,7 @@ public class Aquariums {
 
 	public List<Aquariums.Aquarium> getAquarium() {
 		if (aquarium == null) {
-			aquarium = new ArrayList<Aquariums.Aquarium>();
+			aquarium = new ArrayList<>();
 		}
 		return this.aquarium;
 	}
@@ -55,37 +49,122 @@ public class Aquariums {
 		@XmlElement(required = true)
 		protected double litrageNet;
 		@XmlElement(required = true)
-		protected double substratID;
+		protected int substratID;
 		@XmlElement(required = true)
-		protected double eauID;
+		protected int eauID;
 		@XmlElement(required = true)
-		protected double filtrationID;
+		protected int filtrationID;
 		@XmlElement(required = true)
-		protected double eclairageID;
+		protected int eclairageID;
 		@XmlElement(required = true)
 		protected Aquariums.Aquarium.Crevettes crevettes;
 		@XmlAttribute(name = "AquariumID")
-		protected double aquariumID;
+		protected int aquariumID;
 
 		public Aquarium() {
 			super();
 		}
 
-		public Aquarium(int longueur, int largeur, int hauteur, double litrageBrut, double litrageNet,
-				double substratID, double eauID, double filtrationID, double eclairageID, Crevettes crevettes,
-				double aquariumID) {
+		/**
+		 * Classe d'encapsulation des paramètres du constructeur aquarium
+		 * @author giniu
+		 *
+		 */
+		public static class DataAquarium {
+			int longueur;
+			int largeur;
+			int hauteur;
+			double litrageBrut;
+			double litrageNet;
+			int substratID;
+			int eauID;
+			int filtrationID;
+			int eclairageID;
+			int aquariumID;
+			Crevettes crevettes;
+			
+			public int getLongueur() {
+				return longueur;
+			}
+			public void setLongueur(int longueur) {
+				this.longueur = longueur;
+			}
+			public int getLargeur() {
+				return largeur;
+			}
+			public void setLargeur(int largeur) {
+				this.largeur = largeur;
+			}
+			public int getHauteur() {
+				return hauteur;
+			}
+			public void setHauteur(int hauteur) {
+				this.hauteur = hauteur;
+			}
+			public double getLitrageBrut() {
+				return litrageBrut;
+			}
+			public void setLitrageBrut(double litrageBrut) {
+				this.litrageBrut = litrageBrut;
+			}
+			public double getLitrageNet() {
+				return litrageNet;
+			}
+			public void setLitrageNet(double litrageNet) {
+				this.litrageNet = litrageNet;
+			}
+			public int getSubstratID() {
+				return substratID;
+			}
+			public void setSubstratID(int substratID) {
+				this.substratID = substratID;
+			}
+			public int getEauID() {
+				return eauID;
+			}
+			public void setEauID(int eauID) {
+				this.eauID = eauID;
+			}
+			public int getFiltrationID() {
+				return filtrationID;
+			}
+			public void setFiltrationID(int filtrationID) {
+				this.filtrationID = filtrationID;
+			}
+			public int getEclairageID() {
+				return eclairageID;
+			}
+			public void setEclairageID(int eclairageID) {
+				this.eclairageID = eclairageID;
+			}
+			public int getAquariumID() {
+				return aquariumID;
+			}
+			public void setAquariumID(int aquariumID) {
+				this.aquariumID = aquariumID;
+			}
+			public Crevettes getCrevettes() {
+				return crevettes;
+			}
+			public void setCrevettes(Crevettes crevettes) {
+				this.crevettes = crevettes;
+			}
+
+		}
+
+		public Aquarium(final DataAquarium dataAquarium ) {
 			super();
-			this.longueur = longueur;
-			this.largeur = largeur;
-			this.hauteur = hauteur;
-			this.litrageBrut = litrageBrut;
-			this.litrageNet = litrageNet;
-			this.substratID = substratID;
-			this.eauID = eauID;
-			this.filtrationID = filtrationID;
-			this.eclairageID = eclairageID;
-			this.crevettes = crevettes;
-			this.aquariumID = aquariumID;
+			this.longueur = dataAquarium.getLongueur();
+			this.largeur = dataAquarium.getLargeur();
+			this.hauteur = dataAquarium.getHauteur();
+			this.litrageBrut = dataAquarium.getLitrageBrut();
+			this.litrageNet = dataAquarium.getLitrageNet();
+			this.substratID = dataAquarium.getSubstratID();
+			this.eauID = dataAquarium.getEauID();
+			this.filtrationID = dataAquarium.getFiltrationID();
+			this.eclairageID = dataAquarium.getEclairageID();
+			this.crevettes = dataAquarium.getCrevettes();
+			this.aquariumID = dataAquarium.getAquariumID();
 		}
 
 		public int getLongueur() {
@@ -128,35 +207,35 @@ public class Aquariums {
 			this.litrageNet = value;
 		}
 
-		public double getSubstratID() {
+		public int getSubstratID() {
 			return substratID;
 		}
 
-		public void setSubstratID(double value) {
+		public void setSubstratID(int value) {
 			this.substratID = value;
 		}
 
-		public double getEauID() {
+		public int getEauID() {
 			return eauID;
 		}
 
-		public void setEauID(double value) {
+		public void setEauID(int value) {
 			this.eauID = value;
 		}
 
-		public double getFiltrationID() {
+		public int getFiltrationID() {
 			return filtrationID;
 		}
 
-		public void setFiltrationID(double value) {
+		public void setFiltrationID(int value) {
 			this.filtrationID = value;
 		}
 
-		public double getEclairageID() {
+		public int getEclairageID() {
 			return eclairageID;
 		}
 
-		public void setEclairageID(double value) {
+		public void setEclairageID(int value) {
 			this.eclairageID = value;
 		}
 
@@ -168,11 +247,11 @@ public class Aquariums {
 			this.crevettes = value;
 		}
 
-		public double getAquariumID() {
+		public int getAquariumID() {
 			return aquariumID;
 		}
 
-		public void setAquariumID(double value) {
+		public void setAquariumID(int value) {
 			this.aquariumID = value;
 		}
 
@@ -184,7 +263,7 @@ public class Aquariums {
 
 			public List<Double> getCrevetteID() {
 				if (crevetteID == null) {
-					crevetteID = new ArrayList<Double>();
+					crevetteID = new ArrayList<>();
 				}
 				return this.crevetteID;
 			}
@@ -196,8 +275,6 @@ public class Aquariums {
 			return "Aquarium [litrageNet=" + litrageNet + ", crevettes=" + crevettes + ", aquariumID=" + aquariumID
 					+ "]";
 		}
-		
-		
 
 	}
 

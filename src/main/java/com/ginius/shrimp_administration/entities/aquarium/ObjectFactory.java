@@ -1,10 +1,3 @@
-//
-// Ce fichier a �t� g�n�r� par l'impl�mentation de r�f�rence JavaTM Architecture for XML Binding (JAXB), v2.2.8-b130911.1802 
-// Voir <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
-// Toute modification apport�e � ce fichier sera perdue lors de la recompilation du sch�ma source. 
-// G�n�r� le : 2019.03.01 � 06:41:14 AM CET 
-//
-
 
 package com.ginius.shrimp_administration.entities.aquarium;
 
@@ -36,6 +29,7 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    	//Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.ginius.shrimp_administration.entities.aquarium
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.ginius.shrimp_administration.Dao;
+package com.ginius.shrimp_administration.dao;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 
@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 /**
  * Classe d'accés et méthodes CRUD de la base de donnée CREVETTE.
@@ -15,8 +17,11 @@ import java.util.List;
  */
 public class CrevetteDao {
 
+	public static final Logger logger = Logger.getLogger(CrevetteDao.class);
+
 	Connexion connexion = Connexion.getInstance("src\\main\\resources\\documents\\database.db");
-	List<Crevette> crevetteList = new ArrayList<Crevette>();
+	List<Crevette> crevetteList = new ArrayList<>();
+	private String crevetteSucces = "dans la table crevette réussie";
 
 	/**
 	 * Méthode qui initialise la base de donnée crevette.
@@ -38,16 +43,20 @@ public class CrevetteDao {
 
 		try {
 			connexion.getStatment().executeUpdate(sqlDropTable);
-			System.out.println("Suppression de la table Crevette réussie");
+			if (logger.isInfoEnabled()) {
+				logger.info("Suppression de la table Crevette réussi");
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.warn(e.getMessage());
 		}
 
 		try {
 			connexion.getStatment().executeUpdate(sqlNewTable);
-			System.out.println("Génération de la table Crevette réussie");
+			if (logger.isInfoEnabled()) {
+				logger.info("Génération de la table Crevette réussie");
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.warn(e.getMessage());
 		}
 
 		for (Crevette c : crevettes) {
@@ -70,10 +79,12 @@ public class CrevetteDao {
 			query += "'" + c.getPossede() + "' )";
 			try {
 				connexion.getStatment().executeUpdate(query);
+				if (logger.isInfoEnabled()) {
+					logger.info("Insersion de la crevette : " + c.getNom() + crevetteSucces);
+				}
 
-				System.out.println("-- Insersion de : " + c.toString() + " dans la table crevette réussie");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.warn(e.getMessage());
 			}
 
 		}
@@ -117,7 +128,7 @@ public class CrevetteDao {
 			connexion.close();
 			return crevetteList;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.warn(e.getMessage());
 			connexion.close();
 			return crevetteList;
 		}
@@ -152,7 +163,7 @@ public class CrevetteDao {
 		query += "'" + c.getPossede() + "' )";
 		try {
 			connexion.getStatment().executeUpdate(query);
-			System.out.println("-- Insersion de : " + c.toString() + " dans la table crevette réussie");
+			System.out.println("-- Insersion de : " + c.toString() + crevetteSucces);
 			connexion.close();
 			return true;
 		} catch (SQLException e) {
@@ -195,22 +206,20 @@ public class CrevetteDao {
 	 * @return
 	 */
 	public boolean updateCrevette(Crevette c) {
-		
+
 		connexion.connect();
 
-		
-		  String query = ""; query += "UPDATE CREVETTE SET categorie = '" +
-		  c.getCategorie() + "', souscategorie = '" + c.getSousCategorie() +
-		  "', nom = '" + c.getNom() + "', ghMin = " + c.getGhMin() + ",ghMax = " +
-		  c.getGhMax() + "," + " khMin = " + c.getKhMin() + ", khMax = " + c.getKhMax()
-		  + ", phMin = " + c.getPhMin() + "," + " phMax = " + c.getPhMax() +
-		  ", temperature = " + c.getTemperature() + "," + " description = '" +
-		  c.getDescription() + "', image = '" + c.getImage() + "', possede = " +
-		  c.getPossede() + " WHERE id = " + c.getCrevetteID() + ";";
-		 
+		String query = "";
+		query += "UPDATE CREVETTE SET categorie = '" + c.getCategorie() + "', souscategorie = '" + c.getSousCategorie()
+				+ "', nom = '" + c.getNom() + "', ghMin = " + c.getGhMin() + ",ghMax = " + c.getGhMax() + ","
+				+ " khMin = " + c.getKhMin() + ", khMax = " + c.getKhMax() + ", phMin = " + c.getPhMin() + ","
+				+ " phMax = " + c.getPhMax() + ", temperature = " + c.getTemperature() + "," + " description = '"
+				+ c.getDescription() + "', image = '" + c.getImage() + "', possede = " + c.getPossede() + " WHERE id = "
+				+ c.getCrevetteID() + ";";
+
 		try {
 			connexion.getStatment().executeUpdate(query);
-			System.out.println("-- update de : " + c.toString() + " dans la table crevette réussie");
+			System.out.println("-- update de : " + c.toString() + crevetteSucces);
 			connexion.close();
 			return true;
 		} catch (SQLException e) {

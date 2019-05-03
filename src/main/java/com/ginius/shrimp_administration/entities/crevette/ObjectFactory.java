@@ -34,6 +34,7 @@ public class ObjectFactory {
      * 
      */
     public ObjectFactory() {
+    	//Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.ginius.shrimp_administration.entities.crevette
     }
 
     /**
