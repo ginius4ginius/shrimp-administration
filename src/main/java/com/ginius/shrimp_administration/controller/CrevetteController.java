@@ -31,7 +31,8 @@ public class CrevetteController {
 
 	private static List<Crevette> crevetteList;
 	private static JAXBContext ctx = null;
-	private static String crevette = "C:\\Users\\giniu\\Documents\\shrimp-administration-data\\crevettes.xml";
+	private static String crevettesXmlFile = "C:\\Users\\giniu\\Documents\\shrimp-administration-data\\crevettes.xml";
+	private static String inWork = "Récupération en cours...";
 	private static String recupSuccess = "-Récupération réussie-";
 	private static String recupFail = "-Récupération echouée-";
 	private static String error = "ERREUR";
@@ -64,13 +65,13 @@ public class CrevetteController {
 
 		try {
 			if (logger.isInfoEnabled()) {
-				logger.info("Récupération en cours...");
+				logger.info(inWork);
 			}
 			ctx = JAXBContext.newInstance("com.ginius.shrimp_administration.entities.crevette");
 
 			Unmarshaller unmarchaller = ctx.createUnmarshaller();
-			Crevettes crevettes = (Crevettes) (unmarchaller.unmarshal(new File(crevette)));
-			
+			Crevettes crevettes = (Crevettes) (unmarchaller.unmarshal(new File(crevettesXmlFile)));
+
 			if (logger.isInfoEnabled()) {
 				logger.info(recupSuccess);
 			}
@@ -78,7 +79,7 @@ public class CrevetteController {
 			return crevettes.getCrevette();
 
 		} catch (JAXBException e) {
-			logger.warn(error+recupFail+" - " + e.getMessage());
+			logger.warn(error + recupFail + " - " + e.getMessage());
 
 			return crevetteList;
 		}
@@ -91,28 +92,28 @@ public class CrevetteController {
 	 * @return
 	 */
 	public static List<String> getCrevetteCategoryList() {
-		
+
 		if (logger.isInfoEnabled()) {
 			logger.info("Tentative de récupération des catégories de crevette");
 		}
 
 		List<String> crevetteCategory = new ArrayList<>();
-		
-		try(Scanner scan = new Scanner(new File("src\\main\\resources\\documents\\crevetteCategory.txt"))) {
-			
+
+		try (Scanner scan = new Scanner(new File("src\\main\\resources\\documents\\crevetteCategory.txt"))) {
+
 			if (logger.isInfoEnabled()) {
-				logger.info("Récupération en cours...");
+				logger.info(inWork);
 			}
-			
+
 			while (scan.hasNext()) {
 				crevetteCategory.add(scan.next());
 			}
-			
+
 			if (logger.isInfoEnabled()) {
 				logger.info(recupSuccess);
 			}
 		} catch (FileNotFoundException e) {
-			logger.warn(error+recupFail+" - " + e.getMessage());
+			logger.warn(error + recupFail + " - " + e.getMessage());
 		}
 
 		return crevetteCategory;
@@ -131,8 +132,12 @@ public class CrevetteController {
 		}
 
 		List<String> crevetteSousCategory = new ArrayList<>();
-		try(Scanner scan = new Scanner(new File("src\\main\\resources\\documents\\crevetteSousCategory.txt"))) {
-			
+		try (Scanner scan = new Scanner(new File("src\\main\\resources\\documents\\crevetteSousCategory.txt"))) {
+
+			if (logger.isInfoEnabled()) {
+				logger.info(inWork);
+			}
+
 			while (scan.hasNext()) {
 				crevetteSousCategory.add(scan.next());
 			}
@@ -141,7 +146,7 @@ public class CrevetteController {
 			}
 
 		} catch (FileNotFoundException e) {
-			logger.warn(error+recupFail+" - " + e.getMessage());
+			logger.warn(error + recupFail + " - " + e.getMessage());
 		}
 
 		return crevetteSousCategory;
@@ -159,10 +164,10 @@ public class CrevetteController {
 		try {
 			Marshaller marshaller = ctx.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-			marshaller.marshal(crevettesList, new File(crevette));
+			marshaller.marshal(crevettesList, new File(crevettesXmlFile));
 			return true;
 		} catch (JAXBException e) {
-			logger.warn(error+ e.getMessage());
+			logger.warn(error + e.getMessage());
 			return false;
 		}
 

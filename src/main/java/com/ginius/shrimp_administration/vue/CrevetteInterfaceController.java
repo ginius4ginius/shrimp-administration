@@ -1,7 +1,7 @@
 package com.ginius.shrimp_administration.vue;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
-import com.ginius.shrimp_administration.gestionnairefichier.GestionnaireFichier;
+import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
 import com.ginius.shrimp_administration.validation.Validation;
 
 import javafx.collections.FXCollections;
@@ -111,7 +111,7 @@ public class CrevetteInterfaceController {
 		String path = GestionnaireFichier.DEFAULTPATH;
 
 		fileImageCrevette = new File(path);
-		 defaultImage = new Image(fileImageCrevette.toURI().toString());
+		defaultImage = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(defaultImage);
 
 		// initialisation des instances des controlleurs d'accés aux fichiers xml.

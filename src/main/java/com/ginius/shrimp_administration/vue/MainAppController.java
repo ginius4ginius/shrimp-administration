@@ -16,7 +16,7 @@ import com.ginius.shrimp_administration.entities.aquarium.Aquariums.Aquarium.Dat
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette.CrevetteData;
-import com.ginius.shrimp_administration.gestionnairefichier.GestionnaireFichier;
+import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
 import com.ginius.shrimp_administration.validation.Validation;
 
 import javafx.collections.FXCollections;
@@ -520,7 +520,7 @@ public class MainAppController {
 	}
 
 	/**
-	 * Méthode qui supprime la crevette selectionnée dans la liste
+	 * Méthode qui met à jour la crevette selectionnée dans la liste
 	 */
 	@FXML
 	private void updateCrevette() {
@@ -549,7 +549,7 @@ public class MainAppController {
 			crevetteData.setTemperature(Integer.parseInt(temperatureTf.getText()));
 			crevetteData.setDescription(descriptionTa.getText());
 			crevetteData.setPossede(crevettePossede);
-			crevetteData.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
+			crevetteData.setImage(fileImageCrevette.getAbsolutePath().toString());
 			
 			
 
