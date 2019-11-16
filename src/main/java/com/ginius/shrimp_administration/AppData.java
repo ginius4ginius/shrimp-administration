@@ -12,7 +12,7 @@ import org.apache.log4j.Logger;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
-
+import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
 import com.ginius.shrimp_administration.entities.crevette.ObjectFactory;
 
 /**
@@ -30,6 +30,7 @@ public class AppData {
 
 		ObjectFactory factory = new ObjectFactory();
 		Crevettes crevettesList = factory.createCrevettes();
+		File fileImageCrevette = new File(GestionnaireFichier.DEFAULTPATH);
 
 		Crevette crevette1 = factory.createCrevettesCrevette();
 		crevette1.setCrevetteID(1);
@@ -44,6 +45,7 @@ public class AppData {
 		crevette1.setPhMin(7.5);
 		crevette1.setTemperature(20);
 		crevette1.setPossede(1);
+		crevette1.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 		crevettesList.getCrevette().add(crevette1);
 
 		Crevette crevette2 = factory.createCrevettesCrevette();
@@ -59,6 +61,7 @@ public class AppData {
 		crevette2.setPhMax(6.5);
 		crevette2.setPhMin(7.5);
 		crevette2.setTemperature(20);
+		crevette2.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 
 		crevettesList.getCrevette().add(crevette2);
 
@@ -104,6 +107,7 @@ public class AppData {
 					+ "Cette sélection est stable lorsque les points rouges sont visibles. \r\n"
 					+ "Tout comme la red cherry, elle est très simple de maintenance, particulièrement recommandé pour les débutants.\r\n"
 					+ "Attention à ne pas confondre blue pearl et Neocaridina sp blue ou jelly. ");
+			crevette3.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 
 			crevettesList.getCrevette().add(crevette3);
 

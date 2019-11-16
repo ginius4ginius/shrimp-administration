@@ -13,7 +13,7 @@ import javafx.stage.StageStyle;
  *
  */
 public class App extends Application {
-	
+		
 
 	private static FXMLLoader loader = new FXMLLoader();
 	private static final String TITLE =  "shrimp-administration";

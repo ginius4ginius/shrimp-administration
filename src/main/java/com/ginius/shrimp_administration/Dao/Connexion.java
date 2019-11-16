@@ -50,9 +50,11 @@ public class Connexion {
 			if (logger.isInfoEnabled()) {
 				logger.info("Connexion a " + bdPath + " avec succès");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException e) {
 			logger.warn("ERREUR : erreur de connexion - " + e.getMessage());
-		} 
+		} catch (SQLException e) {
+			logger.warn("ERREUR : erreur de connexion - " + e.getMessage());
+		}
 	}
 
 	public Statement getStatment() {

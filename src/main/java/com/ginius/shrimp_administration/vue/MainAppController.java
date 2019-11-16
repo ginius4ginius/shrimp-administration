@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import javafx.stage.FileChooser;
 
 import com.ginius.shrimp_administration.App;
@@ -49,6 +51,8 @@ import javafx.stage.StageStyle;
  *
  */
 public class MainAppController {
+	
+	public static final Logger logger = Logger.getLogger(MainAppController.class);
 
 	private Stage newCrevetteWindow;
 	private Stage mainWindow;
@@ -416,16 +420,26 @@ public class MainAppController {
 		descriptionTa.setText(crevettesList.getSelectionModel().getSelectedItem().getDescription());
 
 		String path = crevettesList.getSelectionModel().getSelectedItem().getImage();
-
+		
+		
 		if (path.length() == 4) {
 			String DEFAULTPATH = GestionnaireFichier.DEFAULTPATH;
 			fileImageCrevette = new File(DEFAULTPATH);
 			Image image = new Image(fileImageCrevette.toURI().toString());
 			imageCrevette.setImage(image);
+			
+			if (logger.isInfoEnabled()) {
+				logger.info("PATH de l'image default : "+DEFAULTPATH);
+			}
+			
 		} else {
 			fileImageCrevette = new File(path);
 			Image image = new Image(fileImageCrevette.toURI().toString());
 			imageCrevette.setImage(image);
+			
+			if (logger.isInfoEnabled()) {
+				logger.info("PATH de l'image : "+path);
+			}
 		}
 
 		if (crevettesList.getSelectionModel().getSelectedItem().getPossede() == 1) {
@@ -520,7 +534,7 @@ public class MainAppController {
 	}
 
 	/**
-	 * Méthode qui met à jour la crevette selectionnée dans la liste
+	 * Méthode qui supprime la crevette selectionnée dans la liste
 	 */
 	@FXML
 	private void updateCrevette() {
@@ -549,7 +563,7 @@ public class MainAppController {
 			crevetteData.setTemperature(Integer.parseInt(temperatureTf.getText()));
 			crevetteData.setDescription(descriptionTa.getText());
 			crevetteData.setPossede(crevettePossede);
-			crevetteData.setImage(fileImageCrevette.getAbsolutePath().toString());
+			crevetteData.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 			
 			
 

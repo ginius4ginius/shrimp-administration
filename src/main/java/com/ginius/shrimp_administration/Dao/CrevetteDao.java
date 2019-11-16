@@ -17,15 +17,11 @@ import org.apache.log4j.Logger;
  */
 public class CrevetteDao {
 
-	private static String crevetteSucces = " dans la table crevette réussie";
 	public static final Logger logger = Logger.getLogger(CrevetteDao.class);
-
-	private static final String UPDATEMESSAGE = "Mise à jour de la crevette " + crevetteSucces;
-	private static final String DELETEMESSAGE = "Suppression de l'entité crevette " + crevetteSucces;
-	private static final String INSERTMESSAGE = "Insersion de la crevette " + crevetteSucces;
 
 	Connexion connexion = Connexion.getInstance("src\\main\\resources\\documents\\database.db");
 	List<Crevette> crevetteList = new ArrayList<>();
+	private String crevetteSucces = "dans la table crevette réussie";
 
 	/**
 	 * Méthode qui initialise la base de donnée crevette.
@@ -81,7 +77,6 @@ public class CrevetteDao {
 			query += "'" + c.getImage() + "', ";
 			query += "'" + c.getTemperature() + "', ";
 			query += "'" + c.getPossede() + "' )";
-
 			try {
 				connexion.getStatment().executeUpdate(query);
 				if (logger.isInfoEnabled()) {
@@ -108,7 +103,8 @@ public class CrevetteDao {
 		connexion.connect();
 		crevetteList.clear();
 		String query = "SELECT * FROM CREVETTE";
-		try (ResultSet rs = connexion.getStatment().executeQuery(query);) {
+		try {
+			ResultSet rs = connexion.getStatment().executeQuery(query);
 
 			while (rs.next()) {
 				Crevette crevette = new Crevette();
@@ -165,8 +161,16 @@ public class CrevetteDao {
 		query += "'" + c.getDescription() + "', ";
 		query += "'" + c.getImage() + "', ";
 		query += "'" + c.getPossede() + "' )";
-
-		return executeQuery(query, INSERTMESSAGE);
+		try {
+			connexion.getStatment().executeUpdate(query);
+			System.out.println("-- Insersion de : " + c.toString() + crevetteSucces);
+			connexion.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			connexion.close();
+			return false;
+		}
 
 	}
 
@@ -182,8 +186,16 @@ public class CrevetteDao {
 
 		String query = "";
 		query += "DELETE FROM CREVETTE WHERE id IS " + id + ";";
-
-		return executeQuery(query, DELETEMESSAGE);
+		try {
+			connexion.getStatment().executeUpdate(query);
+			System.out.println("-- Supression dans la table de la crevette résussie");
+			connexion.close();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			connexion.close();
+			return false;
+		}
 
 	}
 
@@ -205,29 +217,13 @@ public class CrevetteDao {
 				+ c.getDescription() + "', image = '" + c.getImage() + "', possede = " + c.getPossede() + " WHERE id = "
 				+ c.getCrevetteID() + ";";
 
-		return executeQuery(query, UPDATEMESSAGE);
-
-	}
-
-	/**
-	 * Méthode permettant d'executer une requete de persistance et retourne un
-	 * boolean.
-	 * 
-	 * @param query
-	 * @param message
-	 * @return
-	 */
-	public boolean executeQuery(String query, String message) {
-
 		try {
 			connexion.getStatment().executeUpdate(query);
-			if (logger.isInfoEnabled()) {
-				logger.info(message);
-			}
+			System.out.println("-- update de : " + c.toString() + crevetteSucces);
 			connexion.close();
 			return true;
 		} catch (SQLException e) {
-			logger.warn(e.getMessage());
+			e.printStackTrace();
 			connexion.close();
 			return false;
 		}

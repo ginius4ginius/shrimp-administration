@@ -111,7 +111,7 @@ public class CrevetteInterfaceController {
 		String path = GestionnaireFichier.DEFAULTPATH;
 
 		fileImageCrevette = new File(path);
-		defaultImage = new Image(fileImageCrevette.toURI().toString());
+		 defaultImage = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(defaultImage);
 
 		// initialisation des instances des controlleurs d'accés aux fichiers xml.
@@ -195,7 +195,7 @@ public class CrevetteInterfaceController {
 			c.setTemperature(Integer.parseInt(temperatureTf.getText()));
 			c.setDescription(descriptionTa.getText());
 			c.setPossede(crevettePossede);
-			c.setImage(fileImageCrevette.getAbsolutePath().toString());
+			c.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 
 			if (crevetteDao.saveCrevette(c)) {
 				Alert alert = new Alert(AlertType.INFORMATION);
