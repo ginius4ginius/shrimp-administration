@@ -113,6 +113,8 @@ public class CrevetteInterfaceController {
 		fileImageCrevette = new File(path);
 		 defaultImage = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(defaultImage);
+		imageCrevette.setFitHeight(250);
+		imageCrevette.setX(100);
 
 		// initialisation des instances des controlleurs d'accés aux fichiers xml.
 		CrevetteController.getInstance();

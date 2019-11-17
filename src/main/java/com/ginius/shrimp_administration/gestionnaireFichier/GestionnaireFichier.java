@@ -7,12 +7,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ResourceBundle;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 
 import javafx.stage.FileChooser;
 
 public class GestionnaireFichier {
+	
+	private static final Logger logger = Logger.getLogger(GestionnaireFichier.class);
+
+	private static ResourceBundle bundle = ResourceBundle.getBundle("com.ginius.shrimp_administration.properties.filePath");
+	private static String thisPath = new File(".").getAbsolutePath();
+	private static File file = new File(thisPath);
+	private static String parent = file.getParent();
+	public static final String DEFAULTPATH = parent + bundle.getString("path.default");
+	private static String imagePath = parent + bundle.getString("path.image.folder");
+	private static String fileName = "";
+	
 	
 	/**
 	 * Constructeur private pour empecher d'instancier la classe qui n'est qu'un
@@ -21,13 +34,6 @@ public class GestionnaireFichier {
 	private GestionnaireFichier() {
 		
 	}
-
-	private static String thisPath = new File(".").getAbsolutePath();
-	private static File file = new File(thisPath);
-	private static String parent = file.getParent();
-	public static final String DEFAULTPATH = parent + "\\src\\main\\resources\\images\\default\\crevetteDefaultShrimpAdministration.jpg";
-	private static String imagePath = parent + "\\src\\main\\resources\\images\\";
-	private static String fileName = "";
 
 	/**
 	 * Méthode qui permet de copier une image dans le répertoire image du projet.
@@ -52,7 +58,9 @@ public class GestionnaireFichier {
 			input = new FileInputStream(source.getAbsolutePath());
 			output = new FileOutputStream(imagePath + fileName);
 		} catch (FileNotFoundException e) {
-			System.out.println("Erreur sur le fichier d'image d'origine ou de destination.");
+			if (logger.isInfoEnabled()) {
+				logger.info("Erreur sur le fichier d'image d'origine ou de destination.");
+			}
 			return new File(DEFAULTPATH);
 		}
 
@@ -60,7 +68,9 @@ public class GestionnaireFichier {
 			IOUtils.copy(input, output);
 			return new File(imagePath + fileName);
 		} catch (IOException e) {
-			System.out.println("impossible de copier l'image dnas le répertoire de destination.");
+			if (logger.isInfoEnabled()) {
+				logger.info("impossible de copier l'image dans le répertoire de destination.");
+			}
 			return new File(DEFAULTPATH);
 		}
 
@@ -71,6 +81,18 @@ public class GestionnaireFichier {
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
+	}
+	
+	/**
+	 * Méthode retournant la vérification si le path en paramètre est celui de l'image par defaut
+	 * @param image
+	 * @return
+	 */
+	public static boolean isDeffaultImage(File image) {
+		
+		String path = image.getAbsolutePath();
+		
+		return (path.equals(DEFAULTPATH)) ?  true : false;
 	}
 
 }

@@ -113,12 +113,7 @@ public class AppData {
 
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(crevettesList, new File(crevette));
-			
-			if (logger.isInfoEnabled()) {
-				logger.info("insersion d'une nouvelle crevette dans la base de donnée");
-			}
-
-
+		
 		} catch (JAXBException e) {
 			logger.warn("ERREUR : " + e.getMessage());
 		}

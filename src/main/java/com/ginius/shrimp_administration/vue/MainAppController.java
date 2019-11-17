@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import javafx.stage.FileChooser;
 
 import com.ginius.shrimp_administration.App;
@@ -51,8 +49,6 @@ import javafx.stage.StageStyle;
  *
  */
 public class MainAppController {
-	
-	public static final Logger logger = Logger.getLogger(MainAppController.class);
 
 	private Stage newCrevetteWindow;
 	private Stage mainWindow;
@@ -157,6 +153,8 @@ public class MainAppController {
 		fileImageCrevette = new File(path);
 		Image image = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(image);
+		imageCrevette.setFitHeight(250);
+		imageCrevette.setX(100);
 
 		// masque du pane crevette
 		crevettepane.setVisible(false);
@@ -428,18 +426,11 @@ public class MainAppController {
 			Image image = new Image(fileImageCrevette.toURI().toString());
 			imageCrevette.setImage(image);
 			
-			if (logger.isInfoEnabled()) {
-				logger.info("PATH de l'image default : "+DEFAULTPATH);
-			}
-			
 		} else {
 			fileImageCrevette = new File(path);
 			Image image = new Image(fileImageCrevette.toURI().toString());
 			imageCrevette.setImage(image);
-			
-			if (logger.isInfoEnabled()) {
-				logger.info("PATH de l'image : "+path);
-			}
+
 		}
 
 		if (crevettesList.getSelectionModel().getSelectedItem().getPossede() == 1) {
@@ -563,8 +554,12 @@ public class MainAppController {
 			crevetteData.setTemperature(Integer.parseInt(temperatureTf.getText()));
 			crevetteData.setDescription(descriptionTa.getText());
 			crevetteData.setPossede(crevettePossede);
-			crevetteData.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 			
+			if(GestionnaireFichier.isDeffaultImage(fileImageCrevette)) {
+				crevetteData.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
+			}else {
+				crevetteData.setImage(fileImageCrevette.getAbsolutePath().toString());
+			}
 			
 
 			Crevette crevette = new Crevette(crevetteData);
