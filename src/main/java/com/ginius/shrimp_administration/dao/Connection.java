@@ -1,6 +1,5 @@
 package com.ginius.shrimp_administration.dao;
 
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,26 +12,26 @@ import org.apache.log4j.Logger;
  * @author giniu
  *
  */
-public class Connexion {
+public class Connection {
 
-	public static final Logger logger = Logger.getLogger(Connexion.class);
+	public static final Logger logger = Logger.getLogger(Connection.class);
 
 	private String bdPath = "src\\main\\resources\\documents\\database.db";
-	private Connection connection = null;
+	private java.sql.Connection connection = null;
 	private Statement statement = null;
 
 	/** Constructeur privé */
-	private Connexion(String dBPath) {
+	private Connection(String dBPath) {
 		bdPath = dBPath;
 	}
 
 	/** Instance unique non préinitialisée */
-	private static Connexion instance = null;
+	private static Connection instance = null;
 
 	/** Point d'accès pour l'instance unique du singleton */
-	public static Connexion getInstance(String dBPath) {
+	public static Connection getInstance(String dBPath) {
 		if (instance == null) {
-			instance = new Connexion(dBPath);
+			instance = new Connection(dBPath);
 		}
 		return instance;
 	}

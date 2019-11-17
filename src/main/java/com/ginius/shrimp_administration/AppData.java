@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
-import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
 import com.ginius.shrimp_administration.entities.crevette.ObjectFactory;
+import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
 
 /**
  * 

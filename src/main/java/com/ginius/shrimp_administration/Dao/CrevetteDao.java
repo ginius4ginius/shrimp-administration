@@ -19,7 +19,7 @@ public class CrevetteDao {
 
 	public static final Logger logger = Logger.getLogger(CrevetteDao.class);
 
-	Connexion connexion = Connexion.getInstance("src\\main\\resources\\documents\\database.db");
+	Connection connexion = Connection.getInstance("src\\main\\resources\\documents\\database.db");
 	List<Crevette> crevetteList = new ArrayList<>();
 	private String crevetteSucces = "dans la table crevette réussie";
 
