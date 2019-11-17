@@ -2,6 +2,7 @@ package com.ginius.shrimp_administration.vue;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
+import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichierImp;
 import com.ginius.shrimp_administration.validation.Validation;
 
 import javafx.collections.FXCollections;
@@ -102,15 +103,16 @@ public class CrevetteInterfaceController {
 	@FXML
 	private Button imageButton;
 	
-	FileChooser fileChooser;
+	private FileChooser fileChooser;
+	
+	private GestionnaireFichier gestionnaireFichier;
 
 	@FXML
 	private void initialize() {
 		
-		
-		String path = GestionnaireFichier.DEFAULTPATH;
+		gestionnaireFichier = new GestionnaireFichierImp("crevette");
 
-		fileImageCrevette = new File(path);
+		fileImageCrevette = new File(gestionnaireFichier.getDefaultpath());
 		 defaultImage = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(defaultImage);
 		imageCrevette.setFitHeight(250);
@@ -159,7 +161,7 @@ public class CrevetteInterfaceController {
 	public void chooseCrevetteImage() {
 
 		fileChooser = new FileChooser();
-	     GestionnaireFichier.configureFileChooser(fileChooser);
+	     gestionnaireFichier.configureFileChooser(fileChooser);
 	     File file = fileChooser.showOpenDialog(newCrevetteWindow);
 	     if (file != null) {
 	    	 String path = file.getAbsolutePath().toString();
@@ -197,7 +199,7 @@ public class CrevetteInterfaceController {
 			c.setTemperature(Integer.parseInt(temperatureTf.getText()));
 			c.setDescription(descriptionTa.getText());
 			c.setPossede(crevettePossede);
-			c.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
+			c.setImage(gestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 
 			if (crevetteDao.saveCrevette(c)) {
 				Alert alert = new Alert(AlertType.INFORMATION);

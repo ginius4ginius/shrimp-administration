@@ -2,6 +2,7 @@ package com.ginius.shrimp_administration;
 
 import java.io.File;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -14,6 +15,7 @@ import com.ginius.shrimp_administration.entities.crevette.Crevettes;
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
 import com.ginius.shrimp_administration.entities.crevette.ObjectFactory;
 import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
+import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichierImp;
 
 /**
  * 
@@ -22,15 +24,20 @@ import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
  */
 public class AppData {
 
-	public  static final Logger logger = Logger.getLogger(AppData.class);
+	public static final Logger logger = Logger.getLogger(AppData.class);
 
-	private static String crevette = "C:\\Users\\giniu\\Documents\\shrimp-administration-data\\crevettes.xml";
+	public static ResourceBundle bundle = ResourceBundle
+			.getBundle("com.ginius.shrimp_administration.properties.filePath");
+
+	public static String crevette = bundle.getString("path.jaxb.crevette");
 
 	public static void main(String[] args) {
 
+		GestionnaireFichier gestionnaireFichierCrevette = new GestionnaireFichierImp("crevette");
+
 		ObjectFactory factory = new ObjectFactory();
 		Crevettes crevettesList = factory.createCrevettes();
-		File fileImageCrevette = new File(GestionnaireFichier.DEFAULTPATH);
+		File fileImageCrevette = new File(gestionnaireFichierCrevette.getDefaultpath());
 
 		Crevette crevette1 = factory.createCrevettesCrevette();
 		crevette1.setCrevetteID(1);
@@ -45,7 +52,7 @@ public class AppData {
 		crevette1.setPhMin(7.5);
 		crevette1.setTemperature(20);
 		crevette1.setPossede(1);
-		crevette1.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
+		crevette1.setImage(gestionnaireFichierCrevette.copier(fileImageCrevette).getAbsolutePath().toString());
 		crevettesList.getCrevette().add(crevette1);
 
 		Crevette crevette2 = factory.createCrevettesCrevette();
@@ -61,7 +68,7 @@ public class AppData {
 		crevette2.setPhMax(6.5);
 		crevette2.setPhMin(7.5);
 		crevette2.setTemperature(20);
-		crevette2.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
+		crevette2.setImage(gestionnaireFichierCrevette.copier(fileImageCrevette).getAbsolutePath().toString());
 
 		crevettesList.getCrevette().add(crevette2);
 
@@ -107,13 +114,13 @@ public class AppData {
 					+ "Cette sélection est stable lorsque les points rouges sont visibles. \r\n"
 					+ "Tout comme la red cherry, elle est très simple de maintenance, particulièrement recommandé pour les débutants.\r\n"
 					+ "Attention à ne pas confondre blue pearl et Neocaridina sp blue ou jelly. ");
-			crevette3.setImage(GestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
+			crevette3.setImage(gestionnaireFichierCrevette.copier(fileImageCrevette).getAbsolutePath().toString());
 
 			crevettesList.getCrevette().add(crevette3);
 
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(crevettesList, new File(crevette));
-		
+
 		} catch (JAXBException e) {
 			logger.warn("ERREUR : " + e.getMessage());
 		}
