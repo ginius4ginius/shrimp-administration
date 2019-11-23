@@ -112,7 +112,7 @@ public class CrevetteInterfaceController {
 		
 		gestionnaireFichier = new GestionnaireFichierImp("crevette");
 
-		fileImageCrevette = new File(gestionnaireFichier.getDefaultpath());
+		setDefaultImage();
 		 defaultImage = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(defaultImage);
 		imageCrevette.setFitHeight(250);
@@ -171,6 +171,10 @@ public class CrevetteInterfaceController {
         }
 
 	}
+	
+	private void setDefaultImage() {
+		fileImageCrevette = new File(gestionnaireFichier.getDefaultpath());
+	}
 
 	/**
 	 * Méthode permettant de sauvegarder l'entité crevette créé dans le fichier XML.
@@ -226,6 +230,7 @@ public class CrevetteInterfaceController {
 				temperatureTf.clear();
 				descriptionTa.clear();
 				imageCrevette.setImage(defaultImage);
+				setDefaultImage();
 			} else {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Information");

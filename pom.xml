@@ -11,8 +11,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>sa-gestionnaire-fichiers</module>
-		<module>sa-datas</module>
+		<module>sa-api</module>
 	</modules>
 
 	<properties>
