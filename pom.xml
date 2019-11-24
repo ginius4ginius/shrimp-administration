@@ -8,11 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<description>Application de gestion d'aquariums pour crevette d'eau douce.</description>
 	<name>shrimp-administration</name>
-	<packaging>pom</packaging>
-
-	<modules>
-		<module>sa-api</module>
-	</modules>
+	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

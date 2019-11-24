@@ -1,8 +1,8 @@
 package com.ginius.shrimp_administration.vue;
 
 import com.ginius.shrimp_administration.entities.crevette.Crevettes.Crevette;
-import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichier;
-import com.ginius.shrimp_administration.gestionnaireFichier.GestionnaireFichierImp;
+import com.ginius.shrimp_administration.gestionnairefichier.GestionnaireFichier;
+import com.ginius.shrimp_administration.gestionnairefichier.GestionnaireFichierImp;
 import com.ginius.shrimp_administration.validation.Validation;
 
 import javafx.collections.FXCollections;

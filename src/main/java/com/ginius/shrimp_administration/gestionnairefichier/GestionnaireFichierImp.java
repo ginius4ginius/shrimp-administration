@@ -1,4 +1,4 @@
-package com.ginius.shrimp_administration.gestionnaireFichier;
+package com.ginius.shrimp_administration.gestionnairefichier;
 
 import java.io.File;
 import java.io.FileInputStream;
