@@ -38,7 +38,7 @@ public class CrevetteDao {
 				+ "	'categorie' TEXT NOT NULL,\n" + "	'souscategorie' TEXT NOT NULL,\n" + "	'nom' TEXT NOT NULL,\n"
 				+ "	'ghMin' INTEGER NOT NULL,\n" + "	'ghMax' INTEGER NOT NULL,\n" + "	'khMin' INTEGER NOT NULL,\n"
 				+ "	'khMax' INTEGER NOT NULL,\n" + "	'phMin' DECIMAL NOT NULL,\n" + "	'phMax' DECIMAL NOT NULL,\n"
-				+ "	'description' TEXT NULL default ' ',\n" + "	'image' TEXT NULL,\n"
+				+ "	'description' TEXT NULL,\n" + "	'image' TEXT NULL,\n"
 				+ "	'temperature' INTEGER NOT NULL,'possede' boolean NOT NULL default 0);";
 
 		try {
@@ -142,6 +142,8 @@ public class CrevetteDao {
 	 * @return
 	 */
 	public boolean saveCrevette(Crevette c) {
+		
+		String mStr = c.getDescription().replace( "'" , "''" );
 
 		connexion.connect();
 
@@ -158,7 +160,7 @@ public class CrevetteDao {
 		query += "'" + c.getPhMin() + "', ";
 		query += "'" + c.getPhMax() + "', ";
 		query += "'" + c.getTemperature() + "', ";
-		query += "'" + c.getDescription() + "', ";
+		query += "'" + mStr + "', ";
 		query += "'" + c.getImage() + "', ";
 		query += "'" + c.getPossede() + "' )";
 		try {
@@ -206,6 +208,8 @@ public class CrevetteDao {
 	 * @return
 	 */
 	public boolean updateCrevette(Crevette c) {
+		
+		String mStr = c.getDescription().replace( "'" , "''" );
 
 		connexion.connect();
 
@@ -214,7 +218,7 @@ public class CrevetteDao {
 				+ "', nom = '" + c.getNom() + "', ghMin = " + c.getGhMin() + ",ghMax = " + c.getGhMax() + ","
 				+ " khMin = " + c.getKhMin() + ", khMax = " + c.getKhMax() + ", phMin = " + c.getPhMin() + ","
 				+ " phMax = " + c.getPhMax() + ", temperature = " + c.getTemperature() + "," + " description = '"
-				+ c.getDescription() + "', image = '" + c.getImage() + "', possede = " + c.getPossede() + " WHERE id = "
+				+ mStr + "', image = '" + c.getImage() + "', possede = " + c.getPossede() + " WHERE id = "
 				+ c.getCrevetteID() + ";";
 
 		try {

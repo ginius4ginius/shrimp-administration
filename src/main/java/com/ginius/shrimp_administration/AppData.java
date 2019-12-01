@@ -53,6 +53,7 @@ public class AppData {
 		crevette1.setTemperature(20);
 		crevette1.setPossede(1);
 		crevette1.setImage(gestionnaireFichierCrevette.copier(fileImageCrevette).getAbsolutePath().toString());
+		crevette1.setDescription("");
 		crevettesList.getCrevette().add(crevette1);
 
 		Crevette crevette2 = factory.createCrevettesCrevette();
@@ -69,6 +70,7 @@ public class AppData {
 		crevette2.setPhMin(7.5);
 		crevette2.setTemperature(20);
 		crevette2.setImage(gestionnaireFichierCrevette.copier(fileImageCrevette).getAbsolutePath().toString());
+		crevette2.setDescription("");
 
 		crevettesList.getCrevette().add(crevette2);
 

@@ -3,6 +3,7 @@ package com.ginius.shrimp_administration.dao;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 
@@ -15,7 +16,7 @@ import org.apache.log4j.Logger;
 public class Connection {
 
 	public static final Logger logger = Logger.getLogger(Connection.class);
-
+	
 	private String bdPath = "src\\main\\resources\\documents\\database.db";
 	private java.sql.Connection connection = null;
 	private Statement statement = null;

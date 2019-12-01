@@ -238,34 +238,8 @@ public class MainAppController {
 
 		if (crevetteDao.deleteCrevette(crevetteId)) {
 			crevettesList.setVisible(false);
-			// masque du pane crevette
-			crevettepane.setVisible(false);
-			description.setVisible(false);
-			paraMaintenance.setVisible(false);
-			imageCrevette.setVisible(false);
-			separator.setVisible(false);
-			descriptionTa.clear();
-			descriptionTa.setVisible(false);
-			temperature.setVisible(false);
-			temperatureTf.setVisible(false);
-			categorie.setVisible(false);
-			souscategorie.setVisible(false);
-			nom.setVisible(false);
-			nomTf.setVisible(false);
-			ghmaxTf.setVisible(false);
-			ghmax.setVisible(false);
-			ghminTf.setVisible(false);
-			ghmin.setVisible(false);
-			khmaxTf.setVisible(false);
-			khmax.setVisible(false);
-			khminTf.setVisible(false);
-			khmin.setVisible(false);
-			khmaxTf.setVisible(false);
-			khmax.setVisible(false);
-			khminTf.setVisible(false);
-			khmin.setVisible(false);
-			crevettePossedeCb.setVisible(false);
-
+			
+			masqueCrevettePane();
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Information");
 			alert.setHeaderText("Crevette supprimée avec succés.");
@@ -294,37 +268,13 @@ public class MainAppController {
 		phmaxTf.clear();
 		phminTf.clear();
 		temperatureTf.clear();
-		crevettepane.setVisible(true);
-		description.setVisible(true);
-		paraMaintenance.setVisible(true);
-		imageCrevette.setVisible(true);
-		separator.setVisible(true);
-		descriptionTa.setVisible(true);
-		temperature.setVisible(true);
-		temperatureTf.setVisible(true);
-		categorie.setVisible(true);
-		souscategorie.setVisible(true);
-		nom.setVisible(true);
-		nomTf.setVisible(true);
-		ghmaxTf.setVisible(true);
-		ghmax.setVisible(true);
-		ghminTf.setVisible(true);
-		ghmin.setVisible(true);
-		khmaxTf.setVisible(true);
-		khmax.setVisible(true);
-		khminTf.setVisible(true);
-		khmin.setVisible(true);
-		khmaxTf.setVisible(true);
-		khmax.setVisible(true);
-		khminTf.setVisible(true);
-		khmin.setVisible(true);
-		crevettePossedeCb.setVisible(true);
-		crevettePossedeCb.setSelected(false);
-
+		
 		String path = gestionnaireFichier.getDefaultpath();
 		fileImageCrevette = new File(path);
 		Image image = new Image(fileImageCrevette.toURI().toString());
 		imageCrevette.setImage(image);
+		
+		masqueCrevettePane();
 
 		refreshCrevetteList();
 
@@ -425,7 +375,6 @@ public class MainAppController {
 
 		String path = crevettesList.getSelectionModel().getSelectedItem().getImage();
 		
-		
 		if (path.length() == 4) {
 			fileImageCrevette = new File(gestionnaireFichier.getDefaultpath());
 			Image image = new Image(fileImageCrevette.toURI().toString());
@@ -442,6 +391,8 @@ public class MainAppController {
 			crevettePossedeCb.setSelected(true);
 		} else
 			crevettePossedeCb.setSelected(false);
+		
+		showCrevettePane();
 
 	}
 
@@ -722,6 +673,67 @@ public class MainAppController {
 			Image image = new Image(fileImageCrevette.toURI().toString());
 			imageCrevette.setImage(image);
 		}
+
+	}
+	
+	private void masqueCrevettePane() {
+		// masque du pane crevette
+					crevettepane.setVisible(false);
+					description.setVisible(false);
+					paraMaintenance.setVisible(false);
+					imageCrevette.setVisible(false);
+					separator.setVisible(false);
+					descriptionTa.clear();
+					descriptionTa.setVisible(false);
+					temperature.setVisible(false);
+					temperatureTf.setVisible(false);
+					categorie.setVisible(false);
+					souscategorie.setVisible(false);
+					nom.setVisible(false);
+					nomTf.setVisible(false);
+					ghmaxTf.setVisible(false);
+					ghmax.setVisible(false);
+					ghminTf.setVisible(false);
+					ghmin.setVisible(false);
+					khmaxTf.setVisible(false);
+					khmax.setVisible(false);
+					khminTf.setVisible(false);
+					khmin.setVisible(false);
+					khmaxTf.setVisible(false);
+					khmax.setVisible(false);
+					khminTf.setVisible(false);
+					khmin.setVisible(false);
+					crevettePossedeCb.setVisible(false);
+
+	}
+	
+	private void showCrevettePane() {
+		// masque du pane crevette
+					crevettepane.setVisible(true);
+					description.setVisible(true);
+					paraMaintenance.setVisible(true);
+					imageCrevette.setVisible(true);
+					separator.setVisible(true);
+					descriptionTa.setVisible(true);
+					temperature.setVisible(true);
+					temperatureTf.setVisible(true);
+					categorie.setVisible(true);
+					souscategorie.setVisible(true);
+					nom.setVisible(true);
+					nomTf.setVisible(true);
+					ghmaxTf.setVisible(true);
+					ghmax.setVisible(true);
+					ghminTf.setVisible(true);
+					ghmin.setVisible(true);
+					khmaxTf.setVisible(true);
+					khmax.setVisible(true);
+					khminTf.setVisible(true);
+					khmin.setVisible(true);
+					khmaxTf.setVisible(true);
+					khmax.setVisible(true);
+					khminTf.setVisible(true);
+					khmin.setVisible(true);
+					crevettePossedeCb.setVisible(true);
 
 	}
 
