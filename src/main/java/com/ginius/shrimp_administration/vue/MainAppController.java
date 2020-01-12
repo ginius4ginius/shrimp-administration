@@ -41,6 +41,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -135,6 +136,8 @@ public class MainAppController {
 	private Separator separator;
 	@FXML
 	private ImageView imageCrevette;
+	@FXML
+	private StackPane imageCrevettePane;
 
 	private File fileImageCrevette;
 
@@ -166,6 +169,7 @@ public class MainAppController {
 		crevettepane.setVisible(false);
 		description.setVisible(false);
 		imageCrevette.setVisible(false);
+		imageCrevettePane.setVisible(false);
 		paraMaintenance.setVisible(false);
 		separator.setVisible(false);
 		descriptionTa.setVisible(false);
@@ -297,6 +301,7 @@ public class MainAppController {
 		description.setVisible(false);
 		paraMaintenance.setVisible(false);
 		imageCrevette.setVisible(false);
+		imageCrevettePane.setVisible(false);
 		separator.setVisible(false);
 		descriptionTa.setVisible(false);
 		temperature.setVisible(false);
@@ -426,6 +431,7 @@ public class MainAppController {
 		description.setVisible(false);
 		paraMaintenance.setVisible(false);
 		imageCrevette.setVisible(false);
+		imageCrevettePane.setVisible(false);
 		separator.setVisible(false);
 		descriptionTa.setVisible(false);
 		temperature.setVisible(false);
@@ -510,12 +516,15 @@ public class MainAppController {
 			crevetteData.setTemperature(Integer.parseInt(temperatureTf.getText()));
 			crevetteData.setDescription(descriptionTa.getText());
 			crevetteData.setPossede(crevettePossede);
+			crevetteData.setImage(gestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
 			
-			if(gestionnaireFichier.isDeffaultImage(fileImageCrevette)) {
-				crevetteData.setImage(gestionnaireFichier.copier(fileImageCrevette).getAbsolutePath().toString());
-			}else {
-				crevetteData.setImage(fileImageCrevette.getAbsolutePath().toString());
-			}
+			
+			/*
+			 * if(gestionnaireFichier.isDeffaultImage(fileImageCrevette)) {
+			 * crevetteData.setImage(gestionnaireFichier.copier(fileImageCrevette).
+			 * getAbsolutePath().toString()); }else {
+			 * crevetteData.setImage(fileImageCrevette.getAbsolutePath().toString()); }
+			 */
 			
 
 			Crevette crevette = new Crevette(crevetteData);
@@ -682,6 +691,7 @@ public class MainAppController {
 					description.setVisible(false);
 					paraMaintenance.setVisible(false);
 					imageCrevette.setVisible(false);
+					imageCrevettePane.setVisible(false);
 					separator.setVisible(false);
 					descriptionTa.clear();
 					descriptionTa.setVisible(false);
@@ -713,6 +723,7 @@ public class MainAppController {
 					description.setVisible(true);
 					paraMaintenance.setVisible(true);
 					imageCrevette.setVisible(true);
+					imageCrevettePane.setVisible(true);
 					separator.setVisible(true);
 					descriptionTa.setVisible(true);
 					temperature.setVisible(true);

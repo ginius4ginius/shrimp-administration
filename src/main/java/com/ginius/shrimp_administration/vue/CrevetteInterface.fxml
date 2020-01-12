@@ -8,10 +8,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="1024.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ginius.shrimp_administration.vue.CrevetteInterfaceController">
@@ -73,7 +73,11 @@
                </font>
             </Label>
             <Separator layoutX="715.0" layoutY="159.0" orientation="VERTICAL" prefHeight="649.0" prefWidth="0.0" />
-            <ImageView fx:id="imageCrevette" fitHeight="372.0" fitWidth="582.0" layoutX="747.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true" />
+            <StackPane fx:id="imageCrevettePane" layoutX="756.0" layoutY="284.0" prefHeight="372.0" prefWidth="558.0" style="-fx-background-color: #FFE4C4;">
+               <children>
+                  <ImageView fx:id="imageCrevette" fitHeight="372.0" fitWidth="560.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </StackPane>
             <Button fx:id="imageButton" layoutX="915.0" layoutY="231.0" mnemonicParsing="false" onAction="#chooseCrevetteImage" prefHeight="31.0" prefWidth="245.0" text="Naviguer" />
             <Label alignment="CENTER" layoutX="796.0" layoutY="141.0" prefHeight="42.0" prefWidth="482.0" text="Photo" textFill="#ff7802">
                <font>

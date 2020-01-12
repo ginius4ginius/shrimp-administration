@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -94,6 +95,8 @@ public class CrevetteInterfaceController {
 
 	@FXML
 	private ImageView imageCrevette;
+	@FXML
+	private StackPane imageCrevettePane;
 
 	private File fileImageCrevette;
 

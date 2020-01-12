@@ -7,10 +7,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 
 <AnchorPane prefHeight="1024.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ginius.shrimp_administration.vue.MainAppController">
 	<children>
@@ -44,6 +44,11 @@
 		</AnchorPane>
 		<AnchorPane fx:id="an_content" layoutX="520.0" layoutY="121.0" prefHeight="814.0" prefWidth="845.0" style="-fx-background-color: #FFEDCF;">
 			<children>
+            <StackPane fx:id="imageCrevettePane" layoutX="197.0" layoutY="137.0" prefHeight="260.0" prefWidth="455.0" style="-fx-background-color: #FFE4C4;">
+               <children>
+      				<ImageView fx:id="imageCrevette" fitHeight="277.0" fitWidth="455.0" onMouseClicked="#updateCrevetteImage" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </StackPane>
 				<Pane prefHeight="65.0" prefWidth="845.0" style="-fx-background-color: #FED38C;">
 					<children>
 						<JFXButton fx:id="newCrevette" buttonType="RAISED" layoutX="14.0" layoutY="6.0" onAction="#newCrevette" prefHeight="54.0" prefWidth="157.0" text="nouvelle Crevette" textFill="WHITE" />
@@ -78,7 +83,6 @@
 				<Label fx:id="nom" layoutX="374.0" layoutY="94.0" prefHeight="26.0" prefWidth="52.0" text="Nom :" />
 				<Label fx:id="souscategorie" layoutX="190.0" layoutY="94.0" prefHeight="26.0" prefWidth="138.0" text="Sous catégorie" />
 				<Label fx:id="categorie" layoutX="40.0" layoutY="94.0" prefHeight="26.0" prefWidth="111.0" text="Catégorie" />
-				<ImageView fx:id="imageCrevette" fitHeight="261.0" fitWidth="544.0" layoutX="151.0" layoutY="146.0" onMouseClicked="#updateCrevetteImage" pickOnBounds="true" preserveRatio="true" />
             <JFXToggleButton fx:id="crevettePossedeCb" layoutX="638.0" layoutY="77.0" prefHeight="60.0" prefWidth="196.0" text="Possédé" />
 			</children>
 		</AnchorPane>
